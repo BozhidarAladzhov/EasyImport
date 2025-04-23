@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Актуални цени</title>
+</head>
+<body>
+    <h1>Актуални цени за морски транспорт</h1>
+        <nav>
+            <a th:href="@{/}">Начало</a> |
+            <a th:href="@{/about}">За нас</a> |
+            <a th:href="@{/services}">Услуги</a> |
+            <a th:href="@{/prices}">Актуални цени</a> |
+            <a th:href="@{/calculator}">Калкулатор</a> |
+            <a th:href="@{/contact}">Контакти</a>
+        </nav>
+
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>От пристанище</th>
+                    <th>До пристанище</th>
+                    <th>Вид на автомобила</th>
+                    <th>Цена (EUR)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="price : ${prices}">
+                    <td th:text="${price.originPort}"></td>
+                    <td th:text="${price.destinationPort}"></td>
+                    <td th:text="${price.vehicleType}"></td>
+                    <td th:text="${price.price}"></td>
+                </tr>
+            </tbody>
+        </table>
+</body>
+</html>
