@@ -6,10 +6,37 @@
 </head>
 <body>
 <h1>Транспортен калкулатор</h1>
+    <nav>
+        <a th:href="@{/}">Начало</a> |
+        <a th:href="@{/about}">За нас</a> |
+        <a th:href="@{/services}">Услуги</a> |
+        <a th:href="@{/prices}">Актуални цени</a> |
+        <a th:href="@{/calculator}">Калкулатор</a> |
+        <a th:href="@{/contact}">Контакти</a>
+    </nav>
 
 <form th:action="@{/calculator}" th:object="${request}" method="post">
-    <label>От пристанище: <input type="text" th:field="*{originPort}" required/></label><br>
-    <label>До пристанище: <input type="text" th:field="*{destinationPort}" required/></label><br>
+
+    <label>От пристанище:
+        <select th:field="*{originPort}">
+            <option value="NEW YORK">NEW YORK</option>
+            <option value="SAVANNAH">SAVANNAH</option>
+            <option value="MIAMI">MIAMI</option>
+            <option value="INDIANAPOLIS">INDIANAPOLIS</option>
+            <option value="HOUSTON">HOUSTON</option>
+            <option value="LOS ANGELES">LOS ANGELES</option>
+            <option value="SAN FRANCISCO">SAN FRANCISCO</option>
+        </select>
+    </label><br>
+
+    <label>До пристанище:
+        <select th:field="*{destinationPort}">
+            <option value="ROTTERDAM">ROTTERDAM</option>
+            <option value="VARNA">VARNA</option>
+        </select>
+    </label><br>
+
+
     <label>Тип на автомобила:
         <select th:field="*{vehicleType}">
             <option value="CAR">CAR</option>
