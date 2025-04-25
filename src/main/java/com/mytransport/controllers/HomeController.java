@@ -1,6 +1,7 @@
 package com.mytransport.controllers;
 
 import com.mytransport.models.TransportPrice;
+import com.mytransport.models.TransportPriceEntity;
 import com.mytransport.models.dto.TransportCalculationRequest;
 import com.mytransport.repository.TransportPriceRepository;
 import com.mytransport.services.TransportCalculatorService;
@@ -10,9 +11,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class HomeController {
@@ -38,8 +42,58 @@ public class HomeController {
     }
 
     @GetMapping("/prices")
-    public String prices(Model model) {
-        model.addAttribute("prices", transportPriceRepository.findAll());
+    public String prices(
+            @RequestParam(required = false) String port,
+            @RequestParam(required = false) String originPort,
+            @RequestParam(required = false) String sort,
+            Model model) {
+
+        List<TransportPriceEntity> allPrices = transportPriceRepository.findAll();
+
+        // Списък с уникални 'originPort' стойности
+        List<String> originPortList = allPrices.stream()
+                .map(TransportPriceEntity::getOriginPort)
+                .distinct()
+                .sorted()
+                .collect(Collectors.toList());
+
+        // Филтриране по дестинация
+        if (port != null && !port.isBlank()) {
+            allPrices = allPrices.stream()
+                    .filter(p -> port.equalsIgnoreCase(p.getDestinationPort()))
+                    .collect(Collectors.toList());
+        }
+
+        // Филтриране по 'originPort'
+        if (originPort != null && !originPort.isBlank()) {
+            allPrices = allPrices.stream()
+                    .filter(p -> originPort.equalsIgnoreCase(p.getOriginPort()))
+                    .collect(Collectors.toList());
+        }
+
+        // Сортиране по цена
+        if ("asc".equalsIgnoreCase(sort)) {
+            allPrices.sort(Comparator.comparing(TransportPriceEntity::getPrice));
+        } else if ("desc".equalsIgnoreCase(sort)) {
+            allPrices.sort(Comparator.comparing(TransportPriceEntity::getPrice).reversed());
+        }
+
+        // Разделяне по дестинация
+        List<TransportPriceEntity> pricesToVarna = allPrices.stream()
+                .filter(p -> "VARNA".equalsIgnoreCase(p.getDestinationPort()))
+                .collect(Collectors.toList());
+
+        List<TransportPriceEntity> pricesToRotterdam = allPrices.stream()
+                .filter(p -> "ROTTERDAM".equalsIgnoreCase(p.getDestinationPort()))
+                .collect(Collectors.toList());
+
+        model.addAttribute("pricesToVarna", pricesToVarna);
+        model.addAttribute("pricesToRotterdam", pricesToRotterdam);
+        model.addAttribute("selectedPort", port);
+        model.addAttribute("selectedOriginPort", originPort);
+        model.addAttribute("sort", sort);
+        model.addAttribute("originPortList", originPortList);
+
         return "prices";
     }
 
