@@ -1,6 +1,8 @@
 package com.mytransport.models.dto;
 
+
 public class TransportCalculationRequest {
+
 
     private String originPort;
     private String destinationPort;

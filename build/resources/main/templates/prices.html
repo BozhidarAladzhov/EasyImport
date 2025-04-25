@@ -33,16 +33,6 @@
 
     <form class="row g-3 mb-5" th:action="@{/prices}" method="get">
 
-        <!-- Филтър по дестинация -->
-        <div class="col-md-3">
-            <label for="portFilter" class="form-label">Дестинация</label>
-            <select id="portFilter" name="port" class="form-select">
-                <option value="">Всички</option>
-                <option value="VARNA" th:selected="${selectedPort == 'VARNA'}">VARNA</option>
-                <option value="ROTTERDAM" th:selected="${selectedPort == 'ROTTERDAM'}">ROTTERDAM</option>
-            </select>
-        </div>
-
         <!-- Филтър по "От пристанище" -->
         <div class="col-md-3">
             <label for="originPort" class="form-label">От пристанище</label>
@@ -56,13 +46,13 @@
             </select>
         </div>
 
-        <!-- Сортиране -->
+        <!-- Филтър по дестинация -->
         <div class="col-md-3">
-            <label for="sort" class="form-label">Сортирай по цена</label>
-            <select id="sort" name="sort" class="form-select">
-                <option value="">Без сортиране</option>
-                <option value="asc" th:selected="${sort == 'asc'}">Най-ниска към най-висока</option>
-                <option value="desc" th:selected="${sort == 'desc'}">Най-висока към най-ниска</option>
+            <label for="portFilter" class="form-label">Дестинация</label>
+            <select id="portFilter" name="port" class="form-select">
+                <option value="">Всички</option>
+                <option value="VARNA" th:selected="${selectedPort == 'VARNA'}">VARNA</option>
+                <option value="ROTTERDAM" th:selected="${selectedPort == 'ROTTERDAM'}">ROTTERDAM</option>
             </select>
         </div>
 
@@ -70,9 +60,11 @@
         <div class="col-md-3 d-flex align-items-end">
             <button type="submit" class="btn btn-primary w-100">Приложи филтри</button>
         </div>
+
         <div class="col-md-3 d-flex align-items-end">
             <a href="/prices" class="btn btn-outline-secondary w-100">Изчисти филтрите</a>
         </div>
+
     </form>
 
     <!-- ✅ Две таблици една до друга -->

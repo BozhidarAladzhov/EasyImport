@@ -2,71 +2,146 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Калкулатор</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
+
+<script>
+    (() => {
+        'use strict';
+        const forms = document.querySelectorAll('.needs-validation');
+        Array.from(forms).forEach(form => {
+            form.addEventListener('submit', event => {
+                if (!form.checkValidity()) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+            }, false);
+        });
+    })();
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const hybridCheckbox = document.getElementById('hybrid');
+        const electricCheckbox = document.getElementById('electric');
+
+        hybridCheckbox.addEventListener('change', function () {
+            if (this.checked) {
+                electricCheckbox.checked = false;
+            }
+        });
+
+        electricCheckbox.addEventListener('change', function () {
+            if (this.checked) {
+                hybridCheckbox.checked = false;
+            }
+        });
+    });
+</script>
+
+
 <body class="bg-light">
 
-<!-- ✅ Bootstrap Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" th:href="@{/}">EasyImport</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" th:href="@{/}">Начало</a></li>
-                    <li class="nav-item"><a class="nav-link" th:href="@{/about}">За нас</a></li>
-                    <li class="nav-item"><a class="nav-link" th:href="@{/services}">Услуги</a></li>
-                    <li class="nav-item"><a class="nav-link active" th:href="@{/prices}">Актуални цени</a></li>
-                    <li class="nav-item"><a class="nav-link" th:href="@{/calculator}">Калкулатор</a></li>
-                    <li class="nav-item"><a class="nav-link" th:href="@{/contact}">Контакти</a></li>
-                </ul>
+<!-- ✅ Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{/}">EasyImport</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" th:href="@{/}">Начало</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/about}">За нас</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/services}">Услуги</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/prices}">Актуални цени</a></li>
+                <li class="nav-item"><a class="nav-link active" th:href="@{/calculator}">Калкулатор</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/contact}">Контакти</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- ✅ Калкулатор -->
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Калкулатор за транспорт</h1>
+
+    <form th:action="@{/calculator}" th:object="${request}" method="post" class="row g-3 shadow p-4 bg-white rounded">
+
+        <div class="col-md-6">
+            <label for="originPort" class="form-label">От пристанище</label>
+            <select id="originPort" th:field="*{originPort}" class="form-select">
+                <option value="">Избери...</option>
+                <option value="NEW YORK">NEW YORK</option>
+                <option value="SAVANNAH">SAVANNAH</option>
+                <option value="MIAMI">MIAMI</option>
+                <option value="INDIANAPOLIS">INDIANAPOLIS</option>
+                <option value="HOUSTON">HOUSTON</option>
+                <option value="LOS ANGELES">LOS ANGELES</option>
+                <option value="SAN FRANCISCO">SAN FRANCISCO</option>
+            </select>
+            <div class="invalid-feedback">Моля, изберете начално пристанище.</div>
+        </div>
+
+        <div class="col-md-6">
+            <label for="destinationPort" class="form-label">До пристанище</label>
+            <select id="destinationPort" th:field="*{destinationPort}" class="form-select">
+                <option value="">Избери...</option>
+                <option value="ROTTERDAM">ROTTERDAM</option>
+                <option value="VARNA">VARNA</option>
+            </select>
+            <div class="invalid-feedback">Моля, изберете дестинация.</div>
+        </div>
+
+        <div class="col-md-6">
+            <label for="vehicleType" class="form-label">Тип на автомобила</label>
+            <select id="vehicleType" th:field="*{vehicleType}" class="form-select">
+                <option value="">Избери...</option>
+                <option value="CAR">CAR</option>
+                <option value="SUV">SUV</option>
+                <option value="Large SUV">Large SUV</option>
+                <option value="PICKUP">PICKUP</option>
+                <option value="Motorcycle">Motorcycle</option>
+                <option value="Other">Other</option>
+            </select>
+            <div class="invalid-feedback">Моля, изберете тип на автомобила.</div>
+        </div>
+
+        <div class="col-md-3 d-flex align-items-center">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" th:field="*{hybrid}" id="hybrid">
+                <label class="form-check-label" for="hybrid">Хибрид</label>
+            </div>
+
+        </div>
+
+        <div class="col-md-3 d-flex align-items-center">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" th:field="*{electric}" id="electric">
+                <label class="form-check-label" for="electric">Електрически</label>
             </div>
         </div>
-    </nav>
 
-<form th:action="@{/calculator}" th:object="${request}" method="post">
+        <div class="col-12 mt-3">
+            <button type="submit" class="btn btn-primary w-100">Изчисли цена</button>
+        </div>
+    </form>
 
-    <label>От пристанище:
-        <select th:field="*{originPort}">
-            <option value="NEW YORK">NEW YORK</option>
-            <option value="SAVANNAH">SAVANNAH</option>
-            <option value="MIAMI">MIAMI</option>
-            <option value="INDIANAPOLIS">INDIANAPOLIS</option>
-            <option value="HOUSTON">HOUSTON</option>
-            <option value="LOS ANGELES">LOS ANGELES</option>
-            <option value="SAN FRANCISCO">SAN FRANCISCO</option>
-        </select>
-    </label><br>
-
-    <label>До пристанище:
-        <select th:field="*{destinationPort}">
-            <option value="ROTTERDAM">ROTTERDAM</option>
-            <option value="VARNA">VARNA</option>
-        </select>
-    </label><br>
-
-
-    <label>Тип на автомобила:
-        <select th:field="*{vehicleType}">
-            <option value="CAR">CAR</option>
-            <option value="SUV">SUV</option>
-            <option value="Large SUV">Large SUV</option>
-            <option value="PICKUP">PICKUP</option>
-            <option value="Motorcycle">Motorcycle</option>
-            <option value="Other">Other</option>
-        </select>
-    </label><br>
-    <label><input type="checkbox" th:field="*{hybrid}"/> Хибрид</label><br>
-    <label><input type="checkbox" th:field="*{electric}"/> Електрически</label><br>
-    <button type="submit">Изчисли</button>
-</form>
-
-<div th:if="${result != null}">
-    <p th:if="${result == -1}">Няма намерена цена за зададените параметри.</p>
-    <p th:if="${result != -1}">Обща цена: <span th:text="${result}">0</span> EUR</p>
+    <!-- ✅ Резултат -->
+    <div class="mt-4">
+        <div class="alert alert-danger" th:if="${result == -1}">
+            Няма намерена цена за зададените параметри.
+        </div>
+        <div class="alert alert-success" th:if="${result != null and result != -1}">
+            Обща цена: <strong th:text="${result}">0</strong> USD
+        </div>
+    </div>
 </div>
+
+<!-- ✅ Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>

@@ -45,7 +45,6 @@ public class HomeController {
     public String prices(
             @RequestParam(required = false) String port,
             @RequestParam(required = false) String originPort,
-            @RequestParam(required = false) String sort,
             Model model) {
 
         List<TransportPriceEntity> allPrices = transportPriceRepository.findAll();
@@ -71,12 +70,6 @@ public class HomeController {
                     .collect(Collectors.toList());
         }
 
-        // Сортиране по цена
-        if ("asc".equalsIgnoreCase(sort)) {
-            allPrices.sort(Comparator.comparing(TransportPriceEntity::getPrice));
-        } else if ("desc".equalsIgnoreCase(sort)) {
-            allPrices.sort(Comparator.comparing(TransportPriceEntity::getPrice).reversed());
-        }
 
         // Разделяне по дестинация
         List<TransportPriceEntity> pricesToVarna = allPrices.stream()
@@ -91,7 +84,6 @@ public class HomeController {
         model.addAttribute("pricesToRotterdam", pricesToRotterdam);
         model.addAttribute("selectedPort", port);
         model.addAttribute("selectedOriginPort", originPort);
-        model.addAttribute("sort", sort);
         model.addAttribute("originPortList", originPortList);
 
         return "prices";

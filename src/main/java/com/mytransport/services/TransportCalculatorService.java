@@ -37,7 +37,7 @@ public class TransportCalculatorService {
         }
 
         if (request.isElectric()){
-            price =+ 300;
+            price += 300;
         }
 
         return price;
