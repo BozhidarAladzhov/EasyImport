@@ -3,7 +3,7 @@ package com.mytransport.models;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "transport_prices")
+@Table(name = "ocean_freight_prices")
 public class OceanFreightEntity {
 
     @Id
