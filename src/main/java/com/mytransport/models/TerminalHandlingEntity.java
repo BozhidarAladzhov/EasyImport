@@ -18,8 +18,7 @@ public class TerminalHandlingEntity {
 
     public TerminalHandlingEntity (){};
 
-    public TerminalHandlingEntity(Long id, String originPort, String destinationPort, String vehicleType, double price) {
-        this.id = id;
+    public TerminalHandlingEntity(String originPort, String destinationPort, String vehicleType, double price) {
         this.originPort = originPort;
         this.destinationPort = destinationPort;
         this.vehicleType = vehicleType;

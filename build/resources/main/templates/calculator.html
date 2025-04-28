@@ -134,9 +134,24 @@
         <div class="alert alert-danger" th:if="${result == -1}">
             Няма намерена цена за зададените параметри.
         </div>
-        <div class="alert alert-success" th:if="${result != null and result != -1}">
-            Обща цена: <strong th:text="${result}">0</strong> USD
+        <div class="alert alert-success" th:if="${oceanFreight != null and oceanFreight != -1}">
+            Морски транспорт: <strong th:text="${oceanFreight}">0</strong> USD
         </div>
+        <div class="alert alert-success"
+             th:if="${terminalHandling != null and terminalHandling != -1 and request.destinationPort == 'ROTTERDAM'}">
+            Терминални разходи в Ротердам: <strong th:text="${terminalHandling}">0</strong> EUR
+        </div>
+        <div class="alert alert-success"
+             th:if="${terminalHandling != null and terminalHandling != -1 and request.destinationPort == 'VARNA'}">
+            Терминални разходи във Варна: <strong th:text="${terminalHandling}">0</strong> BGN
+        </div>
+        <div class="alert alert-success"
+             th:if="${domesticRotterdam != null and domesticRotterdam != -1 and request.destinationPort == 'ROTTERDAM'}">
+            Транспорт от Ротердам до София: <strong th:text="${domesticRotterdam}">0</strong> BGN
+        </div>
+
+
+
     </div>
 </div>
 

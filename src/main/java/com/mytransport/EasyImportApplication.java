@@ -1,6 +1,8 @@
 package com.mytransport;
 
-import com.mytransport.services.ExcelImportService;
+import com.mytransport.services.DomesticRotterdamExcelImportService;
+import com.mytransport.services.OceanFreightExcelImportService;
+import com.mytransport.services.TerminalHandlingExcelImportService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,9 +12,13 @@ import org.springframework.context.annotation.Bean;
 public class EasyImportApplication {
 
 	@Bean
-	public CommandLineRunner importDataOnStartup(ExcelImportService excelImportService) {
+	public CommandLineRunner importDataOnStartup(OceanFreightExcelImportService oceanFreightExcelImportService,
+												 TerminalHandlingExcelImportService terminalHandlingExcelImportService,
+												 DomesticRotterdamExcelImportService domesticRotterdamExcelImportService) {
 		return args -> {
-			excelImportService.importPricesFromExcel();
+			oceanFreightExcelImportService.importPricesFromExcel();
+			terminalHandlingExcelImportService.importPricesFromExcel();
+			domesticRotterdamExcelImportService.importPricesFromExcel();
 		};
 	}
 

@@ -17,8 +17,7 @@ public class DomesticRotterdamEntity {
 
     public DomesticRotterdamEntity(){};
 
-    public DomesticRotterdamEntity(Long id, String originPort, String destinationPort, String vehicleType, double price) {
-        this.id = id;
+    public DomesticRotterdamEntity(String originPort, String destinationPort, String vehicleType, double price) {
         this.originPort = originPort;
         this.destinationPort = destinationPort;
         this.vehicleType = vehicleType;

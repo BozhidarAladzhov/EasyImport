@@ -12,11 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class ExcelImportService {
+public class OceanFreightExcelImportService {
 
     private final OceanFreightRepository oceanFreightRepository;
 
-    public ExcelImportService(OceanFreightRepository oceanFreightRepository) {
+    public OceanFreightExcelImportService(OceanFreightRepository oceanFreightRepository) {
         this.oceanFreightRepository = oceanFreightRepository;
     }
 
@@ -64,10 +64,6 @@ public class ExcelImportService {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
-
-
     }
 
 }

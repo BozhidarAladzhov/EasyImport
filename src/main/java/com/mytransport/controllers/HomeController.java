@@ -94,8 +94,12 @@ public class HomeController {
 
     @PostMapping("/calculator")
     public String calculate(@ModelAttribute("request") TransportCalculationRequest request, Model model) {
-        double result = calculatorService.calculate(request);
-        model.addAttribute("result", result);
+        double oceanFreight = calculatorService.calculateOceanFreight(request);
+        double terminalHandling = calculatorService.calculateTerminalHandling(request);
+        double domesticRotterdam = calculatorService.calculateDomesticRotterdam(request);
+        model.addAttribute("oceanFreight", oceanFreight);
+        model.addAttribute("terminalHandling", terminalHandling);
+        model.addAttribute("domesticRotterdam", domesticRotterdam);
         return "calculator";
     }
 
