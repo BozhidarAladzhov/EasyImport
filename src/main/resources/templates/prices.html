@@ -68,7 +68,7 @@
     </form>
 
     <!-- ✅ Две таблици една до друга -->
-    <div class="row">
+    <div class="row" th:if="${selectedOriginPort != null or selectedPort != null}">
         <!-- Таблица за VARNA -->
         <div class="col-md-6 mb-4">
             <div class="card shadow">
