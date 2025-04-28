@@ -1,7 +1,5 @@
 package com.mytransport;
 
-import com.mytransport.models.TransportPriceEntity;
-import com.mytransport.repository.TransportPriceRepository;
 import com.mytransport.services.ExcelImportService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

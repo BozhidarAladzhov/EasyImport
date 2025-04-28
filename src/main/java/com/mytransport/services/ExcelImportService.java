@@ -1,7 +1,7 @@
 package com.mytransport.services;
 
-import com.mytransport.models.TransportPriceEntity;
-import com.mytransport.repository.TransportPriceRepository;
+import com.mytransport.models.OceanFreightEntity;
+import com.mytransport.repository.OceanFreightRepository;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.core.io.ClassPathResource;
@@ -14,20 +14,20 @@ import java.util.List;
 @Service
 public class ExcelImportService {
 
-    private final TransportPriceRepository transportPriceRepository;
+    private final OceanFreightRepository oceanFreightRepository;
 
-    public ExcelImportService(TransportPriceRepository transportPriceRepository) {
-        this.transportPriceRepository = transportPriceRepository;
+    public ExcelImportService(OceanFreightRepository oceanFreightRepository) {
+        this.oceanFreightRepository = oceanFreightRepository;
     }
 
     public void importPricesFromExcel (){
 
         try {
-            InputStream inputStream = new ClassPathResource("data/DatabasePrices.xlsx").getInputStream();
+            InputStream inputStream = new ClassPathResource("data/OceanFreightDatabase.xlsx").getInputStream();
             Workbook workbook = new XSSFWorkbook(inputStream);
             Sheet sheet = workbook.getSheetAt(0);
 
-            List<TransportPriceEntity> prices = new ArrayList<>();
+            List<OceanFreightEntity> oceanFreightEntityList = new ArrayList<>();
 
             String currentRoute = null;
 
@@ -56,11 +56,11 @@ public class ExcelImportService {
                     price = Double.parseDouble(raw);
                 }
 
-                prices.add(new TransportPriceEntity(origin, destination, vehicleType, price));
+                oceanFreightEntityList.add(new OceanFreightEntity(origin, destination, vehicleType, price));
 
             }
-            transportPriceRepository.deleteAll();
-            transportPriceRepository.saveAll(prices);
+            oceanFreightRepository.deleteAll();
+            oceanFreightRepository.saveAll(oceanFreightEntityList);
         } catch (Exception e) {
             e.printStackTrace();
         }

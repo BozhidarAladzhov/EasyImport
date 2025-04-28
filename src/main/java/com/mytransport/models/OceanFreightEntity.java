@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "transport_prices")
-public class TransportPriceEntity {
+public class OceanFreightEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,9 +15,9 @@ public class TransportPriceEntity {
     private String vehicleType;
     private double price;
 
-    public TransportPriceEntity(){}
+    public OceanFreightEntity(){}
 
-    public TransportPriceEntity(String originPort, String destinationPort, String vehicleType, double price) {
+    public OceanFreightEntity(String originPort, String destinationPort, String vehicleType, double price) {
         this.originPort = originPort;
         this.destinationPort = destinationPort;
         this.vehicleType = vehicleType;

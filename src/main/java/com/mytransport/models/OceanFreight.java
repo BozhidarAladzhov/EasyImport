@@ -1,13 +1,13 @@
 package com.mytransport.models;
 
-public class TransportPrice {
+public class OceanFreight {
 
     private String originPort;
     private String destinationPort;
     private String vehicleType;
     private double price;
 
-    public TransportPrice(String originPort, String destinationPort, String vehicleType, double price) {
+    public OceanFreight(String originPort, String destinationPort, String vehicleType, double price) {
         this.originPort = originPort;
         this.destinationPort = destinationPort;
         this.vehicleType = vehicleType;

@@ -1,8 +1,8 @@
 package com.mytransport.services;
 
-import com.mytransport.models.TransportPriceEntity;
+import com.mytransport.models.OceanFreightEntity;
 import com.mytransport.models.dto.TransportCalculationRequest;
-import com.mytransport.repository.TransportPriceRepository;
+import com.mytransport.repository.OceanFreightRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -10,16 +10,16 @@ import java.util.Optional;
 @Service
 public class TransportCalculatorService {
 
-    private final TransportPriceRepository transportPriceRepository;
+    private final OceanFreightRepository oceanFreightRepository;
 
 
-    public TransportCalculatorService(TransportPriceRepository transportPriceRepository) {
-        this.transportPriceRepository = transportPriceRepository;
+    public TransportCalculatorService(OceanFreightRepository oceanFreightRepository) {
+        this.oceanFreightRepository = oceanFreightRepository;
     }
 
 
     public double calculate (TransportCalculationRequest request){
-        Optional<TransportPriceEntity> basePriceOpt = transportPriceRepository
+        Optional<OceanFreightEntity> basePriceOpt = oceanFreightRepository
                 .findAll()
                 .stream()
                 .filter(p -> p.getOriginPort().equalsIgnoreCase(request.getOriginPort())
