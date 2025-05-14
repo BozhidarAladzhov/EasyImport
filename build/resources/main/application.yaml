@@ -1,6 +1,20 @@
 spring:
   application:
     name: EasyImport
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: easyimport.bg@gmail.com
+    password: ebovdypfekrwlmgd
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+          ssl:
+            trust: "*"  # Това игнорира SSL проверката (временно за тест)
+    protocol: smtp
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver

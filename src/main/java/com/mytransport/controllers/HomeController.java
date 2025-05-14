@@ -103,10 +103,10 @@ public class HomeController {
         return "calculator";
     }
 
-    @GetMapping("/contact")
+    /*@GetMapping("/contact")
     public String contact() {
         return "contact";
-    }
+    }*/
 
 
 
