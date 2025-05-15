@@ -1,7 +1,6 @@
-package com.mytransport.services;
+package com.mytransport.services.ExcelImports;
 
-import com.mytransport.models.DomesticRotterdamEntity;
-import com.mytransport.models.TerminalHandlingEntity;
+import com.mytransport.models.entity.DomesticRotterdamEntity;
 import com.mytransport.repository.DomesticRotterdamRepository;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -13,12 +12,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class DomesticRotterdamExcelImportService {
+public class DomesticRotterdamXLSImportService {
 
     private final DomesticRotterdamRepository domesticRotterdamRepository;
 
 
-    public DomesticRotterdamExcelImportService(DomesticRotterdamRepository domesticRotterdamRepository) {
+    public DomesticRotterdamXLSImportService(DomesticRotterdamRepository domesticRotterdamRepository) {
         this.domesticRotterdamRepository = domesticRotterdamRepository;
     }
 

@@ -1,10 +1,11 @@
-package com.mytransport.models;
+package com.mytransport.models.entity;
+
 
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "domestic_rotterdam_prices")
-public class DomesticRotterdamEntity {
+@Table(name = "terminal_handling_prices")
+public class TerminalHandlingEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,15 +16,14 @@ public class DomesticRotterdamEntity {
     private String vehicleType;
     private double price;
 
-    public DomesticRotterdamEntity(){};
+    public TerminalHandlingEntity (){};
 
-    public DomesticRotterdamEntity(String originPort, String destinationPort, String vehicleType, double price) {
+    public TerminalHandlingEntity(String originPort, String destinationPort, String vehicleType, double price) {
         this.originPort = originPort;
         this.destinationPort = destinationPort;
         this.vehicleType = vehicleType;
         this.price = price;
     }
-
 
     public Long getId() {
         return id;

@@ -1,8 +1,8 @@
 package com.mytransport;
 
-import com.mytransport.services.DomesticRotterdamExcelImportService;
-import com.mytransport.services.OceanFreightExcelImportService;
-import com.mytransport.services.TerminalHandlingExcelImportService;
+import com.mytransport.services.ExcelImports.DomesticRotterdamXLSImportService;
+import com.mytransport.services.ExcelImports.OceanFreightXLSImportService;
+import com.mytransport.services.ExcelImports.TerminalHandlingXLSImportService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,13 +12,13 @@ import org.springframework.context.annotation.Bean;
 public class EasyImportApplication {
 
 	@Bean
-	public CommandLineRunner importDataOnStartup(OceanFreightExcelImportService oceanFreightExcelImportService,
-												 TerminalHandlingExcelImportService terminalHandlingExcelImportService,
-												 DomesticRotterdamExcelImportService domesticRotterdamExcelImportService) {
+	public CommandLineRunner importDataOnStartup(OceanFreightXLSImportService oceanFreightXLSImportService,
+												 TerminalHandlingXLSImportService terminalHandlingXLSImportService,
+												 DomesticRotterdamXLSImportService domesticRotterdamXLSImportService) {
 		return args -> {
-			oceanFreightExcelImportService.importPricesFromExcel();
-			terminalHandlingExcelImportService.importPricesFromExcel();
-			domesticRotterdamExcelImportService.importPricesFromExcel();
+			oceanFreightXLSImportService.importPricesFromExcel();
+			terminalHandlingXLSImportService.importPricesFromExcel();
+			domesticRotterdamXLSImportService.importPricesFromExcel();
 		};
 	}
 

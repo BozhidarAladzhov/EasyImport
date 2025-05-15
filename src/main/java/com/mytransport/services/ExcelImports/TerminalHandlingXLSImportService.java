@@ -1,7 +1,6 @@
-package com.mytransport.services;
+package com.mytransport.services.ExcelImports;
 
-import com.mytransport.models.OceanFreightEntity;
-import com.mytransport.models.TerminalHandlingEntity;
+import com.mytransport.models.entity.TerminalHandlingEntity;
 import com.mytransport.repository.TerminalHandlingRepository;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -13,11 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class TerminalHandlingExcelImportService {
+public class TerminalHandlingXLSImportService {
 
     private final TerminalHandlingRepository terminalHandlingRepository;
 
-    public TerminalHandlingExcelImportService(TerminalHandlingRepository terminalHandlingRepository) {
+    public TerminalHandlingXLSImportService(TerminalHandlingRepository terminalHandlingRepository) {
         this.terminalHandlingRepository = terminalHandlingRepository;
     }
 

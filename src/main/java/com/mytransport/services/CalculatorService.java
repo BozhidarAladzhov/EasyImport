@@ -1,8 +1,8 @@
 package com.mytransport.services;
 
-import com.mytransport.models.DomesticRotterdamEntity;
-import com.mytransport.models.OceanFreightEntity;
-import com.mytransport.models.TerminalHandlingEntity;
+import com.mytransport.models.entity.DomesticRotterdamEntity;
+import com.mytransport.models.entity.OceanFreightEntity;
+import com.mytransport.models.entity.TerminalHandlingEntity;
 import com.mytransport.models.dto.TransportCalculationRequest;
 import com.mytransport.repository.DomesticRotterdamRepository;
 import com.mytransport.repository.OceanFreightRepository;
@@ -12,14 +12,14 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class TransportCalculatorService {
+public class CalculatorService {
 
     private final OceanFreightRepository oceanFreightRepository;
     private final TerminalHandlingRepository terminalHandlingRepository;
     private final DomesticRotterdamRepository domesticRotterdamRepository;
 
 
-    public TransportCalculatorService(OceanFreightRepository oceanFreightRepository, TerminalHandlingRepository terminalHandlingRepository, DomesticRotterdamRepository domesticRotterdamRepository) {
+    public CalculatorService(OceanFreightRepository oceanFreightRepository, TerminalHandlingRepository terminalHandlingRepository, DomesticRotterdamRepository domesticRotterdamRepository) {
         this.oceanFreightRepository = oceanFreightRepository;
         this.terminalHandlingRepository = terminalHandlingRepository;
         this.domesticRotterdamRepository = domesticRotterdamRepository;

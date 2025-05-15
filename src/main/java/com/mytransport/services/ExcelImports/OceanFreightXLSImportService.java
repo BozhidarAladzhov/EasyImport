@@ -1,6 +1,6 @@
-package com.mytransport.services;
+package com.mytransport.services.ExcelImports;
 
-import com.mytransport.models.OceanFreightEntity;
+import com.mytransport.models.entity.OceanFreightEntity;
 import com.mytransport.repository.OceanFreightRepository;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -12,11 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class OceanFreightExcelImportService {
+public class OceanFreightXLSImportService {
 
     private final OceanFreightRepository oceanFreightRepository;
 
-    public OceanFreightExcelImportService(OceanFreightRepository oceanFreightRepository) {
+    public OceanFreightXLSImportService(OceanFreightRepository oceanFreightRepository) {
         this.oceanFreightRepository = oceanFreightRepository;
     }
 
