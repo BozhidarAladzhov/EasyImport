@@ -1,4 +1,4 @@
-package com.mytransport.models.entity;
+package com.mytransport.models;
 
 import jakarta.persistence.*;
 
