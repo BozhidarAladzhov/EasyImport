@@ -9,6 +9,15 @@ public class TransportCalculationRequest {
     private String vehicleType;
     private boolean isHybrid;
     private boolean isElectric;
+    private int price;
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
 
     public String getOriginPort() {
         return originPort;

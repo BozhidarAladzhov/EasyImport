@@ -97,9 +97,15 @@ public class HomeController {
         double oceanFreight = calculatorService.calculateOceanFreight(request);
         double terminalHandling = calculatorService.calculateTerminalHandling(request);
         double domesticRotterdam = calculatorService.calculateDomesticRotterdam(request);
+        double vehicleTAX = calculatorService.calculateTAX(request);
+        double calculateVATBulgaria = calculatorService.calculateVATBulgaria(request);
+        double calculateVATNetherlands = calculatorService.calculateVATNetherlands(request);
         model.addAttribute("oceanFreight", oceanFreight);
         model.addAttribute("terminalHandling", terminalHandling);
         model.addAttribute("domesticRotterdam", domesticRotterdam);
+        model.addAttribute("vehicleTAX", vehicleTAX);
+        model.addAttribute("calculateVATBulgaria", calculateVATBulgaria);
+        model.addAttribute("calculateVATNetherlands", calculateVATNetherlands);
         return "calculator";
     }
 

@@ -85,4 +85,29 @@ public class TransportCalculatorService {
 
         return priceDomesticRotterdam;
     }
+
+    public double calculateTAX (TransportCalculationRequest request){
+
+        double vehicleTAX = ( request.getPrice() + calculateOceanFreight(request) ) * 0.1;
+        return vehicleTAX;
+
+    }
+
+    public double calculateVATBulgaria (TransportCalculationRequest request) {
+
+        double vehicleVAT = ( request.getPrice() + calculateOceanFreight(request) + calculateTAX(request) ) * 0.20;
+
+        return vehicleVAT;
+
+    }
+
+    public double calculateVATNetherlands (TransportCalculationRequest request) {
+
+        double vehicleVAT = ( request.getPrice() + calculateOceanFreight(request) + calculateTAX(request) ) * 0.21;
+
+        return vehicleVAT;
+
+    }
+
+
 }
