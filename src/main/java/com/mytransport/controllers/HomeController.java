@@ -70,11 +70,11 @@ public class HomeController {
 
         // Разделяне по дестинация
         List<OceanFreightEntity> pricesToVarna = allPrices.stream()
-                .filter(p -> "VARNA".equalsIgnoreCase(p.getDestinationPort()))
+                .filter(p -> "Varna".equalsIgnoreCase(p.getDestinationPort()))
                 .collect(Collectors.toList());
 
         List<OceanFreightEntity> pricesToRotterdam = allPrices.stream()
-                .filter(p -> "ROTTERDAM".equalsIgnoreCase(p.getDestinationPort()))
+                .filter(p -> "Rotterdam".equalsIgnoreCase(p.getDestinationPort()))
                 .collect(Collectors.toList());
 
         model.addAttribute("pricesToVarna", pricesToVarna);
