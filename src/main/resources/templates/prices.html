@@ -47,7 +47,7 @@
 
         <!-- Филтър по "От пристанище" -->
         <div class="col-md-3">
-            <label for="originPort" class="form-label">От пристанище</label>
+            <label for="originPort" class="form-label">Товарно пристанище</label>
             <select id="originPort" name="originPort" class="form-select">
                 <option value="">Всички</option>
                 <option th:each="port : ${originPortList}"
@@ -60,7 +60,7 @@
 
         <!-- Филтър по дестинация -->
         <div class="col-md-3">
-            <label for="portFilter" class="form-label">Дестинация</label>
+            <label for="portFilter" class="form-label">Разтоварно пристанище</label>
             <select id="portFilter" name="port" class="form-select">
                 <option value="">Всички</option>
                 <option value="Varna" th:selected="${selectedPort == 'Varna'}">Varna</option>
@@ -100,7 +100,7 @@
                         <tr th:each="price : ${pricesToVarna}">
                             <td th:text="${price.originPort}"></td>
                             <td th:text="${price.vehicleType}"></td>
-                            <td th:text="${price.price}"></td>
+                            <td th:text="${#numbers.formatDecimal(price.price, 2, 2)}"></td>
                         </tr>
                         </tbody>
                     </table>
@@ -127,7 +127,7 @@
                         <tr th:each="price : ${pricesToRotterdam}">
                             <td th:text="${price.originPort}"></td>
                             <td th:text="${price.vehicleType}"></td>
-                            <td th:text="${price.price}"></td>
+                            <td th:text="${#numbers.formatDecimal(price.price, 2, 2)}"></td>
                         </tr>
                         </tbody>
                     </table>

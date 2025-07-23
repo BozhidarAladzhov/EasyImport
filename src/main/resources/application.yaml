@@ -16,11 +16,20 @@ spring:
             trust: "*"  # Това игнорира SSL проверката (временно за тест)
     protocol: smtp
 
+#  FOR DEPLOY
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://localhost:3306/easyimportdb
+#    username: springuser
+#    password: 2605
+
+# FOR LOCALHOST TEST
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/easyimportdb
-    username: springuser
-    password: 2605
+    url: jdbc:mysql://localhost:3306/easy_import?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC
+    username: root
+    password: '2605'
+
 
   jpa:
     hibernate:

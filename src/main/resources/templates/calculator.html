@@ -85,7 +85,7 @@
     <form th:action="@{/calculator}" th:object="${request}" method="post" class="row g-3 shadow p-4 bg-white rounded">
 
         <div class="col-md-6">
-            <label for="originPort" class="form-label">От пристанище</label>
+            <label for="originPort" class="form-label">Товарно пристанище</label>
             <select id="originPort" th:field="*{originPort}" class="form-select">
                 <option value="">Избери...</option>
                 <option value="New York">New York</option>
@@ -100,7 +100,7 @@
         </div>
 
         <div class="col-md-6">
-            <label for="destinationPort" class="form-label">До пристанище</label>
+            <label for="destinationPort" class="form-label">Разтоварно пристанище</label>
             <select id="destinationPort" th:field="*{destinationPort}" class="form-select">
                 <option value="">Избери...</option>
                 <option value="Rotterdam">Rotterdam</option>
@@ -138,7 +138,7 @@
         </div>
 
         <div class="col-md-6">
-            <label for="price" class="form-label">Цена на автомобила: </label>
+            <label for="price" class="form-label">Цена на автомобила: (USD) </label>
             <input type="number" id="price" th:field="*{price}" class="form-control" placeholder="Въведете числова стойност">
             <div class="invalid-feedback">Моля, въведете цената на автомобила.</div>
         </div>

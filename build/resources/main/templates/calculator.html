@@ -85,26 +85,26 @@
     <form th:action="@{/calculator}" th:object="${request}" method="post" class="row g-3 shadow p-4 bg-white rounded">
 
         <div class="col-md-6">
-            <label for="originPort" class="form-label">От пристанище</label>
+            <label for="originPort" class="form-label">Товарно пристанище</label>
             <select id="originPort" th:field="*{originPort}" class="form-select">
                 <option value="">Избери...</option>
-                <option value="NEW YORK">NEW YORK</option>
-                <option value="SAVANNAH">SAVANNAH</option>
-                <option value="MIAMI">MIAMI</option>
-                <option value="INDIANAPOLIS">INDIANAPOLIS</option>
-                <option value="HOUSTON">HOUSTON</option>
-                <option value="LOS ANGELES">LOS ANGELES</option>
-                <option value="SAN FRANCISCO">SAN FRANCISCO</option>
+                <option value="New York">New York</option>
+                <option value="Savannah">Savannah</option>
+                <option value="Miami">Miami</option>
+                <option value="Indianapolis">Indianapolis</option>
+                <option value="Houston">Houston</option>
+                <option value="Los Angeles">Los Angeles</option>
+                <option value="San Francisco">San Francisco</option>
             </select>
             <div class="invalid-feedback">Моля, изберете начално пристанище.</div>
         </div>
 
         <div class="col-md-6">
-            <label for="destinationPort" class="form-label">До пристанище</label>
+            <label for="destinationPort" class="form-label">Разтоварно пристанище</label>
             <select id="destinationPort" th:field="*{destinationPort}" class="form-select">
                 <option value="">Избери...</option>
-                <option value="ROTTERDAM">ROTTERDAM</option>
-                <option value="VARNA">VARNA</option>
+                <option value="Rotterdam">Rotterdam</option>
+                <option value="Varna">Varna</option>
             </select>
             <div class="invalid-feedback">Моля, изберете дестинация.</div>
         </div>
@@ -138,7 +138,7 @@
         </div>
 
         <div class="col-md-6">
-            <label for="price" class="form-label">Цена на автомобила: </label>
+            <label for="price" class="form-label">Цена на автомобила: (USD) </label>
             <input type="number" id="price" th:field="*{price}" class="form-control" placeholder="Въведете числова стойност">
             <div class="invalid-feedback">Моля, въведете цената на автомобила.</div>
         </div>
@@ -160,15 +160,15 @@
                 Морски транспорт: <strong th:text="${#numbers.formatDecimal(oceanFreight, 2, 2)}">0</strong> USD
             </div>
             <div class="alert alert-success"
-                 th:if="${terminalHandling != null and terminalHandling != -1 and request.destinationPort == 'ROTTERDAM'}">
+                 th:if="${terminalHandling != null and terminalHandling != -1 and request.destinationPort == 'Rotterdam'}">
                 Терминални разходи в Ротердам: <strong th:text="${#numbers.formatDecimal(terminalHandling, 2, 2)}">0</strong> EUR
             </div>
             <div class="alert alert-success"
-                 th:if="${terminalHandling != null and terminalHandling != -1 and request.destinationPort == 'VARNA'}">
+                 th:if="${terminalHandling != null and terminalHandling != -1 and request.destinationPort == 'Varna'}">
                 Терминални разходи във Варна: <strong th:text="${#numbers.formatDecimal(terminalHandling, 2, 2)}">0</strong> BGN
             </div>
             <div class="alert alert-success"
-                 th:if="${domesticRotterdam != null and domesticRotterdam != -1 and request.destinationPort == 'ROTTERDAM'}">
+                 th:if="${domesticRotterdam != null and domesticRotterdam != -1 and request.destinationPort == 'Rotterdam'}">
                 Транспорт от Ротердам до София: <strong th:text="${#numbers.formatDecimal(domesticRotterdam, 2, 2)}">0</strong> BGN
             </div>
         </div>
@@ -176,19 +176,19 @@
         <div class="col-md-6">
             <h5 class="mb-3">💰 Митнически задължения</h5>
             <div class="alert alert-success"
-                 th:if="${terminalHandling != null and terminalHandling != -1 and request.destinationPort == 'ROTTERDAM'}">
+                 th:if="${terminalHandling != null and terminalHandling != -1 and request.destinationPort == 'Rotterdam'}">
                 Мито 10% : <strong th:text="${#numbers.formatDecimal(vehicleTAX, 2, 2)}">0</strong> USD
             </div>
             <div class="alert alert-success"
-                 th:if="${terminalHandling != null and terminalHandling != -1 and request.destinationPort == 'ROTTERDAM'}">
+                 th:if="${terminalHandling != null and terminalHandling != -1 and request.destinationPort == 'Rotterdam'}">
                 ДДС 21% : <strong th:text="${#numbers.formatDecimal(calculateVATNetherlands, 2, 2)}">0</strong> USD
             </div>
             <div class="alert alert-success"
-                 th:if="${terminalHandling != null and terminalHandling != -1 and request.destinationPort == 'VARNA'}">
+                 th:if="${terminalHandling != null and terminalHandling != -1 and request.destinationPort == 'Varna'}">
                 Мито 10% : <strong th:text="${#numbers.formatDecimal(vehicleTAX, 2, 2)}">0</strong> USD
             </div>
             <div class="alert alert-success"
-                 th:if="${terminalHandling != null and terminalHandling != -1 and request.destinationPort == 'VARNA'}">
+                 th:if="${terminalHandling != null and terminalHandling != -1 and request.destinationPort == 'Varna'}">
                 ДДС 20% : <strong th:text="${#numbers.formatDecimal(calculateVATBulgaria, 2, 2)}">0</strong> USD
             </div>
         </div>

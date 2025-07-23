@@ -47,7 +47,7 @@
 
         <!-- Филтър по "От пристанище" -->
         <div class="col-md-3">
-            <label for="originPort" class="form-label">От пристанище</label>
+            <label for="originPort" class="form-label">Товарно пристанище</label>
             <select id="originPort" name="originPort" class="form-select">
                 <option value="">Всички</option>
                 <option th:each="port : ${originPortList}"
@@ -60,11 +60,11 @@
 
         <!-- Филтър по дестинация -->
         <div class="col-md-3">
-            <label for="portFilter" class="form-label">Дестинация</label>
+            <label for="portFilter" class="form-label">Разтоварно пристанище</label>
             <select id="portFilter" name="port" class="form-select">
                 <option value="">Всички</option>
-                <option value="VARNA" th:selected="${selectedPort == 'VARNA'}">VARNA</option>
-                <option value="ROTTERDAM" th:selected="${selectedPort == 'ROTTERDAM'}">ROTTERDAM</option>
+                <option value="Varna" th:selected="${selectedPort == 'Varna'}">Varna</option>
+                <option value="Rotterdam" th:selected="${selectedPort == 'Rotterdam'}">Rotterdam</option>
             </select>
         </div>
 
@@ -81,11 +81,11 @@
 
     <!-- ✅ Две таблици една до друга -->
     <div class="row" th:if="${selectedOriginPort != null or selectedPort != null}">
-        <!-- Таблица за VARNA -->
+        <!-- Таблица за Varna -->
         <div class="col-md-6 mb-4">
             <div class="card shadow">
                 <div class="card-header bg-primary text-white">
-                    <h4 class="mb-0">До VARNA</h4>
+                    <h4 class="mb-0">До Варна</h4>
                 </div>
                 <div class="card-body p-0">
                     <table class="table table-striped table-bordered table-hover mb-0">
@@ -100,7 +100,7 @@
                         <tr th:each="price : ${pricesToVarna}">
                             <td th:text="${price.originPort}"></td>
                             <td th:text="${price.vehicleType}"></td>
-                            <td th:text="${price.price}"></td>
+                            <td th:text="${#numbers.formatDecimal(price.price, 2, 2)}"></td>
                         </tr>
                         </tbody>
                     </table>
@@ -108,11 +108,11 @@
             </div>
         </div>
 
-        <!-- Таблица за ROTTERDAM -->
+        <!-- Таблица за Rotterdam -->
         <div class="col-md-6 mb-4">
             <div class="card shadow">
                 <div class="card-header bg-success text-white">
-                    <h4 class="mb-0">До ROTTERDAM</h4>
+                    <h4 class="mb-0">До Ротердам</h4>
                 </div>
                 <div class="card-body p-0">
                     <table class="table table-striped table-bordered table-hover mb-0">
@@ -127,7 +127,7 @@
                         <tr th:each="price : ${pricesToRotterdam}">
                             <td th:text="${price.originPort}"></td>
                             <td th:text="${price.vehicleType}"></td>
-                            <td th:text="${price.price}"></td>
+                            <td th:text="${#numbers.formatDecimal(price.price, 2, 2)}"></td>
                         </tr>
                         </tbody>
                     </table>
