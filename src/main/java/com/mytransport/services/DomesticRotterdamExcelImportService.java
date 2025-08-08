@@ -1,7 +1,6 @@
 package com.mytransport.services;
 
 import com.mytransport.models.DomesticRotterdamEntity;
-import com.mytransport.models.TerminalHandlingEntity;
 import com.mytransport.repository.DomesticRotterdamRepository;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;

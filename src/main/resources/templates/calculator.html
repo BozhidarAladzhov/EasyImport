@@ -77,12 +77,12 @@
 <!-- ✅ Калкулатор -->
 <header class="bg-dark text-white text-center py-5" style="background: linear-gradient(to right, #0f2027, #203a43, #2c5364);">
         <div class="container">
-            <h1 class="display-4 fw-bold">📟 Калкулатор за транспорт</h1>
+            <h1 class="display-4 fw-bold">📟 Калкулатор</h1>
         </div>
 </header>
 
 <div class="container mt-5">
-    <form th:action="@{/calculator}" th:object="${request}" method="post" class="row g-3 shadow p-4 bg-white rounded">
+    <form th:action="@{/calculator#results}" th:object="${request}" method="post" class="row g-3 shadow p-4 bg-white rounded">
 
         <div class="col-md-6">
             <label for="originPort" class="form-label">Товарно пристанище</label>
@@ -125,7 +125,7 @@
         <div class="col-md-3 d-flex align-items-center">
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" th:field="*{hybrid}" id="hybrid">
-                <label class="form-check-label" for="hybrid">Хибрид</label>
+                <label class="form-check-label" for="hybrid">☢️ Хибрид</label>
             </div>
 
         </div>
@@ -133,7 +133,7 @@
         <div class="col-md-3 d-flex align-items-center">
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" th:field="*{electric}" id="electric">
-                <label class="form-check-label" for="electric">Електрически</label>
+                <label class="form-check-label" for="electric">☢️ Електрически</label>
             </div>
         </div>
 
@@ -150,7 +150,7 @@
     </form>
 
     <!-- ✅ Резултат -->
-    <div class="row mt-5">
+    <div id="results" class="row mt-5">
         <div class="col-md-6">
             <h5 class="mb-3">🚚 Транспортни разходи</h5>
             <div class="alert alert-danger" th:if="${result == -1}">
@@ -194,12 +194,14 @@
         </div>
     </div>
 
-    <div class="alert alert-info mt-4">
-        Митническите задължения ще бъдат изчислени на база митническия валутен курс.
+    <div class="alert alert-warning mt-4"
+         th:if="${oceanFreight != null and oceanFreight != -1}">
+        <strong>⚠️ Важно:</strong> Митническите задължения се изчисляват на база митнически валутен курс, калкулатора изчислява преблизителна стойност.
     </div>
 
-    <div class="alert alert-info mt-4">
-        Всички транспортни разходи са без включено ДДС.
+    <div class="alert alert-warning mt-4"
+         th:if="${oceanFreight != null and oceanFreight != -1}">
+        <strong>⚠️ Важно:</strong> Всички транспортни разходи са без включено ДДС.
     </div>
 
 </div>
