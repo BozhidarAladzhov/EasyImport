@@ -1,169 +1,132 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <link rel="icon" type="image/png" href="../images/favicon.png">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="/favicon.png">
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-        }
-        html {
-        scroll-behavior: smooth;
-        }
-    </style>
-    <title>Транспортен Калкулатор</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Божидар Аладжов — Спедитор и софтуерен инженер.</title>
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.bootstrap5.min.css">
 </head>
-<body class="bg-light">
+<body>
 
-<!-- ✅ Bootstrap Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" th:href="@{/}">EasyImport</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active" th:href="@{/}">Начало</a></li>
-                    <li class="nav-item"><a class="nav-link" th:href="@{/about}">За нас</a></li>
-                    <li class="nav-item"><a class="nav-link" th:href="@{/prices}">Актуални цени</a></li>
-                    <li class="nav-item"><a class="nav-link" th:href="@{/calculator}">Калкулатор</a></li>
-                    <li class="nav-item"><a class="nav-link" th:href="@{/contact}">Контакти</a></li>
-                </ul>
-            </div>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" th:href="@{/}"><img src="/images/logo.png" alt="">Божидар Аладжов</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link active" th:href="@{/}">Начало</a></li>
+        <li class="nav-item"><a class="nav-link" th:href="@{/about}">За мен</a></li>
+        <li class="nav-item"><a class="nav-link" th:href="@{/prices}">Цени</a></li>
+        <li class="nav-item"><a class="nav-link" th:href="@{/calculator}">Калкулатор</a></li>
+        <li class="nav-item"><a class="nav-link" th:href="@{/contact}">Контакти</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<header class="hero hero--gradient">
+  <div class="container">
+    <h2 class="fw-bold"> Божидар Аладжов</h2>
+    <h3 class="fw-bold"> Спедитор и софтуерен инженер</h3>
+    <p class="lead text-muted-ux">Здравейте и добре дошли на моята уеб страница.</p>
+    <p class="lead text-muted-ux">Основната ми идея е да предоставя информация относно доставката на автомобили от Америка на база моят дългогодишен опит като логистик. През свободното си време се впуснах в изграждането на инструменти и платформи, които да бъдат от полза и улеснение на хората, които искат самостоятелно да си доставят автомобил от Америка.</p>
+    <div class="actions">
+      <a class="btn" href="#about">Научи повече</a>
+    </div>
+  </div>
+</header>
+
+<section id="about" class="section">
+  <div class="container">
+    <h2 class="text-center mb-4 fw-bold">Какво ще намерите на моят уеб сайт?</h2>
+    <div class="row justify-content-center">
+      <div class="col-md-10 col-lg-8 content">
+        <p class="fs-5">🗫 EasyImport - информационна платформа създадена от мен, за да ви обясни целия процес стъпка по стъпка за внос на автомобили от Америка.</p>
+        <p class="fs-5">📉 Цени - база данни с актуалните тарифи за морски транспорт от Америка спрямо товарно и разтоварно пристанище. </p>
+        <p class="fs-5">📟 Калкулатор - Инструмент за изчисление на транспортни разходи и митнически задължения. </p>
+        <p class="fs-5">📩 Конактна форма - чрез нея можете да изпратите директно запитване до доказала се с годините логистична компания. </p>
+        <p class="fs-5">✅ Решения - базирани на опит и реални данни, без излишни усложнения и скрити рискове.</p>
+        <div class="actions">
+          <a class="btn" href="https://discord.gg/bSJEBTvAe9">EasyImport</a>
+          <a class="btn" th:href="@{/prices}">Тарифи</a>
+          <a class="btn" th:href="@{/calculator}">Изчисли цена</a>
+          <a class="btn" th:href="@{/contact}">Направи запитване</a>
         </div>
-    </nav>
+      </div>
+    </div>
+  </div>
+</section>
 
-
-    <header class="bg-dark text-white text-center py-5" style="background: linear-gradient(to right, #0f2027, #203a43, #2c5364);">
-        <div class="container">
-            <h1 class="display-4 fw-bold"> 🚢 Внос на автомобили от САЩ </h1>
-            <p class="lead mt-3"><strong>EasyImport</strong> е проект, а не продукт или услуга.</p>
-            <a href="#about" class="btn btn-outline-light btn-lg mt-4 rounded-pill">Научи повече</a>
+<section class="section process-steps">
+  <div class="container">
+    <h2 class="text-center mb-5 fw-bold">Как протича процесът?</h2>
+    <div class="row g-4 text-center">
+      <div class="col-md-4 col-lg-2">
+        <div class="card h-100">
+          <div class="mb-3 fs-1"><i class="bi bi-search"></i></div>
+          <h5 class="fw-bold">1. Проучване</h5>
+          <p class="small">Избор на правилния автомобил спрямо нужди, бюджет и реална стойност.</p>
         </div>
-    </header>
-
-    <!-- About Section -->
-    <section id="about" class="py-5 bg-light text-dark">
-        <div class="container">
-            <h2 class="text-center mb-4 fw-bold">Какво е EasyImport?</h2>
-            <div class="row justify-content-center">
-                <div class="col-md-10 col-lg-8">
-                    <p class="fs-5">
-                        🛠️ EasyImport е информационна платформа, създадена да ви обясни целия процес по внос на автомобили от САЩ.
-                    </p>
-                    <p class="fs-5">
-                        🎯 Тук ще откриете инструменти и Discord общност с информация и насоки, които разгръщат процеса стъпка по стъпка — от избора на автомобил до регистрацията му в България.
-                    </p>
-                    <p class="fs-5">
-                        🎯 Без излишни усложнения. Без скрити рискове. Само проверени решения, базирани на дългогодишен опит и реални данни.
-                    </p>
-                </div>
-            </div>
+      </div>
+      <div class="col-md-4 col-lg-2">
+        <div class="card h-100">
+          <div class="mb-3 fs-1"><i class="bi bi-cart-check"></i></div>
+          <h5 class="fw-bold">2. Закупуване</h5>
+          <p class="small">Търг или директна покупка (Copart, IAAI).</p>
         </div>
-    </section>
-
-    <!-- Process Section -->
-    <section class="py-5 bg-white text-dark">
-        <div class="container">
-            <h2 class="text-center mb-5 fw-bold">Как протича процесът?</h2>
-            <div class="row g-4 text-center">
-
-                <div class="col-md-4 col-lg-2">
-                    <div class="p-3">
-                        <div class="mb-3 fs-1 text-primary">
-                            <i class="bi bi-search"></i>
-                        </div>
-                        <h5 class="fw-bold">1. Проучване</h5>
-                        <p class="small">Избор на правилния автомобил спрямо нужди, бюджет и реална стойност.</p>
-                    </div>
-                </div>
-
-                <div class="col-md-4 col-lg-2">
-                    <div class="p-3">
-                        <div class="mb-3 fs-1 text-success">
-                            <i class="bi bi-cart-check"></i>
-                        </div>
-                        <h5 class="fw-bold">2. Закупуване</h5>
-                        <p class="small">Участие в търг или директна покупка чрез надеждни платформи като Copart и IAAI.</p>
-                    </div>
-                </div>
-
-                <div class="col-md-4 col-lg-2">
-                    <div class="p-3">
-                        <div class="mb-3 fs-1 text-warning">
-                            <i class="bi bi-truck"></i>
-                        </div>
-                        <h5 class="fw-bold">3. Транспорт</h5>
-                        <p class="small">Организиране на морски и сухоземен транспорт до България.</p>
-                    </div>
-                </div>
-
-                <div class="col-md-4 col-lg-2">
-                    <div class="p-3">
-                        <div class="mb-3 fs-1 text-danger">
-                            <i class="bi bi-shield-lock"></i>
-                        </div>
-                        <h5 class="fw-bold">4. Митница</h5>
-                        <p class="small">Изготвяне на всички необходими документи и преминаване през митнически контрол.</p>
-                    </div>
-                </div>
-
-                <div class="col-md-4 col-lg-2">
-                    <div class="p-3">
-                        <div class="mb-3 fs-1 text-info">
-                            <i class="bi bi-box-arrow-in-down"></i>
-                        </div>
-                        <h5 class="fw-bold">5. Получаване</h5>
-                        <p class="small">Получаване на автомобила от клиента или транспорт до избрано място.</p>
-                    </div>
-                </div>
-
-                <div class="col-md-4 col-lg-2">
-                    <div class="p-3">
-                        <div class="mb-3 fs-1 text-secondary">
-                            <i class="bi bi-card-checklist"></i>
-                        </div>
-                        <h5 class="fw-bold">6. Регистрация</h5>
-                        <p class="small">Подготовка за технически преглед, регистрация и движение по пътищата.</p>
-                    </div>
-                </div>
-
-            </div>
+      </div>
+      <div class="col-md-4 col-lg-2">
+        <div class="card h-100">
+          <div class="mb-3 fs-1"><i class="bi bi-truck"></i></div>
+          <h5 class="fw-bold">3. Транспорт</h5>
+          <p class="small">Морски и сухоземен транспорт до България.</p>
         </div>
-    </section>
-
-    <!-- Contact Info Section -->
-    <section id="contact" class="py-5 bg-dark text-white">
-        <div class="container text-center">
-            <h2 class="fw-bold mb-4">Свържи се с мен</h2>
-
-            <p class="fs-5 mb-2">
-                📬 Имейл:
-                <a href="mailto:easyimport.bg@gmail.com" class="text-info text-decoration-none fw-semibold">
-                    easyimport.bg@gmail.com
-                </a>
-            </p>
-
-            <p class="fs-5">
-                💬 Присъединете се към нашата Discord общност: <br>
-                <a href="https://discord.gg/bSJEBTvAe9" target="_blank" class="text-info text-decoration-none fw-semibold">
-                    discord.gg/bSJEBTvAe9
-                </a>
-            </p>
+      </div>
+      <div class="col-md-4 col-lg-2">
+        <div class="card h-100">
+          <div class="mb-3 fs-1"><i class="bi bi-shield-lock"></i></div>
+          <h5 class="fw-bold">4. Митница</h5>
+          <p class="small">Документи и преминаване през митнически контрол.</p>
         </div>
-    </section>
+      </div>
+      <div class="col-md-4 col-lg-2">
+        <div class="card h-100">
+          <div class="mb-3 fs-1"><i class="bi bi-box-arrow-in-down"></i></div>
+          <h5 class="fw-bold">5. Получаване</h5>
+          <p class="small">Предаване на автомобила или транспорт до адрес.</p>
+        </div>
+      </div>
+      <div class="col-md-4 col-lg-2">
+        <div class="card h-100">
+          <div class="mb-3 fs-1"><i class="bi bi-card-checklist"></i></div>
+          <h5 class="fw-bold">6. Регистрация</h5>
+          <p class="small">Тех. преглед и регистрация за движение.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Footer -->
-    <footer class="bg-black text-center text-white py-3 small">
-        © 2025 EasyImport – Всички права запазени.
-    </footer>
+<section id="contact" class="section">
+  <div class="container text-center">
+    <h2 class="fw-bold mb-4">Свържи се с мен</h2>
+    <p class="fs-5 mb-2">📬 Имейл: <a href="mailto:easyimport.bg@gmail.com" class="link fw-semibold">easyimport.bg@gmail.com</a></p>
+    <p class="fs-5">💬 Discord: <a href="https://discord.gg/bSJEBTvAe9" target="_blank" class="link fw-semibold">discord.gg/bSJEBTvAe9</a></p>
+  </div>
+</section>
 
-<!-- ✅ Bootstrap JS (за навигация на мобилни устройства) -->
+<footer class="site-footer">
+  <div class="container text-center py-3 small">© 2025 EasyImport – Всички права запазени.</div>
+</footer>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
 </body>
 </html>

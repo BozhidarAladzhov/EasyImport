@@ -1,0 +1,533 @@
+/* =============================================================
+   EasyImport — Dark Neo‑Glass UI (v4 consolidated)
+   Author: ChatGPT (GPT-5 Thinking)
+   Notes:
+   - Full, self‑contained CSS (заменя изцяло site.css);
+   - Тъмен (нечерен) фон, бял/оранжев текст;
+   - Фиксове: Tom Select hover → border (без смяна на фон), по‑четливи таблици и заглавия над тях.
+   ============================================================= */
+
+/* ---------- CSS Variables ---------- */
+:root{
+  color-scheme: dark;
+  --bg: #0f1216;            /* page background (dark gray, not black) */
+  --bg-2:#0c1014;           /* backdrop gradient tail */
+  --surface:#151b22;        /* cards, forms */
+  --surface-2:#1a212b;      /* elevated surface */
+  --text:#f2f5f7;           /* main text (off‑white) */
+  --muted:#b3bdc9;          /* secondary text */
+  --primary:#ff8a22;        /* accent (orange) */
+  --primary-600:#ff6b00;    /* hover/active */
+  --primary-700:#e65e00;    /* pressed */
+  --ring:rgba(255,138,34,.38); /* focus ring glow */
+  --border:rgba(242,245,247,.10);
+  --border-strong:rgba(242,245,247,.16);
+  --shadow:0 16px 40px rgba(0,0,0,.55);
+  --radius:14px; --radius-lg:22px;
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+html{scroll-behavior:smooth}
+
+/* ---------- Base ---------- */
+body{
+  font-family: "Poppins", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, "Noto Sans";
+  background:
+    radial-gradient(900px 420px at 10% -10%, rgba(255,138,34,.12), transparent 60%),
+    radial-gradient(1100px 520px at 90% -10%, rgba(255,209,102,.10), transparent 60%),
+    linear-gradient(180deg, var(--bg), var(--bg-2));
+  color:var(--text);
+  line-height:1.7;
+}
+.container{max-width:1140px; margin:0 auto}
+.section{padding:clamp(2.2rem,6vw,5rem) 1rem}
+a{color:inherit; text-decoration:none}
+
+::selection{ background:rgba(255,138,34,.35); color:#fff }
+
+.text-muted-ux{ color:var(--muted) }
+.hr-fade{ height:1px; border:0; background:linear-gradient(90deg, transparent, var(--border), transparent); margin:2rem 0 }
+
+/* ---------- Utility: glass panel ---------- */
+.glass{
+  background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+  border:1px solid var(--border);
+  backdrop-filter: blur(10px) saturate(1.05);
+  border-radius:var(--radius-lg);
+  box-shadow:var(--shadow);
+}
+
+/* ---------- Navbar ---------- */
+.navbar{
+  background:linear-gradient(180deg, rgba(12,16,20,.65), rgba(12,16,20,.45))!important;
+  backdrop-filter:saturate(1.2) blur(14px);
+  border-bottom:1px solid var(--border);
+  padding:.75rem 1rem;
+}
+.navbar-brand{
+  font-weight:800; letter-spacing:.2px; font-size:1.15rem; color:var(--text)!important;
+}
+.navbar-brand img{ height:28px; width:auto; margin-right:.5rem }
+
+.navbar .navbar-toggler{ border:1px solid var(--border); border-radius:10px }
+.navbar .navbar-toggler:focus{ box-shadow:0 0 0 4px var(--ring) }
+.navbar .navbar-toggler-icon{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(242,245,247,0.9)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+.navbar-nav .nav-link{
+  position:relative; font-weight:700; color:var(--text)!important; opacity:.9; margin-left:1rem;
+}
+.navbar-nav .nav-link::after{
+  content:""; position:absolute; left:0; bottom:-6px; height:2px; width:0;
+  background:linear-gradient(90deg, var(--primary), rgba(255,209,102,1)); border-radius:2px;
+  box-shadow:0 0 18px rgba(255,138,34,.55);
+  transition:width .25s ease;
+}
+.navbar-nav .nav-link:hover::after,
+.navbar-nav .nav-link.active::after{ width:100% }
+
+/* ---------- Hero ---------- */
+.hero{ padding:clamp(3rem,8vw,6rem) 1rem; text-align:center }
+.hero--gradient{
+  background:
+    radial-gradient(1200px 420px at 10% -10%, rgba(255,138,34,.14), transparent 60%),
+    radial-gradient(1400px 520px at 90% -10%, rgba(255,209,102,.12), transparent 60%),
+    linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.00) 65%);
+  border-bottom:1px solid var(--border);
+}
+.hero h1{ font-size:clamp(2.2rem,4.5vw,3.6rem); line-height:1.12; margin:0 0 .6rem }
+.hero p{ color:var(--muted); max-width:820px; margin:0 auto }
+.hero .actions{ margin-top:1.1rem; display:flex; gap:.7rem; justify-content:center; flex-wrap:wrap }
+
+/* ---------- Links ---------- */
+.link{ color:var(--primary); font-weight:700 }
+.link:hover{ filter:brightness(1.1); text-shadow:0 0 10px rgba(255,138,34,.35) }
+
+/* ---------- Buttons ---------- */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  padding:.78rem 1.15rem; font-weight:800; border-radius:12px; border:0;
+  background:linear-gradient(90deg, var(--primary), #ff9f3a);
+  color:#101418; /* legible on bright button */
+  box-shadow:0 10px 18px rgba(2, 6, 23, .35), 0 0 0 1px var(--border-strong) inset;
+  transition:transform .18s ease, filter .18s ease, box-shadow .18s ease;
+}
+.btn:hover{ transform:translateY(-2px); filter:brightness(1.05); box-shadow:0 14px 24px rgba(0,0,0,.55), 0 0 0 1px var(--primary) inset }
+.btn:focus{ outline:0; box-shadow:0 0 0 5px var(--ring) }
+
+.btn.btn-outline{ background:transparent; color:var(--text); border:1px solid var(--border) }
+.btn.btn-outline:hover{ background:rgba(255,138,34,.08); border-color:rgba(255,138,34,.45) }
+
+/* ---------- Cards ---------- */
+.card{
+  background:linear-gradient(180deg, var(--surface), var(--surface-2));
+  border:1px solid var(--border);
+  border-radius:18px; padding:1.5rem;
+  box-shadow:var(--shadow);
+  backdrop-filter:saturate(1.05) blur(6px);
+  color:var(--text);
+}
+.card h1,.card h2,.card h3,.card h4,.card h5{ color:var(--text) }
+.card p{ color:rgba(242,245,247,.85) }
+.card .text-muted, .card small{ color:var(--muted)!important }
+.card-header,.card-body{ background:transparent; border:0 }
+.card-header + .card-body{ padding-top:0 }
+.card .card-header{ background:transparent!important; border-bottom:1px solid var(--border)!important }
+.card .card-title{ color:var(--text) }
+
+/* ---------- Forms ---------- */
+.form-shell{ background:linear-gradient(180deg, var(--surface), var(--surface-2)); border:1px solid var(--border); border-radius:16px; padding:1.5rem; box-shadow:var(--shadow) }
+.form-label{ color:var(--muted); margin-bottom:.35rem }
+.form-control,.form-select,.form-check-input{ background:#0f141a; color:var(--text); border:1px solid var(--border); border-radius:10px; height:44px; padding:6px 12px }
+.form-control::placeholder{ color:#8fa0b3 }
+.form-control:focus,.form-select:focus{ border-color:rgba(255,138,34,.45); box-shadow:0 0 0 5px var(--ring); outline:0 }
+.form-select{ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20'%3E%3Cpath fill='%23b3bdc9' d='M5 7l5 6 5-6z'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right .6rem center; background-size:1.1rem }
+.form-check-input{ width:1.1rem; height:1.1rem }
+.form-check-input:checked{ background-color:var(--primary-600); border-color:var(--primary-600); box-shadow:0 0 0 4px var(--ring) }
+.was-validated .form-control:invalid, .form-control.is-invalid { border-color:rgba(239,68,68,.6) }
+.was-validated .form-control:valid, .form-control.is-valid { border-color:rgba(16,185,129,.6) }
+.invalid-feedback{ color:#ffb4b4 }
+
+/* ---------- Tom Select (dark) ---------- */
+.ts-wrapper.form-control,.ts-wrapper.form-select,.ts-control,.ts-dropdown{ background:var(--surface)!important; color:var(--text)!important; border:1px solid var(--border)!important; border-radius:12px!important }
+.ts-control{ min-height:42px; padding:6px 10px }
+.ts-control input{ color:var(--text)!important }
+.ts-dropdown{ background:var(--surface-2)!important; box-shadow:var(--shadow); padding:.35rem }
+.ts-dropdown .option{ color:var(--text); border:1px solid transparent; border-radius:10px; margin:2px; padding:.45rem .6rem; position:relative }
+/* Hover/active → оранжева рамка, без смяна на фона */
+.ts-dropdown .option:hover,.ts-dropdown .option.active{ background:transparent!important; box-shadow: inset 0 0 0 2px rgba(255,138,34,.65); color:var(--text)!important }
+.ts-wrapper.focus .ts-control{ border-color:rgba(255,138,34,.45)!important; box-shadow:0 0 0 5px var(--ring)!important }
+.ts-wrapper.single .ts-control::after{ border-color:var(--muted) transparent transparent transparent }
+
+/* ---------- Tables ---------- */
+/* Нулираме светлите бекграунди на Bootstrap и адаптираме към тъмната тема */
+.table{ color:var(--text); border-color:var(--border); background:transparent; width:100% }
+.table>:not(caption)>*>*{ background-color:transparent!important; box-shadow: inset 0 -1px 0 var(--border) }
+.table thead{ background:linear-gradient(90deg, rgba(255,138,34,.16), rgba(255,209,102,.16)) }
+.table thead th{ border-bottom:1px solid var(--border); text-transform:uppercase; letter-spacing:.04em; font-size:clamp(.82rem,.9vw,.9rem); color:#e5e9ef; padding:.75rem; text-align:center }
+.table tbody tr{ transition:background .2s ease, box-shadow .2s ease }
+.table tbody td{ padding:.75rem; color:rgba(242,245,247,.9); text-align:center }
+.table tbody tr:hover{ background:rgba(255,138,34,.06) }
+.table-hover>tbody>tr:hover>*{ color:#fff }
+.table-striped>tbody>tr:nth-of-type(odd)>*{ background:rgba(255,138,34,.03)!important }
+
+/* Заглавия над таблиците (напр. "До Варна") */
+.card>h1,.card>h2,.card>h3,.card>h4{
+  position:relative;
+  font-weight:900;
+  text-align:center;
+  letter-spacing:.2px;
+  margin:0 0 1rem;
+  background:linear-gradient(90deg, var(--primary), #ffd166);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  color:transparent;
+}
+.card .card-title{ font-weight:900; text-align:center; background:linear-gradient(90deg, var(--primary), #ffd166); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; color:transparent }
+.card>h3{ font-size:1.35rem }
+.card>h4{ font-size:1.15rem }
+
+/* ---------- Alerts */ (tinted for dark) ---------- */
+.alert{ border-radius:12px; border:1px solid var(--border); color:#0b0f13 }
+.alert-success{ background:linear-gradient(180deg, rgba(16,185,129,.20), rgba(16,185,129,.10)); border-color:rgba(16,185,129,.35); color:#eafff5 }
+.alert-danger{ background:linear-gradient(180deg, rgba(239,68,68,.20), rgba(239,68,68,.10)); border-color:rgba(239,68,68,.40); color:#ffecec }
+.alert-warning{ background:linear-gradient(180deg, rgba(245,158,11,.22), rgba(245,158,11,.12)); border-color:rgba(245,158,11,.45); color:#fff5e5 }
+
+/* ---------- Footer ---------- */
+footer.site-footer{ border-top:1px solid var(--border); background:linear-gradient(180deg, rgba(255,255,255,.04), transparent); color:var(--muted) }
+
+/* ---------- Motion preferences ---------- */
+@media (prefers-reduced-motion: reduce){ *{ transition:none!important; animation:none!important } }
+
+/* ---------- Nice optional extras ---------- */
+:focus-visible{ outline:0; box-shadow:0 0 0 5px var(--ring) }
+.card,.form-shell{ box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,.04) }
+:target{ scroll-margin-top:80px }
+/* =============================================================
+   EasyImport — Dark Neo‑Glass UI (v4 consolidated)
+   Author: ChatGPT (GPT-5 Thinking)
+   Notes:
+   - Full, self‑contained CSS (заменя изцяло site.css);
+   - Тъмен (нечерен) фон, бял/оранжев текст;
+   - Фиксове: Tom Select hover → border (без смяна на фон), по‑четливи таблици и заглавия над тях.
+   ============================================================= */
+
+/* ---------- CSS Variables ---------- */
+:root{
+  color-scheme: dark;
+  --bg: #0f1216;            /* page background (dark gray, not black) */
+  --bg-2:#0c1014;           /* backdrop gradient tail */
+  --surface:#151b22;        /* cards, forms */
+  --surface-2:#1a212b;      /* elevated surface */
+  --text:#f2f5f7;           /* main text (off‑white) */
+  --muted:#b3bdc9;          /* secondary text */
+  --primary:#ff8a22;        /* accent (orange) */
+  --primary-600:#ff6b00;    /* hover/active */
+  --primary-700:#e65e00;    /* pressed */
+  --ring:rgba(255,138,34,.38); /* focus ring glow */
+  --border:rgba(242,245,247,.10);
+  --border-strong:rgba(242,245,247,.16);
+  --shadow:0 16px 40px rgba(0,0,0,.55);
+  --radius:14px; --radius-lg:22px;
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+html{scroll-behavior:smooth}
+
+/* ---------- Base ---------- */
+body{
+  font-family: "Poppins", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, "Noto Sans";
+  background:
+    radial-gradient(900px 420px at 10% -10%, rgba(255,138,34,.12), transparent 60%),
+    radial-gradient(1100px 520px at 90% -10%, rgba(255,209,102,.10), transparent 60%),
+    linear-gradient(180deg, var(--bg), var(--bg-2));
+  color:var(--text);
+  line-height:1.7;
+}
+.container{max-width:1140px; margin:0 auto}
+.section{padding:clamp(2.2rem,6vw,5rem) 1rem}
+a{color:inherit; text-decoration:none}
+
+::selection{ background:rgba(255,138,34,.35); color:#fff }
+
+.text-muted-ux{ color:var(--muted) }
+.hr-fade{ height:1px; border:0; background:linear-gradient(90deg, transparent, var(--border), transparent); margin:2rem 0 }
+
+/* ---------- Utility: glass panel ---------- */
+.glass{
+  background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+  border:1px solid var(--border);
+  backdrop-filter: blur(10px) saturate(1.05);
+  border-radius:var(--radius-lg);
+  box-shadow:var(--shadow);
+}
+
+/* ---------- Navbar ---------- */
+.navbar{
+  background:linear-gradient(180deg, rgba(12,16,20,.65), rgba(12,16,20,.45))!important;
+  backdrop-filter:saturate(1.2) blur(14px);
+  border-bottom:1px solid var(--border);
+  padding:.75rem 1rem;
+}
+.navbar-brand{
+  font-weight:800; letter-spacing:.2px; font-size:1.15rem; color:var(--text)!important;
+}
+.navbar-brand img{ height:28px; width:auto; margin-right:.5rem }
+
+.navbar .navbar-toggler{ border:1px solid var(--border); border-radius:10px }
+.navbar .navbar-toggler:focus{ box-shadow:0 0 0 4px var(--ring) }
+.navbar .navbar-toggler-icon{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(242,245,247,0.9)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+.navbar-nav .nav-link{
+  position:relative; font-weight:700; color:var(--text)!important; opacity:.9; margin-left:1rem;
+}
+.navbar-nav .nav-link::after{
+  content:""; position:absolute; left:0; bottom:-6px; height:2px; width:0;
+  background:linear-gradient(90deg, var(--primary), rgba(255,209,102,1)); border-radius:2px;
+  box-shadow:0 0 18px rgba(255,138,34,.55);
+  transition:width .25s ease;
+}
+.navbar-nav .nav-link:hover::after,
+.navbar-nav .nav-link.active::after{ width:100% }
+
+/* ---------- Hero ---------- */
+.hero{ padding:clamp(3rem,8vw,6rem) 1rem; text-align:center }
+.hero--gradient{
+  background:
+    radial-gradient(1200px 420px at 10% -10%, rgba(255,138,34,.14), transparent 60%),
+    radial-gradient(1400px 520px at 90% -10%, rgba(255,209,102,.12), transparent 60%),
+    linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.00) 65%);
+  border-bottom:1px solid var(--border);
+}
+.hero h1{ font-size:clamp(2.2rem,4.5vw,3.6rem); line-height:1.12; margin:0 0 .6rem }
+.hero p{ color:var(--muted); max-width:820px; margin:0 auto }
+.hero .actions{ margin-top:1.1rem; display:flex; gap:.7rem; justify-content:center; flex-wrap:wrap }
+
+/* ---------- Links ---------- */
+.link{ color:var(--primary); font-weight:700 }
+.link:hover{ filter:brightness(1.1); text-shadow:0 0 10px rgba(255,138,34,.35) }
+
+/* ---------- Buttons ---------- */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  padding:.78rem 1.15rem; font-weight:800; border-radius:12px; border:0;
+  background:linear-gradient(90deg, var(--primary), #ff9f3a);
+  color:#101418; /* legible on bright button */
+  box-shadow:0 10px 18px rgba(2, 6, 23, .35), 0 0 0 1px var(--border-strong) inset;
+  transition:transform .18s ease, filter .18s ease, box-shadow .18s ease;
+}
+.btn:hover{ transform:translateY(-2px); filter:brightness(1.05); box-shadow:0 14px 24px rgba(0,0,0,.55), 0 0 0 1px var(--primary) inset }
+.btn:focus{ outline:0; box-shadow:0 0 0 5px var(--ring) }
+
+.btn.btn-outline{ background:transparent; color:var(--text); border:1px solid var(--border) }
+.btn.btn-outline:hover{ background:rgba(255,138,34,.08); border-color:rgba(255,138,34,.45) }
+
+/* ---------- Cards ---------- */
+.card{
+  background:linear-gradient(180deg, var(--surface), var(--surface-2));
+  border:1px solid var(--border);
+  border-radius:18px; padding:1.5rem;
+  box-shadow:var(--shadow);
+  backdrop-filter:saturate(1.05) blur(6px);
+  color:var(--text);
+}
+.card h1,.card h2,.card h3,.card h4,.card h5{ color:var(--text) }
+.card p{ color:rgba(242,245,247,.85) }
+.card .text-muted, .card small{ color:var(--muted)!important }
+.card-header,.card-body{ background:transparent; border:0 }
+.card-header + .card-body{ padding-top:0 }
+.card .card-header{ background:transparent!important; border-bottom:1px solid var(--border)!important }
+.card .card-title{ color:var(--text) }
+
+/* ---------- Forms ---------- */
+.form-shell{ background:linear-gradient(180deg, var(--surface), var(--surface-2)); border:1px solid var(--border); border-radius:16px; padding:1.5rem; box-shadow:var(--shadow) }
+.form-label{ color:var(--muted); margin-bottom:.35rem }
+.form-control,.form-select,.form-check-input{ background:#0f141a; color:var(--text); border:1px solid var(--border); border-radius:10px; height:44px; padding:6px 12px }
+.form-control::placeholder{ color:#8fa0b3 }
+.form-control:focus,.form-select:focus{ border-color:rgba(255,138,34,.45); box-shadow:0 0 0 5px var(--ring); outline:0 }
+.form-select{ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20'%3E%3Cpath fill='%23b3bdc9' d='M5 7l5 6 5-6z'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right .6rem center; background-size:1.1rem }
+.form-check-input{ width:1.1rem; height:1.1rem }
+.form-check-input:checked{ background-color:var(--primary-600); border-color:var(--primary-600); box-shadow:0 0 0 4px var(--ring) }
+.was-validated .form-control:invalid, .form-control.is-invalid { border-color:rgba(239,68,68,.6) }
+.was-validated .form-control:valid, .form-control.is-valid { border-color:rgba(16,185,129,.6) }
+.invalid-feedback{ color:#ffb4b4 }
+
+/* ---------- Tom Select (dark) ---------- */
+.ts-wrapper.form-control,.ts-wrapper.form-select,.ts-control,.ts-dropdown{ background:var(--surface)!important; color:var(--text)!important; border:1px solid var(--border)!important; border-radius:12px!important }
+.ts-control{ min-height:42px; padding:6px 10px }
+.ts-control input{ color:var(--text)!important }
+.ts-dropdown{ background:var(--surface-2)!important; box-shadow:var(--shadow); padding:.35rem }
+.ts-dropdown .option{ color:var(--text); border:1px solid transparent; border-radius:10px; margin:2px; padding:.45rem .6rem; position:relative }
+/* Hover/active → оранжева рамка, без смяна на фона */
+.ts-dropdown .option:hover,.ts-dropdown .option.active{ background:transparent!important; box-shadow: inset 0 0 0 2px rgba(255,138,34,.65); color:var(--text)!important }
+.ts-wrapper.focus .ts-control{ border-color:rgba(255,138,34,.45)!important; box-shadow:0 0 0 5px var(--ring)!important }
+.ts-wrapper.single .ts-control::after{ border-color:var(--muted) transparent transparent transparent }
+
+/* ---------- Tables ---------- */
+/* Нулираме светлите бекграунди на Bootstrap и адаптираме към тъмната тема */
+.table{ color:var(--text); border-color:var(--border); background:transparent; width:100% }
+.table>:not(caption)>*>*{ background-color:transparent!important; box-shadow: inset 0 -1px 0 var(--border) }
+.table thead{ background:linear-gradient(90deg, rgba(255,138,34,.16), rgba(255,209,102,.16)) }
+.table thead th{ border-bottom:1px solid var(--border); text-transform:uppercase; letter-spacing:.04em; font-size:clamp(.82rem,.9vw,.9rem); color:#e5e9ef; padding:.75rem; text-align:center }
+.table tbody tr{ transition:background .2s ease, box-shadow .2s ease }
+.table tbody td{ padding:.75rem; color:rgba(242,245,247,.9); text-align:center }
+.table tbody tr:hover{ background:rgba(255,138,34,.06) }
+.table-hover>tbody>tr:hover>*{ color:#fff }
+.table-striped>tbody>tr:nth-of-type(odd)>*{ background:rgba(255,138,34,.03)!important }
+
+/* Заглавия над таблиците (напр. "До Варна") */
+.card>h1,.card>h2,.card>h3,.card>h4{
+  position:relative;
+  font-weight:900;
+  text-align:center;
+  letter-spacing:.2px;
+  margin:0 0 1rem;
+  background:linear-gradient(90deg, var(--primary), #ffd166);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  color:transparent;
+}
+.card .card-title{ font-weight:900; text-align:center; background:linear-gradient(90deg, var(--primary), #ffd166); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; color:transparent }
+.card>h3{ font-size:1.35rem }
+.card>h4{ font-size:1.15rem }
+
+/* ---------- Alerts */ (tinted for dark) ---------- */
+.alert{ border-radius:12px; border:1px solid var(--border); color:#0b0f13 }
+.alert-success{ background:linear-gradient(180deg, rgba(16,185,129,.20), rgba(16,185,129,.10)); border-color:rgba(16,185,129,.35); color:#eafff5 }
+.alert-danger{ background:linear-gradient(180deg, rgba(239,68,68,.20), rgba(239,68,68,.10)); border-color:rgba(239,68,68,.40); color:#ffecec }
+.alert-warning{ background:linear-gradient(180deg, rgba(245,158,11,.22), rgba(245,158,11,.12)); border-color:rgba(245,158,11,.45); color:#fff5e5 }
+
+/* ---------- Footer ---------- */
+footer.site-footer{ border-top:1px solid var(--border); background:linear-gradient(180deg, rgba(255,255,255,.04), transparent); color:var(--muted) }
+
+/* ---------- Motion preferences ---------- */
+@media (prefers-reduced-motion: reduce){ *{ transition:none!important; animation:none!important } }
+
+/* ---------- Nice optional extras ---------- */
+:focus-visible{ outline:0; box-shadow:0 0 0 5px var(--ring) }
+.card,.form-shell{ box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,.04) }
+:target{ scroll-margin-top:80px }
+
+/* === Port grouping improved === */
+.table .port-group td {
+  background: rgba(255,138,34,.02);
+  padding: 1rem 1.2rem; /* по-голям padding */
+}
+
+.table .port-group-start td {
+  border-top: 2px solid #ffd166; /* по-светъл оранжев */
+}
+
+.table .port-group-end td {
+  border-bottom: 2px solid #ffd166;
+}
+
+/* Лява и дясна рамка за целия блок */
+.table .port-group td:first-child {
+  border-left: 2px solid #ffd166;
+}
+.table .port-group td:last-child {
+  border-right: 2px solid #ffd166;
+}
+
+/* По желание леко заобляне на краищата */
+.table .port-group-start td:first-child { border-top-left-radius: 8px; }
+.table .port-group-start td:last-child  { border-top-right-radius: 8px; }
+.table .port-group-end td:first-child   { border-bottom-left-radius: 8px; }
+.table .port-group-end td:last-child    { border-bottom-right-radius: 8px; }
+
+/* Таблични заглавия (thead) без оранжев фон */
+.table thead { background: transparent !important; }
+.table thead th {
+  background: transparent !important;
+  font-weight:700;
+  color:#e5e9ef;
+}
+/* === Process steps — readability upgrade === */
+.process-steps .row{
+  display:grid;                      /* изключваме flex реда на Bootstrap */
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;                      /* равномерен отстъп между картите */
+}
+
+.process-steps .card{
+  padding: 1.4rem 1.2rem;            /* по-голям padding за „въздух“ */
+  border-radius: 20px;
+  text-align: center;
+}
+
+.process-steps .card .fs-1{          /* иконата горе */
+  line-height: 1; margin-bottom: .6rem;
+}
+.process-steps .card .fs-1 i{
+  font-size: 2.2rem;                 /* еднакъв, малко по-едър размер */
+  opacity: .9;
+}
+
+/* Заглавие на стъпката: по-компактно, но стабилно при пренасяне */
+.process-steps h5{
+  font-weight: 800;
+  font-size: 1.1rem;
+  line-height: 1.25;
+  margin-bottom: .35rem;
+  text-wrap: balance;                /* по-умно пренасяне на редове */
+  hyphens: auto;                     /* разрешаваме сричк. при bg език */
+}
+
+/* === Process steps — FIX (v2) === */
+.process-steps .row{
+  display: flex !important;     /* връщаме flex вместо grid */
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+
+/* всяка „колона карта“ да е еластична, но не по-тясна от 260px */
+.process-steps .row > [class*="col-"]{
+  flex: 1 1 clamp(260px, 32%, 340px);
+  width: auto !important;
+  max-width: none !important;   /* игнорира col-lg-2/col-md-4 процентите */
+}
+
+/* самите карти — по-щедър padding и стабилна типография */
+.process-steps .card{
+  padding: 1.4rem 1.2rem;
+  border-radius: 20px;
+  text-align: center;
+  min-height: 200px;
+}
+
+.process-steps .card .fs-1{ line-height:1; margin-bottom:.6rem }
+.process-steps .card .fs-1 i{ font-size: 2.1rem; opacity:.9 }
+
+.process-steps h5{
+  font-weight: 800;
+  font-size: 1.1rem;
+  line-height: 1.28;
+  margin-bottom: .35rem;
+  white-space: normal;          /* гарантира хоризонтално четене */
+  word-break: normal;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+}
+
+.process-steps .card p{
+  color: var(--muted);
+  line-height: 1.55;
+  font-size: .98rem;
+  margin: 0;
+}
+
+/* На много широки екрани картите да не стават прекалено широки */
+@media (min-width: 1440px){
+  .process-steps .row > [class*="col-"]{
+    flex-basis: clamp(260px, 24%, 360px);
+  }
+}
+
