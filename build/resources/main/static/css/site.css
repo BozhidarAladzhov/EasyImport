@@ -531,3 +531,9 @@ footer.site-footer{ border-top:1px solid var(--border); background:linear-gradie
   }
 }
 
+.highlight {
+  color: var(--primary); /* това е оранжевият, който вече ползваме */
+  font-weight: 700;      /* по желание – да се отличава повече */
+}
+
+
