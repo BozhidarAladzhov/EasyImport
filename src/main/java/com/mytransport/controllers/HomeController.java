@@ -33,6 +33,11 @@ public class HomeController {
         return "about";
     }
 
+    @GetMapping("/process")
+    public String process(){
+        return "process";
+    }
+
     @GetMapping("/services")
     public String services(){
         return "services";
