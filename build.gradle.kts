@@ -29,10 +29,12 @@ dependencies {
 
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	runtimeOnly("com.mysql:mysql-connector-j:8.4.0")
+
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
-	testImplementation("org.springframework.security:spring-security-test")
-	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+	testImplementation("com.h2database:h2")
 }
+
+
 
 tasks.withType<Test> {
 	useJUnitPlatform()
