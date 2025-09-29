@@ -4,21 +4,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>За мен</title>
-  <link rel="icon" type="image/png" href="/images/favicon.png">
+  <link rel="icon" type="image/png" href="/static/css/images/favicon.png">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/site.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.bootstrap5.min.css">
+
 </head>
 <body>
 
 <nav class="navbar navbar-expand-lg">
   <div class="container">
-    <a class="navbar-brand" th:href="@{/}"><img src="/images/logo.png" alt="">Божидар Аладжов</a>
+    <a class="navbar-brand" th:href="@{/}">
+      <img src="/images/B.png" alt="Лого" class="navbar-logo">
+      <!--            <span class="fw-800">Bozhidar Aladzhov</span>-->
+    </a>
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item"><a class="nav-link" th:href="@{/}">Начало</a></li>
@@ -31,6 +37,7 @@
     </div>
   </div>
 </nav>
+
 
 <!--<header class="hero hero&#45;&#45;gradient">-->
 <!--  <div class="container">-->
@@ -83,38 +90,43 @@
 
     <section class="about__tools section pt-4">
       <h2 class="text-center">Какво съм разработил</h2>
-      <div class="row g-4">
+
+      <!-- добавихме cards-equal към row -->
+      <div class="row g-4 cards-equal">
         <div class="col-md-6 col-lg-3">
-          <article class="tool card h-100">
+          <article class="tool card h-100 d-flex flex-column">
             <h3 class="card-title">Discord общност</h3>
             <p>Информационна платформа, която обяснява целия процес стъпка по стъпка, предоставя съвети и се обсъждат реални казуси.</p>
-            <a href="https://discord.gg/bSJEBTvAe9" target="_blank" class="btn btn-outline">Присъедини се</a>
-          </article>
-        </div>
-        <div class="col-md-6 col-lg-3">
-          <article class="tool card h-100">
-            <h3 class="card-title">База данни с актуални цени</h3>
-            <p>Редовно обновявани тарифи и компоненти по маршрути и пристанища.</p>
-            <a th:href="@{/prices}" class="btn btn-outline">Виж цените</a>
-          </article>
-        </div>
-        <div class="col-md-6 col-lg-3">
-          <article class="tool card h-100">
-            <h3 class="card-title">Калкулатор</h3>
-            <p>Изчислява транспортните разходи и митническите задължения.</p>
-            <a th:href="@{/calculator}" class="btn">Изпробвай</a>
-          </article>
-        </div>
-        <div class="col-md-6 col-lg-3">
-          <article class="tool card h-100">
-            <h3 class="card-title">Запитвания към партньори</h3>
-            <p>Структурирана форма, която изпраща данните към проверена логистична компания.</p>
-            <a th:href="@{/contact}" class="btn">Заяви оферта</a>
+            <a href="https://discord.gg/bSJEBTvAe9" target="_blank" class="btn btn-outline mt-auto">Присъедини се</a>
           </article>
         </div>
 
+        <div class="col-md-6 col-lg-3">
+          <article class="tool card h-100 d-flex flex-column">
+            <h3 class="card-title">База данни с актуални цени</h3>
+            <p>Редовно обновявани тарифи и компоненти по маршрути и пристанища.</p>
+            <a th:href="@{/prices}" class="btn btn-outline mt-auto">Виж цените</a>
+          </article>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <article class="tool card h-100 d-flex flex-column">
+            <h3 class="card-title">Калкулатор</h3>
+            <p>Изчислява транспортните разходи и митническите задължения.</p>
+            <a th:href="@{/calculator}" class="btn mt-auto">Изпробвай</a>
+          </article>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <article class="tool card h-100 d-flex flex-column">
+            <h3 class="card-title">Запитвания към партньори</h3>
+            <p>Структурирана форма, която изпраща данните към проверена логистична компания.</p>
+            <a th:href="@{/contact}" class="btn mt-auto">Заяви оферта</a>
+          </article>
+        </div>
       </div>
     </section>
+
 
     <hr class="hr-fade">
 
@@ -138,18 +150,96 @@
   </div>
 </section>
 
-<section id="contact" class="section">
-  <div class="container text-center">
-    <h2 class="fw-bold mb-4">Свържи се с мен</h2>
-    <p class="fs-5 mb-2">📬 Имейл: <a href="mailto:easyimport.bg@gmail.com" class="link fw-semibold">easyimport.bg@gmail.com</a></p>
-    <p class="fs-5">💬 Discord: <a href="https://discord.gg/bSJEBTvAe9" target="_blank" class="link fw-semibold">discord.gg/bSJEBTvAe9</a></p>
-  </div>
-</section>
+
 <footer class="site-footer">
-  <div class="container text-center py-3 small">© 2025 EasyImport – Всички права запазени.</div>
+  <div class="container py-4 text-center">
+    <div class="d-flex justify-content-center gap-3 mb-3">
+      <a href="https://www.linkedin.com/in/your-profile" target="_blank" class="btn-social linkedin">
+        <i class="bi bi-linkedin"></i>
+      </a>
+      <a href="https://discord.gg/bSJEBTvAe9" target="_blank" class="btn-social discord">
+        <i class="bi bi-discord"></i>
+      </a>
+      <a href="mailto:youremail@example.com" class="btn-social mail">
+        <i class="bi bi-envelope-fill"></i>
+      </a>
+      <a href="https://github.com/yourusername" target="_blank" class="btn-social github">
+        <i class="bi bi-github"></i>
+      </a>
+    </div>
+    <small class="text-muted-ux">© 2025 Bozhidar Aladzhov – Всички права запазени.</small>
+  </div>
 </footer>
+
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // 1) Автоматично маркиране на елементи за анимация
+    const autoSelectors = [
+      '.section',                          // самите секции
+      '.section .card',
+      '.section .content p',
+      '.section h2, .section h3, .section h4',
+      '.form-shell',
+      '.table',                            // добави и .reveal-rows в HTML ако искаш stagger по редове
+      '.stats .stat',
+      '.about__highlights li'
+    ];
+
+    // Маркираме секциите, за да могат вътрешните им елементи да се разбуждат
+    document.querySelectorAll('.section').forEach(sec => sec.classList.add('reveal'));
+
+    // Маркираме елементите по горните селектори
+    autoSelectors.forEach(sel => {
+      document.querySelectorAll(sel).forEach(el => {
+        el.classList.add('reveal');
+      });
+    });
+
+    // 2) Stagger групи – прилагаме върху редици/гридове
+    const staggerGroups = [
+      '.cards-equal .row, .cards-equal',
+      '.process-steps .row',
+      '.about__highlights',
+      '.table.reveal-rows tbody'
+    ];
+    staggerGroups.forEach(groupSel => {
+      document.querySelectorAll(groupSel).forEach(group => {
+        group.classList.add('reveal-stagger');
+        [...group.children].forEach((child, i) => {
+          child.style.setProperty('--i', i);
+        });
+      });
+    });
+
+    // 3) IntersectionObserver
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) {
+      // Без анимации – просто показваме всичко
+      document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => el.classList.add('is-visible'));
+      return;
+    }
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          // по избор: спираме да наблюдаваме, за да не се „ресетва“
+          io.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.15 });
+
+    document.querySelectorAll('.reveal, .reveal-stagger, .section').forEach(el => io.observe(el));
+
+    // 4) Лек косметичен бонус: таблиците да stagger-ват редовете
+    document.querySelectorAll('.table').forEach(tb => tb.classList.add('reveal-rows'));
+  });
+</script>
+
+
 </body>
 </html>

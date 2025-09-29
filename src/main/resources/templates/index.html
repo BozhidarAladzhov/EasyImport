@@ -4,21 +4,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Божидар Аладжов</title>
-  <link rel="icon" type="image/png" href="/images/favicon.png">
+  <link rel="icon" type="image/png" href="/static/css/images/favicon.png">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/site.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.bootstrap5.min.css">
+
 </head>
-<body>
+
+<body >
 
 <nav class="navbar navbar-expand-lg">
   <div class="container">
-    <a class="navbar-brand" th:href="@{/}"><img src="/images/logo.png" alt="">Божидар Аладжов</a>
+    <a class="navbar-brand" th:href="@{/}">
+      <img src="/images/B.png" alt="Лого" class="navbar-logo">
+<!--      <span class="fw-800">Bozhidar Aladzhov</span>-->
+    </a>
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item"><a class="nav-link active" th:href="@{/}">Начало</a></li>
@@ -32,17 +39,39 @@
   </div>
 </nav>
 
+
 <header class="hero hero--gradient">
   <div class="container">
-    <h2 class="fw-bold"> <span class="highlight">Божидар Аладжов</span> </h2>
-    <h3 class="fw-bold"> Спедитор и софтуерен инженер</h3>
-    <p class="lead text-muted-ux">Здравейте и добре дошли на моята уеб страница.</p>
-    <p class="lead text-muted-ux">Основната ми идея е да предоставя информация относно доставката на автомобили от Америка на база моят дългогодишен опит като логистик. През свободното си време се впуснах в изграждането на инструменти и платформи, които да бъдат от полза и улеснение на хората, които искат самостоятелно да си доставят автомобил от Америка.</p>
-    <div class="actions">
-      <a class="btn" href="#about">Научи повече</a>
+    <div class="row align-items-center">
+      <!-- Лого вляво + линк към about.html -->
+      <div class="col-lg-5 text-center mb-4 mb-lg-0">
+        <a th:href="@{/about}">
+          <img src="/images/B.png" alt="Лого" class="hero-logo img-fluid">
+        </a>
+      </div>
+
+      <!-- Текст вдясно -->
+      <div class="col-lg-7 text-start hero-intro">
+        <h3 class="fw-bold"> <span class="highlight">Спедитор и софтуерен инженер</span></h3>
+        <p class="lead text-muted-ux">Здравейте и добре дошли на моята уеб страница.</p>
+        <p class="lead text-muted-ux">
+          Основната ми идея е да предоставя информация относно доставката на автомобили от Америка
+          на база моят дългогодишен опит като логистик. През свободното си време се впуснах в
+          изграждането на инструменти и платформи, които да бъдат от полза и улеснение на хората,
+          които искат самостоятелно да си доставят автомобил от Америка.
+        </p>
+      </div>
+    </div>
+
+    <!-- Бутон центриран под двете -->
+    <div class="row mt-4">
+      <div class="col text-center">
+        <a class="btn" href="#about">Научи повече</a>
+      </div>
     </div>
   </div>
 </header>
+
 
 <section id="about" class="section">
   <div class="container">
@@ -65,69 +94,95 @@
   </div>
 </section>
 
-<section class="section process-steps">
-  <div class="container">
-    <h2 class="text-center mb-5 fw-bold">Как протича процесът?</h2>
-    <div class="row g-4 text-center">
-      <div class="col-md-4 col-lg-2">
-        <div class="card h-100">
-          <div class="mb-3 fs-1"><i class="bi bi-search"></i></div>
-          <h5 class="fw-bold">1. Проучване</h5>
-          <p class="small">Избор на правилния автомобил спрямо нужди, бюджет и реална стойност.</p>
-        </div>
-      </div>
-      <div class="col-md-4 col-lg-2">
-        <div class="card h-100">
-          <div class="mb-3 fs-1"><i class="bi bi-cart-check"></i></div>
-          <h5 class="fw-bold">2. Закупуване</h5>
-          <p class="small">Търг или директна покупка (Copart, IAAI).</p>
-        </div>
-      </div>
-      <div class="col-md-4 col-lg-2">
-        <div class="card h-100">
-          <div class="mb-3 fs-1"><i class="bi bi-truck"></i></div>
-          <h5 class="fw-bold">3. Транспорт</h5>
-          <p class="small">Морски и сухоземен транспорт до България.</p>
-        </div>
-      </div>
-      <div class="col-md-4 col-lg-2">
-        <div class="card h-100">
-          <div class="mb-3 fs-1"><i class="bi bi-shield-lock"></i></div>
-          <h5 class="fw-bold">4. Митница</h5>
-          <p class="small">Документи и преминаване през митнически контрол.</p>
-        </div>
-      </div>
-      <div class="col-md-4 col-lg-2">
-        <div class="card h-100">
-          <div class="mb-3 fs-1"><i class="bi bi-box-arrow-in-down"></i></div>
-          <h5 class="fw-bold">5. Получаване</h5>
-          <p class="small">Предаване на автомобила или транспорт до адрес.</p>
-        </div>
-      </div>
-      <div class="col-md-4 col-lg-2">
-        <div class="card h-100">
-          <div class="mb-3 fs-1"><i class="bi bi-card-checklist"></i></div>
-          <h5 class="fw-bold">6. Регистрация</h5>
-          <p class="small">Тех. преглед и регистрация за движение.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="contact" class="section">
-  <div class="container text-center">
-    <h2 class="fw-bold mb-4">Свържи се с мен</h2>
-    <p class="fs-5 mb-2">📬 Имейл: <a href="mailto:easyimport.bg@gmail.com" class="link fw-semibold">easyimport.bg@gmail.com</a></p>
-    <p class="fs-5">💬 Discord: <a href="https://discord.gg/bSJEBTvAe9" target="_blank" class="link fw-semibold">discord.gg/bSJEBTvAe9</a></p>
-  </div>
-</section>
-
 <footer class="site-footer">
-  <div class="container text-center py-3 small">© 2025 EasyImport – Всички права запазени.</div>
+  <div class="container py-4 text-center">
+    <div class="d-flex justify-content-center gap-3 mb-3">
+      <a href="https://www.linkedin.com/in/your-profile" target="_blank" class="btn-social linkedin">
+        <i class="bi bi-linkedin"></i>
+      </a>
+      <a href="https://discord.gg/bSJEBTvAe9" target="_blank" class="btn-social discord">
+        <i class="bi bi-discord"></i>
+      </a>
+      <a href="mailto:youremail@example.com" class="btn-social mail">
+        <i class="bi bi-envelope-fill"></i>
+      </a>
+      <a href="https://github.com/yourusername" target="_blank" class="btn-social github">
+        <i class="bi bi-github"></i>
+      </a>
+    </div>
+    <small class="text-muted-ux">© 2025 Bozhidar Aladzhov – Всички права запазени.</small>
+  </div>
 </footer>
+
+
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // 1) Автоматично маркиране на елементи за анимация
+    const autoSelectors = [
+      '.section',                          // самите секции
+      '.section .card',
+      '.section .content p',
+      '.section h2, .section h3, .section h4',
+      '.form-shell',
+      '.table',                            // добави и .reveal-rows в HTML ако искаш stagger по редове
+      '.stats .stat',
+      '.about__highlights li'
+    ];
+
+    // Маркираме секциите, за да могат вътрешните им елементи да се разбуждат
+    document.querySelectorAll('.section').forEach(sec => sec.classList.add('reveal'));
+
+    // Маркираме елементите по горните селектори
+    autoSelectors.forEach(sel => {
+      document.querySelectorAll(sel).forEach(el => {
+        el.classList.add('reveal');
+      });
+    });
+
+    // 2) Stagger групи – прилагаме върху редици/гридове
+    const staggerGroups = [
+      '.cards-equal .row, .cards-equal',
+      '.process-steps .row',
+      '.about__highlights',
+      '.table.reveal-rows tbody'
+    ];
+    staggerGroups.forEach(groupSel => {
+      document.querySelectorAll(groupSel).forEach(group => {
+        group.classList.add('reveal-stagger');
+        [...group.children].forEach((child, i) => {
+          child.style.setProperty('--i', i);
+        });
+      });
+    });
+
+    // 3) IntersectionObserver
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) {
+      // Без анимации – просто показваме всичко
+      document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => el.classList.add('is-visible'));
+      return;
+    }
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          // по избор: спираме да наблюдаваме, за да не се „ресетва“
+          io.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.15 });
+
+    document.querySelectorAll('.reveal, .reveal-stagger, .section').forEach(el => io.observe(el));
+
+    // 4) Лек косметичен бонус: таблиците да stagger-ват редовете
+    document.querySelectorAll('.table').forEach(tb => tb.classList.add('reveal-rows'));
+  });
+</script>
+
 </body>
 </html>

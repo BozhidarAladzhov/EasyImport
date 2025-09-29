@@ -1,5 +1,6 @@
 package com.mytransport.config;
 
+import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -13,8 +14,10 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/", "/about", "/services", "/process", "/prices", "/calculator", "/contact", "/css/**", "/js/**")
-                        .permitAll()
+                        // /static/**, /public/**, /resources/**, /META-INF/resources/**, /webjars/**
+                        .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
+                        .requestMatchers("/", "/about", "/services", "/process", "/prices",
+                                "/calculator", "/contact").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(Customizer.withDefaults())

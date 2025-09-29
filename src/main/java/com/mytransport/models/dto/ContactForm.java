@@ -1,20 +1,16 @@
 package com.mytransport.models.dto;
 
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 
 public class ContactForm {
 
-    @NotEmpty
-    private String name;
-
-    @Email
-    @NotEmpty
-    private String email;
-
-    private String originPort;
-    private String destinationPort;
-    private String vehicleType;
+    @NotBlank(message="Моля, въведете име") private String name;
+    @Email @NotBlank(message="Моля, въведете валиден email") private String email;
+    @NotBlank private String originPort;
+    @NotBlank private String destinationPort;
+    @NotBlank private String vehicleType;
     private boolean isHybrid;
     private boolean isElectric;
 
