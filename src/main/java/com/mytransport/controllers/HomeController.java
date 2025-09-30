@@ -55,7 +55,6 @@ public class HomeController {
         List<String> originPortList = allPrices.stream()
                 .map(OceanFreightEntity::getOriginPort)
                 .distinct()
-                .sorted()
                 .collect(Collectors.toList());
 
         // Филтриране по дестинация
