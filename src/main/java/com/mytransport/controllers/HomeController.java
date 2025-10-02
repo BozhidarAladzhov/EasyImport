@@ -51,7 +51,7 @@ public class HomeController {
 
         List<OceanFreightEntity> allPrices = oceanFreightRepository.findAll();
 
-        // Списък с уникални 'originPort' стойности
+        // Списък с пристанища на отплаване, спрямо подадената база данни от ексел.
         List<String> originPortList = allPrices.stream()
                 .map(OceanFreightEntity::getOriginPort)
                 .distinct()
@@ -72,7 +72,7 @@ public class HomeController {
         }
 
 
-        // Разделяне по дестинация
+        // Разделяне на цените спрямо дестинацита.
         List<OceanFreightEntity> pricesToVarna = allPrices.stream()
                 .filter(p -> "Varna".equalsIgnoreCase(p.getDestinationPort()))
                 .collect(Collectors.toList());
