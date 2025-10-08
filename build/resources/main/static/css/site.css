@@ -737,3 +737,7 @@ footer.site-footer{ border-top:1px solid var(--border); background:linear-gradie
   opacity: 1; transform: none;
 }
 
+.form-shell { position: relative; }     /* контекст за z-index */
+.ts-dropdown { z-index: 2000 !important; }
+
+
