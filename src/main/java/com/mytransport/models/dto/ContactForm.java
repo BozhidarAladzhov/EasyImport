@@ -3,11 +3,15 @@ package com.mytransport.models.dto;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 
 public class ContactForm {
 
     @NotBlank(message="Моля, въведете име") private String name;
     @Email @NotBlank(message="Моля, въведете валиден email") private String email;
+    @NotBlank(message = "Моля, въведете Година/Марка/Модел.")
+    @Size(max = 300, message = "Полето може да съдържа до 300 символа.")
+    private String vehicleDetails;
     @NotBlank private String originPort;
     @NotBlank private String destinationPort;
     @NotBlank private String vehicleType;
@@ -28,6 +32,7 @@ public class ContactForm {
         return name;
     }
 
+
     public void setName(String name) {
         this.name = name;
     }
@@ -38,6 +43,14 @@ public class ContactForm {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getVehicleDetails() {
+        return vehicleDetails;
+    }
+
+    public void setVehicleDetails(String vehicleDetails) {
+        this.vehicleDetails = vehicleDetails;
     }
 
     public String getOriginPort() {

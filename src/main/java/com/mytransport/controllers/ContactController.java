@@ -51,15 +51,22 @@ public class ContactController {
 
         String subject = "Ново запитване от EasyImport";
         String content = String.format(
-                "Име: %s%nЕмейл: %s%nОт: %s%nДо: %s%nТип автомобил: %s%nХибрид: %b%nЕлектрически: %b",
+                "Име: %s%n"+
+                "Емейл: %s%n"+
+                "От пристанище: %s%n" +
+                "До пристанище: %s%n"+
+                "Тип автомобил: %s%n"+
+                "Хибрид: %b%n"+
+                "Електрически: %b%n"+
+                "Година, марка и модел: %s%n",
                 contactForm.getName(), contactForm.getEmail(),
                 contactForm.getOriginPort(), contactForm.getDestinationPort(),
-                contactForm.getVehicleType(), contactForm.isHybrid(), contactForm.isElectric()
+                contactForm.getVehicleType(), contactForm.isHybrid(), contactForm.isElectric(), contactForm.getVehicleDetails()
         );
 
         mailService.sendEmail(subject, content);
         redirectAttributes.addFlashAttribute("success", "Запитването беше изпратено успешно!");
-        return "redirect:/contact";
+        return "redirect:/contact#successMessage";
     }
 
 

@@ -81,7 +81,7 @@
     <div class="container">
 
         <!-- Филтри -->
-        <form class="row g-3 mb-4 form-shell" th:action="@{/prices}" method="get">
+        <form class="row g-3 mb-4 form-shell" th:action="@{/prices#results}" method="get">
             <div class="col-md-4">
                 <label for="originPort" class="form-label"><span class="highlight">Товарно пристанище</span></label>
                 <select id="originPort" name="originPort" class="form-select">
@@ -111,7 +111,7 @@
         </form>
 
         <!-- Резултати -->
-        <div class="row" th:if="${selectedOriginPort != null or selectedPort != null}">
+        <div id="results" class="row" th:if="${selectedOriginPort != null or selectedPort != null}">
             <!-- До Варна -->
             <div class="col-md-6 mb-4">
                 <div class="card h-100">

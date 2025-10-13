@@ -737,7 +737,72 @@ footer.site-footer{ border-top:1px solid var(--border); background:linear-gradie
   opacity: 1; transform: none;
 }
 
-.form-shell { position: relative; }     /* контекст за z-index */
-.ts-dropdown { z-index: 2000 !important; }
+.highlight a {
+  color: inherit;            /* наследява цвета от highlight */
+  text-decoration: none;     /* маха подчертаването */
+  font-weight: inherit;
+}
+
+.highlight a:hover {
+  text-decoration: underline; /* или каквото искаш като hover ефект */
+}
+
+/* === Equal buttons in .actions block === */
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem; /* разстояние между бутоните */
+  margin-top: 2rem;
+}
+
+.actions .btn {
+  flex: 1 1 220px;           /* еднаква ширина (min 220px, расте при нужда) */
+  max-width: 260px;          /* лимит, за да не стават прекалено широки */
+  padding: 1rem 1.4rem;      /* по-щедър padding */
+  font-size: 1.05rem;
+}
+
+/* на по-тесни екрани — повече въздух и цял ред */
+@media (max-width: 576px) {
+  .actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .actions .btn {
+    width: 100%;
+    max-width: none;
+    padding: 1.15rem 1.5rem;
+    font-size: 1.1rem;
+  }
+}
+
+/* === One-line actions layout (force fit on large screens) === */
+@media (min-width: 768px) {
+  .actions {
+    flex-wrap: nowrap;           /* не пренася бутоните */
+    justify-content: center;
+  }
+  .actions .btn {
+    flex: 1 1 auto;
+    min-width: 180px;
+    max-width: 220px;
+    white-space: nowrap;         /* не позволява пренасяне на текста */
+  }
+}
+
+/* === Center text in .tool cards === */
+.tool.card {
+  text-align: center;
+}
+
+.tool.card .card-title {
+  margin-bottom: 0.75rem;
+}
+
+.tool.card p {
+  margin-bottom: 1.5rem;
+}
+
 
 

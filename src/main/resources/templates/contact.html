@@ -133,16 +133,36 @@
                 </div>
             </div>
 
+            <div class="col-12">
+                <label for="vehicleDetails" class="form-label">
+                    <span class="highlight">Година, марка и модел</span>
+                </label>
+
+                <textarea id="vehicleDetails"
+                          class="form-control"
+                          th:field="*{vehicleDetails}"
+                          rows="3"
+                          maxlength="300"
+                          placeholder="Пример: 2017 Honda CR-V"></textarea>
+
+                <!-- клиентска валидация -->
+                <div class="invalid-feedback">Моля, въведете поне базова информация.</div>
+
+                <!-- показване на съобщение от сървърна валидация (Thymeleaf) -->
+                <div class="text-warning mt-1" th:if="${#fields.hasErrors('vehicleDetails')}"
+                     th:errors="*{vehicleDetails}">Невалидно поле.</div>
+            </div>
+
             <!-- Honeypot за ботове -->
             <input type="text" name="website" style="display:none" autocomplete="off">
 
-            <div class="col-12">
+            <div class="col-12 text-center mt-3">
                 <button type="submit" class="btn">Изпрати запитване</button>
             </div>
         </form>
 
         <!-- Съобщение за успех -->
-        <div th:if="${success}" class="alert alert-success mt-4">
+        <div id="successMessage" th:if="${success}" class="alert alert-success text-center mt-4">
             <span th:text="${success}">Вашето запитване е изпратено успешно.</span>
         </div>
 
@@ -251,6 +271,19 @@
 
       // 4) Лек косметичен бонус: таблиците да stagger-ват редовете
       document.querySelectorAll('.table').forEach(tb => tb.classList.add('reveal-rows'));
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const successBox = document.getElementById('successMessage');
+      if (successBox) {
+        // плавен скрол до съобщението
+        successBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        // по желание — кратка подсветка за фокус
+        successBox.style.boxShadow = '0 0 20px rgba(255,138,34,0.6)';
+        setTimeout(() => successBox.style.boxShadow = '', 1200);
+      }
     });
 </script>
 
