@@ -20,8 +20,7 @@ public class SecurityConfig {
                                 "/calculator", "/contact").permitAll()
                         .anyRequest().authenticated()
                 )
-                .formLogin(Customizer.withDefaults())
-                .httpBasic(Customizer.withDefaults());
+                .formLogin(Customizer.withDefaults());
 
         return http.build();
     }

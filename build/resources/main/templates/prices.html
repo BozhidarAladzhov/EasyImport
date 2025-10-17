@@ -82,6 +82,9 @@
 
         <!-- Филтри -->
         <form class="row g-3 mb-4 form-shell" th:action="@{/prices#results}" method="get">
+
+            <input type="hidden" name="applied" value="1"/>
+
             <div class="col-md-4">
                 <label for="originPort" class="form-label"><span class="highlight">Товарно пристанище</span></label>
                 <select id="originPort" name="originPort" class="form-select">
@@ -111,12 +114,12 @@
         </form>
 
         <!-- Резултати -->
-        <div id="results" class="row" th:if="${selectedOriginPort != null or selectedPort != null}">
+        <div id="results" class="row" th:if="${param.applied != null}">
             <!-- До Варна -->
             <div class="col-md-6 mb-4">
                 <div class="card h-100">
                     <div class="card-header bg-transparent border-0 px-3 pb-0">
-                        <h4 class="card-title m-0">До Варна</h4>
+                        <h4 class="card-title m-0">Доставки до Варна</h4>
                     </div>
                     <div class="card-body p-0">
                         <div class="table-responsive">
@@ -148,7 +151,7 @@
             <div class="col-md-6 mb-4">
                 <div class="card h-100">
                     <div class="card-header bg-transparent border-0 px-3 pb-0">
-                        <h4 class="card-title m-0">До Ротердам</h4>
+                        <h4 class="card-title m-0">Доставки до Ротердам</h4>
                     </div>
                     <div class="card-body p-0">
                         <div class="table-responsive">
@@ -206,8 +209,8 @@
 <script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function(){
-      if(document.getElementById('originPort')) new TomSelect('#originPort', { create:false, sortField:null });
-      if(document.getElementById('portFilter')) new TomSelect('#portFilter', { create:false, sortField:null });
+      if(document.getElementById('originPort')) new TomSelect('#originPort', { create:false, sortField:null, dropdownParent:'body'});
+      if(document.getElementById('portFilter')) new TomSelect('#portFilter', { create:false, sortField:null, dropdownParent:'body'});
     });
 </script>
 <script>
