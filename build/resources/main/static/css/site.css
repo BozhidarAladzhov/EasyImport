@@ -1237,6 +1237,151 @@ footer.site-footer{ border-top:1px solid var(--border); background:linear-gradie
   }
 }
 
+/* === Navbar logo (SVG) — rectangle, smaller, subtle zoom on hover === */
+.navbar .navbar-brand .navbar-logo{
+  height: 21px;         /* ↓ по-малко от 40px */
+  width: auto;          /* без насилена ширина */
+  border: 0;            /* без оранжева рамка */
+  border-radius: 0px;   /* правоъгълник (можеш и 0) */
+  display: inline-block;
+  object-fit: contain;
+  filter: none;
+  box-shadow: none;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+
+/* zoom напред, без завъртане */
+.navbar .navbar-brand .navbar-logo:hover{
+  transform: scale(1.08);                /* лек zoom */
+  box-shadow: 0 6px 18px rgba(0,0,0,.35);/* деликатна сянка за „изпъкване“ */
+}
+
+/* === HERO photo: Rounded rectangle + white border + soft lift on hover === */
+.hero-logo {
+  display: block;
+  width: clamp(200px, 28vw, 280px);
+  height: auto;
+  margin-inline: auto;
+  border-radius: 18px; /* плавно заоблени ъгли */
+  overflow: hidden;
+  object-fit: cover;
+  background-color: #111; /* фон при прозрачни снимки */
+  box-shadow:
+    0 0 0 3px rgba(255, 255, 255, 0.9),  /* бяла рамка */
+    0 10px 25px rgba(0, 0, 0, 0.45);     /* дълбочина */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.hero-logo:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow:
+    0 0 0 3px rgba(255, 255, 255, 1),   /* малко по-ярка рамка */
+    0 16px 35px rgba(0, 0, 0, 0.6);
+}
+
+/* изчистваме старите форми и ефекти */
+.hero-logo {
+  border: none !important;
+  clip-path: none !important;
+  rotate: 0deg !important;
+  padding: 0 !important;
+  background: none !important;
+}
+
+/* === Fix: Real brand colors for footer social buttons === */
+
+/* Общи стилове */
+.btn-social {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  text-decoration: none;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  background: none;          /* премахваме общия оранжев фон */
+  color: #fff;               /* иконите по подразбиране бели */
+}
+
+.btn-social:hover {
+  transform: scale(1.1);
+}
+
+/* LinkedIn */
+.btn-social.linkedin {
+  background-color: #0077B5;
+}
+.btn-social.linkedin:hover {
+  box-shadow: 0 0 12px rgba(0,119,181,0.6);
+}
+
+/* Discord */
+.btn-social.discord {
+  background-color: #5865F2;
+}
+.btn-social.discord:hover {
+  box-shadow: 0 0 12px rgba(88,101,242,0.6);
+}
+
+/* Email */
+.btn-social.mail {
+  background-color: #D44638;
+}
+.btn-social.mail:hover {
+  box-shadow: 0 0 12px rgba(212,70,56,0.6);
+}
+
+/* Instagram */
+.btn-social.instagram {
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+}
+.btn-social.instagram:hover {
+  box-shadow: 0 0 12px rgba(253,89,73,0.6);
+}
+
+/* Facebook */
+.btn-social.facebook {
+  background-color: #1877F2;
+}
+.btn-social.facebook:hover {
+  box-shadow: 0 0 12px rgba(24,119,242,0.6);
+}
+/* === Animated hover bounce for social icons === */
+.btn-social {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.btn-social:hover {
+  transform: translateY(-4px) scale(1.12);
+  box-shadow: 0 0 16px rgba(255, 255, 255, 0.2);
+}
+
+/* леко „затихване“ след подскока */
+.btn-social:active {
+  transform: translateY(0) scale(1);
+  transition: transform 0.15s ease;
+}
+
+/* === Hero intro text alignment === */
+.hero-intro {
+  text-align: left;          /* по подразбиране вляво */
+}
+
+.hero-intro h2 {
+  text-align: center;        /* само заглавието остава центрирано */
+}
+
+
+
+
+
+
+
+
+
 
 
 

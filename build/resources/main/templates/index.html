@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Божидар Аладжов</title>
-  <link rel="icon" type="image/png" href="/images/favicon.png">
+  <link rel="icon" type="image/png" href="/images/favicon-site.png">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/site.css">
@@ -18,8 +18,9 @@
 <nav class="navbar navbar-expand-lg">
   <div class="container">
     <a class="navbar-brand" th:href="@{/}">
-      <img src="/images/B.png" alt="Лого" class="navbar-logo">
-<!--      <span class="fw-800">Bozhidar Aladzhov</span>-->
+      <div class="navbar-logo-wrapper">
+        <img src="/images/Logo Bozhidar Aladzhov.svg" alt="Лого" class="navbar-logo">
+      </div>
     </a>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -46,27 +47,27 @@
       <!-- Лого вляво + линк към about.html -->
       <div class="col-lg-5 text-center mb-4 mb-lg-0">
         <h3 class="fw-bold">
-          <span class="highlight">Bozhidar Aladzhov</span>
+<!--          <span class="highlight">Bozhidar Aladzhov</span>-->
         </h3>
         <a th:href="@{/about}">
-          <img src="/images/B.png" alt="Лого" class="hero-logo img-fluid">
+          <img src="/images/Geri_Bojidar selection-515.jpg" alt="Лого" class="hero-logo img-fluid">
         </a>
       </div>
 
       <!-- Текст вдясно -->
-      <div class="col-lg-7 text-center hero-intro">
-        <h3 class="fw-bold">
+      <div class="col-lg-7 hero-intro">
+        <h2 class="fw-bold">
           <span class="highlight">Логистик и софтуерен инженер</span>
-        </h3>
+        </h2>
 
         <p class="lead text-muted-ux">
-          Повече от десет години се занимавам с международен транспорт и логистика, със специализация във вноса на автомобили от САЩ.</p>
+          🔸 Повече от десет години се занимавам с международен транспорт и логистика, със специализация във вноса на автомобили от САЩ.</p>
 
         <p class="lead text-muted-ux">
-          С времето открих, че най-големите проблеми в бранша не са в транспорта, а в липсата на достъпна информация и автоматизация.</p>
+          🔸 С времето открих, че най-големите проблеми в бранша не са в транспорта, а в липсата на достъпна информация и автоматизация.</p>
 
         <p class="lead text-muted-ux">
-          Затова реших да обединя двата си свята – логистиката и програмирането – и да създам собствени инструменти, които решават реални предизвикателства.</p>
+          🔸Затова реших да обединя двата си свята – логистиката и програмирането – и да създам собствени инструменти, които решават реални предизвикателства.</p>
 
       </div>
     </div>
@@ -104,6 +105,13 @@
 <footer class="site-footer">
   <div class="container py-4 text-center">
     <div class="d-flex justify-content-center gap-3 mb-3">
+
+      <a href="https://www.instagram.com/bojidar.aladjov/" target="_blank" class="btn-social instagram">
+        <i class="bi bi-instagram"></i>
+      </a>
+      <a href="https://www.facebook.com/bozidar.aladzov" target="_blank" class="btn-social facebook">
+        <i class="bi bi-facebook"></i>
+      </a>
       <a href="https://www.linkedin.com/in/bozhidar-aladzhov-90003b186/" target="_blank" class="btn-social linkedin">
         <i class="bi bi-linkedin"></i>
       </a>
@@ -113,9 +121,7 @@
       <a href="mailto:easyimport.bg@gmail.com" class="btn-social mail">
         <i class="bi bi-envelope-fill"></i>
       </a>
-      <a href="https://github.com/BozhidarAladzhov" target="_blank" class="btn-social github">
-        <i class="bi bi-github"></i>
-      </a>
+
     </div>
     <small class="text-muted-ux">© 2025 Bozhidar Aladzhov – Всички права запазени.</small>
   </div>
