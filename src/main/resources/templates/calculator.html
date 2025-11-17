@@ -111,13 +111,13 @@
             <div class="col-md-3 d-flex align-items-center">
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" th:field="*{hybrid}" id="hybrid">
-                    <label class="form-check-label" for="hybrid">☢️ Хибрид</label>
+                    <label class="form-check-label" for="hybrid">⚡ Хибрид</label>
                 </div>
             </div>
             <div class="col-md-3 d-flex align-items-center">
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" th:field="*{electric}" id="electric">
-                    <label class="form-check-label" for="electric">☢️ Електрически</label>
+                    <label class="form-check-label" for="electric">⚡ Електрически</label>
                 </div>
             </div>
 
@@ -127,13 +127,14 @@
                 <div class="invalid-feedback">Моля, въведете цена.</div>
             </div>
 
-            <div class="col-12 mt-2">
-                <button type="submit" class="btn w-100">Изчисли цена</button>
+            <div class="col-12 text-center mt-2">
+                <button type="submit" class="btn">Изчисли цена</button>
             </div>
         </form>
 
         <!-- Резултати -->
-        <div id="results" class="row mt-5">
+        <div id="results" class="row mt-5"
+             th:if="${oceanFreight != null and oceanFreight != -1}">
             <div class="col-md-6">
                 <h5 class="mb-3">🚚 Транспортни разходи</h5>
 
