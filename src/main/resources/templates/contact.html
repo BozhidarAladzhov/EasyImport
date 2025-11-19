@@ -61,8 +61,7 @@
 
 <header class="hero hero--gradient">
     <div class="container hero-intro">
-        <h2 class="fw-bold">📩 Запитване за транспорт</h2>
-        <p class="text-muted-ux">Изпратете запитване до надеждна логистична компания.</p>
+        <h2 class="fw-bold"><span class="highlight">Запитване за транспорт</span></h2>
     </div>
 </header>
 
@@ -71,14 +70,15 @@
 
         <!-- Форма за запитване -->
         <form th:action="@{/contact}" method="post" th:object="${contactForm}" class="row g-3 form-shell needs-validation" novalidate>
+            <p class="text-muted-ux">Попълни необходимата информация и изпрати запитване до надеждна логистична компания.</p>
             <div class="col-md-6">
-                <label for="name" class="form-label"><span class="highlight">Вашите имена</span></label>
+                <label for="name" class="form-label"><span class="highlight">Имена</span></label>
                 <input type="text" name="name" class="form-control" id="name" required>
                 <div class="invalid-feedback">Моля, въведете име.</div>
             </div>
 
             <div class="col-md-6">
-                <label for="email" class="form-label"><span class="highlight">Email за контакт</span></label>
+                <label for="email" class="form-label"><span class="highlight">Email</span></label>
                 <input type="email" name="email" class="form-control" id="email" required>
                 <div class="invalid-feedback">Моля, въведете валиден email.</div>
             </div>
@@ -86,7 +86,7 @@
             <div class="col-md-6">
                 <label for="originPort" class="form-label"><span class="highlight">От пристанище</span></label>
                 <select th:field="*{originPort}" class="form-select" id="originPort" required>
-                    <option value="">Изберете...</option>
+                    <option value="">Избери...</option>
                     <option value="NEW YORK">New York</option>
                     <option value="SAVANNAH">Savannah</option>
                     <option value="MIAMI">Miami</option>
@@ -101,7 +101,7 @@
             <div class="col-md-6">
                 <label for="destinationPort" class="form-label"><span class="highlight">До пристанище</span></label>
                 <select th:field="*{destinationPort}" class="form-select" id="destinationPort" required>
-                    <option value="">Изберете...</option>
+                    <option value="">Избери...</option>
                     <option value="VARNA">Varna</option>
                     <option value="ROTTERDAM">Rotterdam</option>
                 </select>
@@ -111,7 +111,7 @@
             <div class="col-md-6">
                 <label for="vehicleType" class="form-label"><span class="highlight">Тип автомобил</span></label>
                 <select th:field="*{vehicleType}" class="form-select" id="vehicleType" required>
-                    <option value="">Изберете...</option>
+                    <option value="">Избери...</option>
                     <option value="CAR">CAR</option>
                     <option value="SUV">SUV</option>
                     <option value="Large SUV">Large SUV</option>
@@ -157,7 +157,7 @@
             <!-- Honeypot за ботове -->
             <input type="text" name="website" style="display:none" autocomplete="off">
             <div class="col-12 text-center mt-3">
-                <button type="submit" class="btn">Изпрати запитване</button>
+                <button type="submit" class="btn">Изпрати</button>
             </div>
         </form>
 

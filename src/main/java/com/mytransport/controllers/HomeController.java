@@ -72,7 +72,7 @@ public class HomeController {
         }
 
 
-        // Разделяне на цените спрямо дестинацита.
+        // Разделяне на ЦЕНИте спрямо дестинацита.
         List<OceanFreightEntity> pricesToVarna = allPrices.stream()
                 .filter(p -> "Varna".equalsIgnoreCase(p.getDestinationPort()))
                 .collect(Collectors.toList());

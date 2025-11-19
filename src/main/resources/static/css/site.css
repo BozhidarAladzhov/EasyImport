@@ -408,7 +408,7 @@ footer.site-footer{ border-top:1px solid var(--border); background:linear-gradie
   transition: transform .4s ease, box-shadow .3s ease, border .3s ease;
   cursor: pointer;
   border: 4px solid transparent;   /* без рамка по default */
-  opacity: 0;                       /* скрито в началото */
+  opacity: 0;                       /* скрито в НАЧАЛОто */
   animation: logoReveal .9s ease .1s forwards; /* fade-in само */
   will-change: transform;
 }
@@ -625,7 +625,7 @@ footer.site-footer{ border-top:1px solid var(--border); background:linear-gradie
   min-width: clamp(140px, 60vw, 200px);
 }
 
-/* Контейнерът с оранжевите плочки (EasyImport / Тарифи / Калкулатор / Контакт) */
+/* Контейнерът с оранжевите плочки (EasyImport / Тарифи / КАЛКУЛАТОР / Контакт) */
 .actions{
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* 1→2→3 колони според ширината */
@@ -1378,6 +1378,9 @@ footer.site-footer{ border-top:1px solid var(--border); background:linear-gradie
 .hero-intro h2 {
   text-align: center;        /* само заглавието остава центрирано */
 }
+
+
+
 
 
 
