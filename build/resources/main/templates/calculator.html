@@ -61,15 +61,17 @@
 <header class="hero hero--gradient">
     <div class="container hero-intro">
         <h2 class="fw-bold"><span class="highlight">Калкулатор</span></h2>
+        <p class="fs-5">Позволява ти да изчислиш транспортните разходи и митническите задължения.</p>
     </div>
 </header>
 
 <section class="section">
     <div class="container">
+
+
+        <p class="fs-5">Попълни необходимата информация и разбери колко е общата сума.</p>
         <!-- Форма -->
         <form th:action="@{/calculator#results}" th:object="${request}" method="post" class="row g-3 form-shell needs-validation" novalidate>
-            <p class="text-muted-ux">Калкулаторът ти позволява да изчислиш транспортните разходи и митническите задължения.</p>
-            <p class="text-muted-ux">Попълни необходимата информация и разбери колко е общата сума.</p>
             <div class="col-md-6">
                 <label for="originPort" class="form-label"><span class="highlight">Товарно пристанище</span></label>
                 <select id="originPort" th:field="*{originPort}" class="form-select" required>

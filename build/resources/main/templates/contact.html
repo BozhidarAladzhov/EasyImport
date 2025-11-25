@@ -67,10 +67,10 @@
 
 <section class="section">
     <div class="container">
-
+        <p class="fs-5">Попълни необходимата информация и изпрати запитване до надеждна логистична компания.</p>
         <!-- Форма за запитване -->
         <form th:action="@{/contact}" method="post" th:object="${contactForm}" class="row g-3 form-shell needs-validation" novalidate>
-            <p class="text-muted-ux">Попълни необходимата информация и изпрати запитване до надеждна логистична компания.</p>
+
             <div class="col-md-6">
                 <label for="name" class="form-label"><span class="highlight">Имена</span></label>
                 <input type="text" name="name" class="form-control" id="name" required>

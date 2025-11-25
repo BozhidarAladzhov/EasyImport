@@ -74,7 +74,7 @@
 <header class="hero hero--gradient">
     <div class="container hero-intro">
         <h2 class="fw-bold"><span class="highlight">Колко струва?</span></h2>
-        <h3 class="text-center">Проследи актуалните цени за морски транспорт.</h3>
+        <p class="fs-5 text-center">Проследи актуалните цени за морски транспорт.</p>
 
     </div>
 </header>
@@ -82,11 +82,12 @@
 <section class="section">
     <div class="container">
 
+        <p class="fs-5">Избери товарно и разтоварно пристанище, за да видиш актуалните тарифи по дестинации.</p>
+
         <!-- Филтри -->
         <form class="row g-3 mb-4 form-shell" th:action="@{/prices#results}" method="get">
 
             <input type="hidden" name="applied" value="1"/>
-            <p class="text-muted-ux">Избери товарно и разтоварно пристанище, за да видиш актуалните тарифи по дестинации.</p>
             <div class="col-md-4">
                 <label for="originPort" class="form-label"><span class="highlight">Товарно пристанище</span></label>
                 <select id="originPort" name="originPort" class="form-select">
