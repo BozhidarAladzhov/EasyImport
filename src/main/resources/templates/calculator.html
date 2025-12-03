@@ -50,7 +50,7 @@
                 <li class="nav-item"><a class="nav-link" th:href="@{/about}">За мен</a></li>
                 <li class="nav-item"><a class="nav-link" th:href="@{/prices}">Цени</a></li>
                 <li class="nav-item"><a class="nav-link active" th:href="@{/calculator}">Калкулатор</a></li>
-                <li class="nav-item"><a class="nav-link" th:href="@{/process}">Процес</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/process}">Процеси</a></li>
                 <li class="nav-item"><a class="nav-link" th:href="@{/contact}">Контакти</a></li>
             </ul>
         </div>
@@ -68,7 +68,7 @@
 <section class="section">
     <div class="container">
 
-        <p class="fs-6">Попълни необходимата информация за да изчислиш транспортните разходи и митническите задължения.</p>
+        <p class="fs-6">Попълни необходимата информация, за да изчислиш транспортните разходи и митническите задължения.</p>
         <!-- Форма -->
         <form th:action="@{/calculator#results}" th:object="${request}" method="post" class="row g-3 form-shell needs-validation" novalidate>
             <div class="col-md-6">
@@ -118,7 +118,7 @@
             <div class="col-md-3 d-flex align-items-center">
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" th:field="*{electric}" id="electric">
-                    <label class="form-check-label" for="electric">⚡ Електрически</label>
+                    <label class="form-check-label" for="electric">🔋 Електрически</label>
                 </div>
             </div>
 
