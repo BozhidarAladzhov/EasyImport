@@ -74,19 +74,19 @@
             <div class="col-md-6">
                 <label for="name" class="form-label"><span class="highlight">Имена</span></label>
                 <input type="text" name="name" class="form-control" id="name" required>
-                <div class="invalid-feedback">Моля, въведете име.</div>
+                <div class="invalid-feedback">Въведи имена.</div>
             </div>
 
             <div class="col-md-6">
                 <label for="email" class="form-label"><span class="highlight">Email</span></label>
                 <input type="email" name="email" class="form-control" id="email" required>
-                <div class="invalid-feedback">Моля, въведете валиден email.</div>
+                <div class="invalid-feedback">Въведи валиден email.</div>
             </div>
 
             <div class="col-md-6">
                 <label for="originPort" class="form-label"><span class="highlight">От пристанище</span></label>
                 <select th:field="*{originPort}" class="form-select" id="originPort" required>
-                    <option value="">Избери...</option>
+                    <option value="">Избери товарно пристанище.</option>
                     <option value="NEW YORK">New York</option>
                     <option value="SAVANNAH">Savannah</option>
                     <option value="MIAMI">Miami</option>
@@ -95,30 +95,30 @@
                     <option value="LOS ANGELES">Los Angeles</option>
                     <option value="SAN FRANCISCO">San Francisco</option>
                 </select>
-                <div class="invalid-feedback">Моля, изберете товарно пристанище.</div>
+                <div class="invalid-feedback">Избери товарно пристанище.</div>
             </div>
 
             <div class="col-md-6">
                 <label for="destinationPort" class="form-label"><span class="highlight">До пристанище</span></label>
                 <select th:field="*{destinationPort}" class="form-select" id="destinationPort" required>
-                    <option value="">Избери...</option>
+                    <option value="">Избери дестинация.</option>
                     <option value="VARNA">Varna</option>
                     <option value="ROTTERDAM">Rotterdam</option>
                 </select>
-                <div class="invalid-feedback">Моля, изберете дестинация.</div>
+                <div class="invalid-feedback">Избери дестинация.</div>
             </div>
 
             <div class="col-md-6">
                 <label for="vehicleType" class="form-label"><span class="highlight">Тип автомобил</span></label>
                 <select th:field="*{vehicleType}" class="form-select" id="vehicleType" required>
-                    <option value="">Избери...</option>
+                    <option value="">Избери тип автомобил.</option>
                     <option value="CAR">CAR</option>
                     <option value="SUV">SUV</option>
                     <option value="Large SUV">Large SUV</option>
                     <option value="PICKUP">PICKUP</option>
                     <option value="Motorcycle">Motorcycle</option>
                 </select>
-                <div class="invalid-feedback">Моля, изберете тип автомобил.</div>
+                <div class="invalid-feedback">Избери тип автомобил.</div>
             </div>
 
             <div class="col-md-3 d-flex align-items-center">
@@ -143,11 +143,13 @@
                           class="form-control"
                           th:field="*{vehicleDetails}"
                           rows="3"
-                          maxlength="300"
+                          minlength="10"
+                          maxlength="50"
+                          required
                           placeholder="Пример: 2017 Honda CR-V"></textarea>
 
                 <!-- клиентска валидация -->
-                <div class="invalid-feedback">Моля, въведете поне базова информация.</div>
+                <div class="invalid-feedback">Въведи поне 10 символа (година, марка и модел).</div>
 
                 <!-- показване на съобщение от сървърна валидация (Thymeleaf) -->
                 <div class="text-warning mt-1" th:if="${#fields.hasErrors('vehicleDetails')}"

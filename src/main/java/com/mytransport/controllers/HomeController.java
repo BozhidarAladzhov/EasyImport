@@ -24,9 +24,11 @@ public class HomeController {
     private OceanFreightRepository oceanFreightRepository;
 
     @GetMapping("/")
-    public String home(){
+    public String home(Model model){
+        model.addAttribute("contactForm", new com.mytransport.models.dto.ContactForm());
         return "index";
     }
+
 
     @GetMapping("/about")
     public String about(){

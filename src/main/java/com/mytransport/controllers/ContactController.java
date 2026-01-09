@@ -37,37 +37,42 @@ public class ContactController {
             @Valid @ModelAttribute ContactForm contactForm,
             BindingResult br,
             @RequestParam(value = "website", required = false) String website,
+            @RequestParam(value = "source", required = false) String source,
             RedirectAttributes redirectAttributes) {
+
+        boolean fromIndex = "index".equalsIgnoreCase(source);
 
         // honeypot → ако е попълнено, игнорирай като спам
         if (website != null && !website.isBlank()) {
             redirectAttributes.addFlashAttribute("success", "Запитването беше изпратено успешно!");
-            return "redirect:/contact";
+            return fromIndex ? "redirect:/#successMessage" : "redirect:/contact";
         }
 
         if (br.hasErrors()) {
-            return "contact"; // Thymeleaf ще покаже invalid-feedback
+            return fromIndex ? "index" : "contact";
         }
 
         String subject = "Ново запитване от EasyImport";
         String content = String.format(
                 "Име: %s%n"+
-                "Емейл: %s%n"+
-                "От пристанище: %s%n" +
-                "До пристанище: %s%n"+
-                "Тип автомобил: %s%n"+
-                "Хибрид: %b%n"+
-                "Електрически: %b%n"+
-                "Година, марка и модел: %s%n",
+                        "Емейл: %s%n"+
+                        "От пристанище: %s%n" +
+                        "До пристанище: %s%n"+
+                        "Тип автомобил: %s%n"+
+                        "Хибрид: %b%n"+
+                        "Електрически: %b%n"+
+                        "Година, марка и модел: %s%n",
                 contactForm.getName(), contactForm.getEmail(),
                 contactForm.getOriginPort(), contactForm.getDestinationPort(),
                 contactForm.getVehicleType(), contactForm.isHybrid(), contactForm.isElectric(), contactForm.getVehicleDetails()
         );
 
         mailService.sendEmail(subject, content);
+
         redirectAttributes.addFlashAttribute("success", "Запитването беше изпратено успешно!");
-        return "redirect:/contact#successMessage";
+        return fromIndex ? "redirect:/#successMessage" : "redirect:/contact#successMessage";
     }
+
 
 
 }

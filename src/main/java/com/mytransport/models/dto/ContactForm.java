@@ -7,10 +7,10 @@ import jakarta.validation.constraints.Size;
 
 public class ContactForm {
 
-    @NotBlank(message="Моля, въведете име") private String name;
-    @Email @NotBlank(message="Моля, въведете валиден email") private String email;
+    @NotBlank(message="Въведи имена.") private String name;
+    @Email @NotBlank(message="Въведи валиден email.") private String email;
     @NotBlank(message = "Моля, въведете Година/Марка/Модел.")
-    @Size(max = 300, message = "Полето може да съдържа до 300 символа.")
+    @Size(min = 10, max = 50, message = "Моля, въведете поне 10 символа (година, марка и модел).")
     private String vehicleDetails;
     @NotBlank private String originPort;
     @NotBlank private String destinationPort;

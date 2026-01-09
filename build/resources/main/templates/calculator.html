@@ -156,13 +156,13 @@
                 <div class="alert alert-success"
                      th:if="${terminalHandling != null and terminalHandling != -1 and request.destinationPort == 'Varna'}">
                     Терминални разходи във Варна:
-                    <strong th:text="${#numbers.formatDecimal(terminalHandling, 2, 2)}">0.00</strong> BGN
+                    <strong th:text="${#numbers.formatDecimal(terminalHandling, 2, 2)}">0.00</strong> EUR
                 </div>
 
                 <div class="alert alert-success"
                      th:if="${domesticRotterdam != null && domesticRotterdam != -1 && request.destinationPort == 'Rotterdam'}">
                     Транспорт от Ротердам до София:
-                    <strong th:text="${#numbers.formatDecimal(domesticRotterdam, 2, 2)}">0.00</strong> BGN
+                    <strong th:text="${#numbers.formatDecimal(domesticRotterdam, 2, 2)}">0.00</strong> EUR
                 </div>
             </div>
 

@@ -41,11 +41,11 @@ public class TransportCalculatorService {
         double priceOceanFreight = basePriceOpt.get().getPrice();
 
         if (request.isHybrid()){
-            priceOceanFreight += 300;
+            priceOceanFreight += 400;
         }
 
         if (request.isElectric()){
-            priceOceanFreight += 300;
+            priceOceanFreight += 400;
         }
 
         return priceOceanFreight;

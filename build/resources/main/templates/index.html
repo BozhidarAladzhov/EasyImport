@@ -8,8 +8,9 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/site.css">
+  <link rel="stylesheet" href="/css/index.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.bootstrap5.min.css">
+
 
 </head>
 
@@ -85,20 +86,64 @@
 <section id="about" class="section">
   <div class="container">
     <h2 class="text-center mb-4 fw-bold"><span class="highlight">Инструменти и информация</span></h2>
-    <div class="row justify-content-center">
-      <div class="col-md-10 col-lg-8 content">
-        <p class="fs-6"> <span class="highlight"> <a href="https://discord.gg/bwGDdFZddx" target="_blank">🔸 EasyImport</a></span> - специализирана онлайн платформа в Discord, в която ще откриеш изчерпателна информация за всички процеси по внос на автомобил от САЩ - стъпка по стъпка. </p>
-        <p class="fs-6"> <span class="highlight"> <a th:href="@{/prices}">🔸 Цени</a></span> - актуални тарифи за морски транспорт, които се базират на товарното и разтоварното пристанище. </p>
-        <p class="fs-6"> <span class="highlight"> <a th:href="@{/calculator}">🔸 Калкулатор</a></span> - инструмент за изчисление на транспортни разходи и митнически задължения. </p>
-        <p class="fs-6"> <span class="highlight"> <a th:href="@{/contact}">🔸 Контактна форма</a></span> - директна връзка с доказана логистична компания, която е готова да съдейства. </p>
-        <div class="actions actions--slim">
-          <a class="btn" href="https://discord.gg/bwGDdFZddx">Общност</a>
-          <a class="btn" th:href="@{/prices}">Тарифи</a>
-          <a class="btn" th:href="@{/calculator}">Изчисли цена</a>
-          <a class="btn" th:href="@{/contact}">Направи запитване</a>
+    <section class="section process-steps index-tools">
+
+      <div class="row g-4 text-center justify-content-center tools-grid">
+
+          <!-- EasyImport / Discord -->
+          <div class="col-12 col-md-6 col-lg-3">
+            <a class="card h-100 tool-card" href="https://discord.gg/bwGDdFZddx" target="_blank" rel="noopener">
+              <div class="card-body">
+                <div class="mb-3 fs-1"><i class="bi bi-people-fill"></i></div>
+                <h5 class="fw-bold"><span class="highlight">EasyImport</span></h5>
+                <p class="small">
+                  Специализирана онлайн платформа в Discord, в която ще откриеш изчерпателна информация за всички процеси по внос на автомобил от САЩ - стъпка по стъпка.
+                </p>
+              </div>
+            </a>
+          </div>
+
+          <!-- Цени -->
+          <div class="col-12 col-md-6 col-lg-3">
+            <a class="card h-100 tool-card" th:href="@{/prices}">
+              <div class="card-body">
+                <div class="mb-3 fs-1"><i class="bi bi-tags-fill"></i></div>
+                <h5 class="fw-bold"><span class="highlight">Цени</span></h5>
+                <p class="small">
+                  Актуални тарифи за морски транспорт, които се базират на товарното и разтоварното пристанище.
+                </p>
+              </div>
+            </a>
+          </div>
+
+          <!-- Калкулатор -->
+          <div class="col-12 col-md-6 col-lg-3">
+            <a class="card h-100 tool-card" th:href="@{/calculator}">
+              <div class="card-body">
+                <div class="mb-3 fs-1"><i class="bi bi-calculator-fill"></i></div>
+                <h5 class="fw-bold"><span class="highlight">Калкулатор</span></h5>
+                <p class="small">
+                  Инструмент за изчисление на транспортни разходи и митнически задължения.
+                </p>
+              </div>
+            </a>
+          </div>
+
+          <!-- Контактна форма -->
+          <div class="col-12 col-md-6 col-lg-3">
+            <a class="card h-100 tool-card" th:href="@{/contact}">
+              <div class="card-body">
+                <div class="mb-3 fs-1"><i class="bi bi-envelope-paper-fill"></i></div>
+                <h5 class="fw-bold"><span class="highlight">Контактна форма</span></h5>
+                <p class="small">
+                  Директна връзка с доказана логистична компания, която е готова да съдейства.
+                </p>
+              </div>
+            </a>
+          </div>
         </div>
-      </div>
-    </div>
+    </section>
+
   </div>
 </section>
 
@@ -131,7 +176,7 @@
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
+
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     // 1) Автоматично маркиране на елементи за анимация
@@ -196,6 +241,21 @@
     document.querySelectorAll('.table').forEach(tb => tb.classList.add('reveal-rows'));
   });
 </script>
+
+
+<script>
+      // Bootstrap validation
+    const forms = document.querySelectorAll('.needs-validation');
+    Array.prototype.slice.call(forms).forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) { event.preventDefault(); event.stopPropagation(); }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  });
+</script>
+
+
 
 </body>
 </html>

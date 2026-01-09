@@ -1,0 +1,89 @@
+/* ==========================================================
+   INDEX ONLY (не засяга други страници)
+   - Tools grid (4 cards on one row)
+   - Mini contact panel (shady + CTA fields)
+   ========================================================== */
+
+/* -------- Tools grid (4 cards) -------- */
+.index-tools{
+  padding-top: 3.5rem;
+}
+
+.index-tools .row{
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.25rem;
+  align-items: stretch;
+}
+
+/* neutralize bootstrap cols inside grid */
+.index-tools .row > [class*="col-"]{
+  width: auto !important;
+  max-width: none !important;
+  padding: 0 !important;
+}
+
+/* responsive */
+@media (max-width: 1200px){
+  .index-tools .row{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 768px){
+  .index-tools .row{ grid-template-columns: 1fr; }
+}
+
+/* Card as button */
+.index-tools .tool-card{
+  display: block;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+  border-radius: 20px;
+  position: relative;
+  transform: translateY(0);
+  transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+}
+
+.index-tools .tool-card:hover{
+  transform: translateY(-6px) scale(1.01);
+  filter: brightness(1.06);
+  box-shadow:
+    0 22px 55px rgba(0,0,0,.65),
+    0 0 0 1px rgba(255,138,34,.55) inset,
+    0 0 26px rgba(255,138,34,.18);
+}
+
+.index-tools .tool-card:focus-visible{
+  outline: none;
+  box-shadow:
+    0 0 0 5px rgba(255,138,34,.35),
+    0 22px 55px rgba(0,0,0,.65);
+}
+
+.index-tools .tool-card .fs-1 i{
+  transition: transform .18s ease, filter .18s ease;
+}
+.index-tools .tool-card:hover .fs-1 i{
+  transform: scale(1.14);
+  filter: drop-shadow(0 0 10px rgba(255,138,34,.35));
+}
+
+.index-tools .tool-card::after{
+  content: "↗";
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  opacity: 0;
+  transform: translateY(2px);
+  transition: opacity .18s ease, transform .18s ease;
+}
+.index-tools .tool-card:hover::after{
+  opacity: .9;
+  transform: translateY(0);
+}
+
+
+
+
+
+
+
