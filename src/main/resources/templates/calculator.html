@@ -70,7 +70,7 @@
 
         <p class="fs-6">Попълни необходимата информация, за да изчислиш транспортните разходи и митническите задължения.</p>
         <!-- Форма -->
-        <form th:action="@{/calculator#results}" th:object="${request}" method="post" class="row g-3 form-shell needs-validation" novalidate>
+        <form th:action="@{/calculator#results}" th:object="${request}" method="post" class="row g-3 form-shell needs-validation hover-glow" novalidate>
             <div class="col-md-6">
                 <label for="originPort" class="form-label"><span class="highlight">Товарно пристанище</span></label>
                 <select id="originPort" th:field="*{originPort}" class="form-select" required>

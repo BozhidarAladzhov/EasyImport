@@ -1399,6 +1399,50 @@ footer.site-footer{ border-top:1px solid var(--border); background:linear-gradie
   padding-left: .25rem; /* лек падинг вляво – коригирай по вкус */
 }
 
+/* === Reusable Hover Glow Effect === */
+.hover-glow{
+  position: relative;
+  transform: translateY(0);
+  transition:
+    transform .18s ease,
+    box-shadow .18s ease,
+    filter .18s ease;
+}
+
+.hover-glow:hover{
+  transform: translateY(-6px) scale(1.01);
+  filter: brightness(1.06);
+  box-shadow:
+    0 22px 55px rgba(0,0,0,.65),
+    0 0 0 1px rgba(255,138,34,.55) inset,
+    0 0 26px rgba(255,138,34,.18);
+}
+
+.hover-glow:focus-visible{
+  outline: none;
+  box-shadow:
+    0 0 0 5px rgba(255,138,34,.35),
+    0 22px 55px rgba(0,0,0,.65);
+}
+
+.hover-glow h2,
+.hover-glow h3,
+.hover-glow h5,
+.hover-glow .fs-1 i{
+  transition: transform .18s ease, filter .18s ease;
+}
+
+.hover-glow:hover h2,
+.hover-glow:hover h3,
+.hover-glow:hover h5,
+.hover-glow:hover .fs-1 i{
+  transform: scale(1.06);
+  filter: drop-shadow(0 0 10px rgba(255,138,34,.35));
+}
+
+
+
+
 
 
 
