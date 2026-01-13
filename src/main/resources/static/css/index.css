@@ -249,7 +249,7 @@
   content:"";
   position:absolute;
   inset:0;
-  background: url("/images/hero-timeline.png") center 45% / cover no-repeat;
+  background: url("/images/upscalemedia-transformed.png") center 45% / cover no-repeat;
   z-index: 0;
 }
 
