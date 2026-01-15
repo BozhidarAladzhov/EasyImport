@@ -1,0 +1,116 @@
+/* Prices page specific styles */
+.page-prices .table .port-group td {
+  background: rgba(255, 138, 34, .02);
+  padding: 1rem 1.2rem;
+  /* по-голям padding */
+}
+
+.page-prices .table .port-group-start td {
+  border-top: 2px solid #ffd166;
+  /* по-светъл оранжев */
+}
+
+.page-prices .table .port-group-end td {
+  border-bottom: 2px solid #ffd166;
+}
+
+.page-prices .table .port-group td:first-child {
+  border-left: 2px solid #ffd166;
+}
+
+.page-prices .table .port-group td:last-child {
+  border-right: 2px solid #ffd166;
+}
+
+.page-prices .table .port-group-start td:first-child {
+  border-top-left-radius: 8px;
+}
+
+.page-prices .table .port-group-start td:last-child {
+  border-top-right-radius: 8px;
+}
+
+.page-prices .table .port-group-end td:first-child {
+  border-bottom-left-radius: 8px;
+}
+
+.page-prices .table .port-group-end td:last-child {
+  border-bottom-right-radius: 8px;
+}
+
+.page-prices .port-group,
+.page-prices .port-group-start,
+.page-prices .port-group-end {
+  overflow: visible;
+}
+
+@media (max-width: 768px) {
+
+  /* 1) фиксиран layout и реална ширина */
+  .page-prices .table {
+    table-layout: fixed;
+    /* колоните се изчисляват по ширини, не по съдържание */
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: .92rem;
+    /* по-компактен текст */
+  }
+
+  /* 2) компактни клетки */
+  .page-prices .table th,
+  .page-prices .table td {
+    padding: .5rem .6rem;
+    line-height: 1.35;
+    white-space: nowrap;
+    /* не чупим редове */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* … при дълъг текст */
+  }
+
+  /* 3) разпределение по колони (на три колони ще се побере на 100%) */
+  .page-prices .table thead th:nth-child(1),
+  .page-prices .table tbody td:nth-child(1) {
+    width: 44%;
+  }
+
+  /* От пристанище */
+  .page-prices .table thead th:nth-child(2),
+  .page-prices .table tbody td:nth-child(2) {
+    width: 36%;
+  }
+
+  /* Вид автомобил */
+  .page-prices .table thead th:nth-child(3),
+  .page-prices .table tbody td:nth-child(3) {
+    width: 20%;
+    text-align: right;
+  }
+
+  /* Цена */
+  /* 4) по-дребни заглавия */
+  .page-prices .card .card-title,
+  .page-prices .card h4.card-title {
+    font-size: 1rem;
+  }
+
+  /* 5) контейнерът не трябва да клипва */
+  .page-prices .card,
+  .page-prices .section,
+  .page-prices .form-shell {
+    overflow: visible;
+  }
+
+  /* 6) ако имаш групиращи рамки по редове – нека не излизат извън */
+  .page-prices .port-group,
+  .page-prices .port-group-start,
+  .page-prices .port-group-end {
+    overflow: visible;
+  }
+
+  /* 7) ако преди това е имало auto-scroll – забрани го, щом вече се побира */
+  .page-prices .card .table-responsive {
+    overflow-x: hidden;
+  }
+}

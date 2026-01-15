@@ -5,11 +5,11 @@
    ========================================================== */
 
 /* -------- Tools grid (4 cards) -------- */
-.index-tools{
+.index-tools {
   padding-top: 3.5rem;
 }
 
-.index-tools .row{
+.index-tools .row {
   display: grid !important;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1.25rem;
@@ -17,22 +17,27 @@
 }
 
 /* neutralize bootstrap cols inside grid */
-.index-tools .row > [class*="col-"]{
+.index-tools .row>[class*="col-"] {
   width: auto !important;
   max-width: none !important;
   padding: 0 !important;
 }
 
 /* responsive */
-@media (max-width: 1200px){
-  .index-tools .row{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 1200px) {
+  .index-tools .row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
-@media (max-width: 768px){
-  .index-tools .row{ grid-template-columns: 1fr; }
+
+@media (max-width: 768px) {
+  .index-tools .row {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Card as button */
-.index-tools .tool-card{
+.index-tools .tool-card {
   display: block;
   height: 100%;
   text-decoration: none;
@@ -43,31 +48,32 @@
   transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
 }
 
-.index-tools .tool-card:hover{
+.index-tools .tool-card:hover {
   transform: translateY(-6px) scale(1.01);
   filter: brightness(1.06);
   box-shadow:
-    0 22px 55px rgba(0,0,0,.65),
-    0 0 0 1px rgba(255,138,34,.55) inset,
-    0 0 26px rgba(255,138,34,.18);
+    0 22px 55px rgba(0, 0, 0, .65),
+    0 0 0 1px rgba(255, 138, 34, .55) inset,
+    0 0 26px rgba(255, 138, 34, .18);
 }
 
-.index-tools .tool-card:focus-visible{
+.index-tools .tool-card:focus-visible {
   outline: none;
   box-shadow:
-    0 0 0 5px rgba(255,138,34,.35),
-    0 22px 55px rgba(0,0,0,.65);
+    0 0 0 5px rgba(255, 138, 34, .35),
+    0 22px 55px rgba(0, 0, 0, .65);
 }
 
-.index-tools .tool-card .fs-1 i{
+.index-tools .tool-card .fs-1 i {
   transition: transform .18s ease, filter .18s ease;
 }
-.index-tools .tool-card:hover .fs-1 i{
+
+.index-tools .tool-card:hover .fs-1 i {
   transform: scale(1.14);
-  filter: drop-shadow(0 0 10px rgba(255,138,34,.35));
+  filter: drop-shadow(0 0 10px rgba(255, 138, 34, .35));
 }
 
-.index-tools .tool-card::after{
+.index-tools .tool-card::after {
   content: "↗";
   position: absolute;
   top: 12px;
@@ -76,7 +82,8 @@
   transform: translateY(2px);
   transition: opacity .18s ease, transform .18s ease;
 }
-.index-tools .tool-card:hover::after{
+
+.index-tools .tool-card:hover::after {
   opacity: .9;
   transform: translateY(0);
 }
@@ -85,19 +92,20 @@
    HERO Timeline (clean, premium)
    ============================== */
 
-.hero--timeline{
+.hero--timeline {
   position: relative;
   height: clamp(300px, 40vw, 440px);
-  padding-top: 72px;              /* място за навигацията */
+  padding-top: 72px;
+  /* място за навигацията */
   overflow: hidden;
   isolation: isolate;
 }
 
 /* Timeline background */
-.hero--timeline::before{
-  content:"";
-  position:absolute;
-  inset:0;
+.hero--timeline::before {
+  content: "";
+  position: absolute;
+  inset: 0;
   background: url("/images/upscalemedia-transformed.webp") center 45% / cover no-repeat;
   z-index: 0;
 }
@@ -105,57 +113,61 @@
 
 
 /* Лека винетка, само за краищата */
-.hero--timeline::after{
-  content:"";
-  position:absolute;
-  inset:0;
+.hero--timeline::after {
+  content: "";
+  position: absolute;
+  inset: 0;
   background:
     radial-gradient(120% 90% at 50% 55%,
-      rgba(12,14,18,0.08) 0%,
-      rgba(12,14,18,0.55) 60%,
-      rgba(12,14,18,0.82) 100%);
-  pointer-events:none;
+      rgba(12, 14, 18, 0.08) 0%,
+      rgba(12, 14, 18, 0.55) 60%,
+      rgba(12, 14, 18, 0.82) 100%);
+  pointer-events: none;
 }
 
 
 /* съдържание над фона */
-.hero--timeline .hero-timeline__content{
+.hero--timeline .hero-timeline__content {
   position: relative;
   z-index: 2;
   display: flex;
-  justify-content: flex-end;  /* панел вдясно */
+  justify-content: flex-end;
+  /* панел вдясно */
 }
 
 /* glass панел за текста */
-.hero--timeline .hero-timeline__panel{
+.hero--timeline .hero-timeline__panel {
   width: min(720px, 100%);
   padding: clamp(16px, 2.4vw, 26px);
   border-radius: 18px;
 
-  background: rgba(0,0,0,0.34);
-  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(0, 0, 0, 0.34);
+  border: 1px solid rgba(255, 255, 255, 0.10);
   backdrop-filter: blur(10px);
 
   box-shadow:
-    0 18px 60px rgba(0,0,0,0.55),
-    inset 0 0 0 1px rgba(255,138,34,0.10);
+    0 18px 60px rgba(0, 0, 0, 0.55),
+    inset 0 0 0 1px rgba(255, 138, 34, 0.10);
 }
 
 /* малко по-четим текст */
-.hero--timeline .hero-timeline__panel p{
-  color: rgba(255,255,255,0.82);
+.hero--timeline .hero-timeline__panel p {
+  color: rgba(255, 255, 255, 0.82);
   line-height: 1.55;
 }
 
 /* responsive: на мобилно панелът да е центриран */
-@media (max-width: 992px){
-  .hero--timeline{
+@media (max-width: 992px) {
+  .hero--timeline {
     padding: 2.2rem 0 2.6rem;
   }
-  .hero--timeline::before{
-    background-position: 25% center; /* да не изчезва линията */
+
+  .hero--timeline::before {
+    background-position: 25% center;
+    /* да не изчезва линията */
   }
-  .hero--timeline .hero-timeline__content{
+
+  .hero--timeline .hero-timeline__content {
     justify-content: center;
   }
 }
@@ -164,42 +176,34 @@
    HERO TEXT SECTION
    ============================== */
 
-.hero--timeline-text{
+.hero--timeline-text {
   position: relative;
-  margin-top: -60px;  /* панелът леко влиза в hero-а */
+  margin-top: -60px;
+  /* панелът леко влиза в hero-а */
   padding: clamp(3rem, 6vw, 4.5rem) 0 3rem;
 }
 
 
-.hero--timeline-text .hero-timeline__panel{
+.hero--timeline-text .hero-timeline__panel {
   max-width: 860px;
   margin: 0 auto;
   padding: clamp(22px, 2.8vw, 32px);
 
-  background: rgba(18,18,18,0.55);      /* по-плътна основа */
+  background: rgba(18, 18, 18, 0.55);
+  /* по-плътна основа */
   backdrop-filter: blur(14px) saturate(1.2);
   -webkit-backdrop-filter: blur(14px) saturate(1.2);
 
   border-radius: 20px;
-  border: 1px solid rgba(255,255,255,0.14);
+  border: 1px solid rgba(255, 255, 255, 0.14);
 
   box-shadow:
-    0 24px 70px rgba(0,0,0,0.65),
-    inset 0 0 0 1px rgba(255,138,34,0.10);
+    0 24px 70px rgba(0, 0, 0, 0.65),
+    inset 0 0 0 1px rgba(255, 138, 34, 0.10);
 }
 
 
-.hero--timeline-text p{
-  color: rgba(255,255,255,0.85);
+.hero--timeline-text p {
+  color: rgba(255, 255, 255, 0.85);
   line-height: 1.55;
 }
-
-
-
-
-
-
-
-
-
-

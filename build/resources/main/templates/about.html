@@ -1,243 +1,226 @@
 <!DOCTYPE html>
+
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>За мен</title>
-  <link rel="icon" type="image/png" href="/images/favicon-site.png">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/site.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.bootstrap5.min.css">
-
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>За мен</title>
+    <link href="/images/favicon-site.png" rel="icon" type="image/png"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&amp;display=swap" rel="stylesheet"/>
+    <link href="/css/site.css" rel="stylesheet"/>
+    <link href="/css/about.css" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.bootstrap5.min.css" rel="stylesheet"/>
 </head>
-<body>
-
+<body class="page-about">
 <nav class="navbar navbar-expand-lg">
-  <div class="container">
-    <a class="navbar-brand" th:href="@{/}">
-      <div class="navbar-logo-wrapper">
-        <img src="/images/Logo Bozhidar Aladzhov.svg" alt="Лого" class="navbar-logo">
-      </div>
-    </a>
-
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link" th:href="@{/}">Начало</a></li>
-        <li class="nav-item"><a class="nav-link active" th:href="@{/about}">За мен</a></li>
-        <li class="nav-item"><a class="nav-link" th:href="@{/prices}">Цени</a></li>
-        <li class="nav-item"><a class="nav-link" th:href="@{/calculator}">Калкулатор</a></li>
-        <li class="nav-item"><a class="nav-link" th:href="@{/process}">Процеси</a></li>
-        <li class="nav-item"><a class="nav-link" th:href="@{/contact}">Контакти</a></li>
-      </ul>
+    <div class="container">
+        <a class="navbar-brand" th:href="@{/}">
+            <div class="navbar-logo-wrapper">
+                <img alt="Лого" class="navbar-logo" src="/images/Logo Bozhidar Aladzhov.svg"/>
+            </div>
+        </a>
+        <button class="navbar-toggler" data-bs-target="#navbarNav" data-bs-toggle="collapse" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" th:href="@{/}">Начало</a></li>
+                <li class="nav-item"><a class="nav-link active" th:href="@{/about}">За мен</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/prices}">Цени</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/calculator}">Калкулатор</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/process}">Процеси</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/contact}">Контакти</a></li>
+            </ul>
+        </div>
     </div>
-  </div>
 </nav>
-
-
 <!--<header class="hero hero&#45;&#45;gradient">-->
 <!--  <div class="container">-->
 <!--    <h1 class="fw-bold">ЗА МЕН</h1>-->
 <!--    <p class="text-muted-ux">Логистика на автомобили от САЩ и Канада • Java разработчик на практични инструменти</p>-->
 <!--  </div>-->
 <!--</header>-->
-
-<section id="about" class="section about">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-lg-9">
-        <article class="about__bio card hover-glow">
-          <h3 class="card-title mb-4">Божидар Аладжов</h3>
-          <p class="fs-6">
-            Казвам се <span class="highlight"><strong>Божидар Аладжов</strong></span> – професионалист, който вече над
-            десетилетие се движи между логистиката и технологиите. Кариерата ми започна
-            в международния транспорт, където изградих задълбочен опит във
-            вноса на превозни средства от САЩ към Европа.
-          </p>
-          <p class="fs-6">
-            През годините осъзнах, че най-големите трудности в сектора не идват от разстоянията, а от
-            липсата на прозрачност и автоматизация. Това ме подтикна да обединя логистичния си опит с
-            интереса си към технологиите и да се насоча към софтуерното инженерство.
-          </p>
-          <p class="fs-6">
-            Днес прилагам този двоен поглед – на логистик и разработчик – в създаването на дигитални решения,
-            които оптимизират процесите и правят информацията достъпна.
-          </p>
-          <p class="fs-6">
-            Вярвам, че устойчивите резултати се постигат, когато опитът срещне анализа и когато технологиите
-            служат на хората, а не обратното.
-          </p>
-        </article>
-      </div>
-
+<section class="section about" id="about">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-9">
+                <article class="about__bio card hover-glow">
+                    <h3 class="card-title mb-4">Божидар Аладжов</h3>
+                    <p class="fs-6">
+                        Казвам се <span class="highlight"><strong>Божидар Аладжов</strong></span> – професионалист,
+                        който вече над
+                        десетилетие се движи между логистиката и технологиите. Кариерата ми започна
+                        в международния транспорт, където изградих задълбочен опит във
+                        вноса на превозни средства от САЩ към Европа.
+                    </p>
+                    <p class="fs-6">
+                        През годините осъзнах, че най-големите трудности в сектора не идват от разстоянията, а от
+                        липсата на прозрачност и автоматизация. Това ме подтикна да обединя логистичния си опит с
+                        интереса си към технологиите и да се насоча към софтуерното инженерство.
+                    </p>
+                    <p class="fs-6">
+                        Днес прилагам този двоен поглед – на логистик и разработчик – в създаването на дигитални
+                        решения,
+                        които оптимизират процесите и правят информацията достъпна.
+                    </p>
+                    <p class="fs-6">
+                        Вярвам, че устойчивите резултати се постигат, когато опитът срещне анализа и когато технологиите
+                        служат на хората, а не обратното.
+                    </p>
+                </article>
+            </div>
+        </div>
+        <section class="section pt-8">
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card h-100 hover-glow">
+                        <h3 class="card-title">Моята философия</h3>
+                        <p class="fs-6">Вярвам, че правилното решение идва от факти и прозрачно представени данни.
+                            Затова инструментите ми са насочени към яснота и контрол над разходите.</p>
+                        <p class="fs-6">Когато има риск, той е ясно описан. Когато има опция, тя е аргументирана. Няма
+                            изненади.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card h-100 hover-glow">
+                        <h3 class="card-title">Как мога да бъда полезен?</h3>
+                        <p class="fs-6">Всичко което съм създал е напълно безплатно и свободно може да се използва от
+                            всеки. В случай на възникнали въпроси или допълнителна консултация, можете да се свържете с
+                            мен в Discord или чрез мейла поставен в края на сайта.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="about__tools section pt-2">
+            <h2 class="text-center"><span class="highlight"><strong>Какво съм разработил?</strong></span></h2>
+            <!-- добавихме cards-equal към row -->
+            <div class="row g-4 cards-equal pt-4">
+                <div class="col-md-6 col-lg-3">
+                    <article class="tool card h-100 d-flex flex-column hover-glow">
+                        <h3 class="card-title">Easy Import</h3>
+                        <p class="fs-6">Информационна платформа, която обяснява целия процес стъпка по стъпка,
+                            предоставя съвети и се обсъждат реални казуси.</p>
+                        <a class="btn btn-outline mt-auto" href="https://discord.gg/bwGDdFZddx" target="_blank">Присъедини
+                            се</a>
+                    </article>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <article class="tool card h-100 d-flex flex-column hover-glow">
+                        <h3 class="card-title">Актуални цени</h3>
+                        <p class="fs-6">Редовно обновявани тарифи и компоненти по маршрути и пристанища.</p>
+                        <a class="btn btn-outline mt-auto" th:href="@{/prices}">Виж цените</a>
+                    </article>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <article class="tool card h-100 d-flex flex-column hover-glow">
+                        <h3 class="card-title">Калкулатор</h3>
+                        <p class="fs-6">Изчислява транспортните разходи и митническите задължения.</p>
+                        <a class="btn btn-outline mt-auto" th:href="@{/calculator}">Изпробвай</a>
+                    </article>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <article class="tool card h-100 d-flex flex-column hover-glow">
+                        <h3 class="card-title">Контактна форма</h3>
+                        <p class="fs-6">Структурирана форма, която изпраща данните към проверена логистична
+                            компания.</p>
+                        <a class="btn btn-outline mt-auto" th:href="@{/contact}">Заяви оферта</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+        <hr class="hr-fade"/>
     </div>
-
-    <section class="section pt-8">
-      <div class="row g-4">
-        <div class="col-md-6">
-          <div class="card h-100 hover-glow">
-            <h3 class="card-title">Моята философия</h3>
-            <p class="fs-6">Вярвам, че правилното решение идва от факти и прозрачно представени данни. Затова инструментите ми са насочени към яснота и контрол над разходите.</p>
-            <p class="fs-6">Когато има риск, той е ясно описан. Когато има опция, тя е аргументирана. Няма изненади.</p>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="card h-100 hover-glow">
-            <h3 class="card-title">Как мога да бъда полезен?</h3>
-            <p class="fs-6">Всичко което съм създал е напълно безплатно и свободно може да се използва от всеки. В случай на възникнали въпроси или допълнителна консултация, можете да се свържете с мен в Discord или чрез мейла поставен в края на сайта.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="about__tools section pt-2">
-      <h2 class="text-center"><span class="highlight"><strong>Какво съм разработил?</strong></span></h2>
-
-      <!-- добавихме cards-equal към row -->
-      <div class="row g-4 cards-equal pt-4">
-        <div class="col-md-6 col-lg-3">
-          <article class="tool card h-100 d-flex flex-column hover-glow">
-            <h3 class="card-title">Easy Import</h3>
-            <p class="fs-6">Информационна платформа, която обяснява целия процес стъпка по стъпка, предоставя съвети и се обсъждат реални казуси.</p>
-            <a href="https://discord.gg/bwGDdFZddx" target="_blank" class="btn btn-outline mt-auto">Присъедини се</a>
-          </article>
-        </div>
-
-        <div class="col-md-6 col-lg-3">
-          <article class="tool card h-100 d-flex flex-column hover-glow">
-            <h3 class="card-title">Актуални цени</h3>
-            <p class="fs-6">Редовно обновявани тарифи и компоненти по маршрути и пристанища.</p>
-            <a th:href="@{/prices}" class="btn btn-outline mt-auto">Виж цените</a>
-          </article>
-        </div>
-
-        <div class="col-md-6 col-lg-3">
-          <article class="tool card h-100 d-flex flex-column hover-glow">
-            <h3 class="card-title">Калкулатор</h3>
-            <p class="fs-6">Изчислява транспортните разходи и митническите задължения.</p>
-            <a th:href="@{/calculator}" class="btn btn-outline mt-auto">Изпробвай</a>
-          </article>
-        </div>
-
-        <div class="col-md-6 col-lg-3">
-          <article class="tool card h-100 d-flex flex-column hover-glow">
-            <h3 class="card-title">Контактна форма</h3>
-            <p class="fs-6">Структурирана форма, която изпраща данните към проверена логистична компания.</p>
-            <a th:href="@{/contact}" class="btn btn-outline mt-auto">Заяви оферта</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-
-    <hr class="hr-fade">
-
-
-  </div>
 </section>
-
-
 <footer class="site-footer">
-  <div class="container py-4 text-center">
-    <div class="d-flex justify-content-center gap-3 mb-3">
-
-      <a href="https://www.instagram.com/bojidar.aladjov/" target="_blank" class="btn-social instagram">
-        <i class="bi bi-instagram"></i>
-      </a>
-      <a href="https://www.facebook.com/bozidar.aladzov" target="_blank" class="btn-social facebook">
-        <i class="bi bi-facebook"></i>
-      </a>
-      <a href="https://www.linkedin.com/in/bozhidar-aladzhov-90003b186/" target="_blank" class="btn-social linkedin">
-        <i class="bi bi-linkedin"></i>
-      </a>
-      <a href="https://discord.gg/bwGDdFZddx" target="_blank" class="btn-social discord">
-        <i class="bi bi-discord"></i>
-      </a>
-      <a href="mailto:easyimport.bg@gmail.com" class="btn-social mail">
-        <i class="bi bi-envelope-fill"></i>
-      </a>
-
-
-
+    <div class="container py-4 text-center">
+        <div class="d-flex justify-content-center gap-3 mb-3">
+            <a class="btn-social instagram" href="https://www.instagram.com/bojidar.aladjov/" target="_blank">
+                <i class="bi bi-instagram"></i>
+            </a>
+            <a class="btn-social facebook" href="https://www.facebook.com/bozidar.aladzov" target="_blank">
+                <i class="bi bi-facebook"></i>
+            </a>
+            <a class="btn-social linkedin" href="https://www.linkedin.com/in/bozhidar-aladzhov-90003b186/"
+               target="_blank">
+                <i class="bi bi-linkedin"></i>
+            </a>
+            <a class="btn-social discord" href="https://discord.gg/bwGDdFZddx" target="_blank">
+                <i class="bi bi-discord"></i>
+            </a>
+            <a class="btn-social mail" href="mailto:easyimport.bg@gmail.com">
+                <i class="bi bi-envelope-fill"></i>
+            </a>
+        </div>
+        <small class="text-muted-ux">© 2025 Bozhidar Aladzhov – Всички права запазени.</small>
     </div>
-    <small class="text-muted-ux">© 2025 Bozhidar Aladzhov – Всички права запазени.</small>
-  </div>
 </footer>
-
-
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    // 1) Автоматично маркиране на елементи за анимация
-    const autoSelectors = [
-      '.section',                          // самите секции
-      '.section .card',
-      '.section .content p',
-      '.section h2, .section h3, .section h4',
-      '.form-shell',
-      '.table',                            // добави и .reveal-rows в HTML ако искаш stagger по редове
-      '.stats .stat',
-      '.about__highlights li'
-    ];
+    document.addEventListener('DOMContentLoaded', function () {
+      // 1) Автоматично маркиране на елементи за анимация
+      const autoSelectors = [
+        '.section',                          // самите секции
+        '.section .card',
+        '.section .content p',
+        '.section h2, .section h3, .section h4',
+        '.form-shell',
+        '.table',                            // добави и .reveal-rows в HTML ако искаш stagger по редове
+        '.stats .stat',
+        '.about__highlights li'
+      ];
 
-    // Маркираме секциите, за да могат вътрешните им елементи да се разбуждат
-    document.querySelectorAll('.section').forEach(sec => sec.classList.add('reveal'));
+      // Маркираме секциите, за да могат вътрешните им елементи да се разбуждат
+      document.querySelectorAll('.section').forEach(sec => sec.classList.add('reveal'));
 
-    // Маркираме елементите по горните селектори
-    autoSelectors.forEach(sel => {
-      document.querySelectorAll(sel).forEach(el => {
-        el.classList.add('reveal');
-      });
-    });
-
-    // 2) Stagger групи – прилагаме върху редици/гридове
-    const staggerGroups = [
-      '.cards-equal .row, .cards-equal',
-      '.process-steps .row',
-      '.about__highlights',
-      '.table.reveal-rows tbody'
-    ];
-    staggerGroups.forEach(groupSel => {
-      document.querySelectorAll(groupSel).forEach(group => {
-        group.classList.add('reveal-stagger');
-        [...group.children].forEach((child, i) => {
-          child.style.setProperty('--i', i);
+      // Маркираме елементите по горните селектори
+      autoSelectors.forEach(sel => {
+        document.querySelectorAll(sel).forEach(el => {
+          el.classList.add('reveal');
         });
       });
-    });
 
-    // 3) IntersectionObserver
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReduced) {
-      // Без анимации – просто показваме всичко
-      document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => el.classList.add('is-visible'));
-      return;
-    }
-
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          // по избор: спираме да наблюдаваме, за да не се „ресетва“
-          io.unobserve(entry.target);
-        }
+      // 2) Stagger групи – прилагаме върху редици/гридове
+      const staggerGroups = [
+        '.cards-equal .row, .cards-equal',
+        '.process-steps .row',
+        '.about__highlights',
+        '.table.reveal-rows tbody'
+      ];
+      staggerGroups.forEach(groupSel => {
+        document.querySelectorAll(groupSel).forEach(group => {
+          group.classList.add('reveal-stagger');
+          [...group.children].forEach((child, i) => {
+            child.style.setProperty('--i', i);
+          });
+        });
       });
-    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.15 });
 
-    document.querySelectorAll('.reveal, .reveal-stagger, .section').forEach(el => io.observe(el));
+      // 3) IntersectionObserver
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReduced) {
+        // Без анимации – просто показваме всичко
+        document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => el.classList.add('is-visible'));
+        return;
+      }
 
-    // 4) Лек косметичен бонус: таблиците да stagger-ват редовете
-    document.querySelectorAll('.table').forEach(tb => tb.classList.add('reveal-rows'));
-  });
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            // по избор: спираме да наблюдаваме, за да не се „ресетва“
+            io.unobserve(entry.target);
+          }
+        });
+      }, { rootMargin: '0px 0px -10% 0px', threshold: 0.15 });
+
+      document.querySelectorAll('.reveal, .reveal-stagger, .section').forEach(el => io.observe(el));
+
+      // 4) Лек косметичен бонус: таблиците да stagger-ват редовете
+      document.querySelectorAll('.table').forEach(tb => tb.classList.add('reveal-rows'));
+    });
 </script>
-
-
 </body>
 </html>

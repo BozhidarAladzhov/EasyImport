@@ -1,19 +1,18 @@
 <!DOCTYPE html>
+
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
     <title>Контакти</title>
-    <link rel="icon" type="image/png" href="/images/favicon-site.png">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/css/site.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.bootstrap5.min.css">
-
+    <link href="/images/favicon-site.png" rel="icon" type="image/png"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&amp;display=swap" rel="stylesheet"/>
+    <link href="/css/site.css" rel="stylesheet"/>
+    <link href="/css/contact.css" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.bootstrap5.min.css" rel="stylesheet"/>
 </head>
-
-
 <script>
     document.addEventListener('DOMContentLoaded', function () {
       const hybrid   = document.getElementById('hybrid');
@@ -29,22 +28,17 @@
       electric?.addEventListener('change', enforceExclusive);
     });
 </script>
-
-
-<body>
-
+<body class="page-contact">
 <nav class="navbar navbar-expand-lg">
     <div class="container">
         <a class="navbar-brand" th:href="@{/}">
             <div class="navbar-logo-wrapper">
-                <img src="/images/Logo Bozhidar Aladzhov.svg" alt="Лого" class="navbar-logo">
+                <img alt="Лого" class="navbar-logo" src="/images/Logo Bozhidar Aladzhov.svg"/>
             </div>
         </a>
-
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <button class="navbar-toggler" data-bs-target="#navbarNav" data-bs-toggle="collapse" type="button">
             <span class="navbar-toggler-icon"></span>
         </button>
-
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item"><a class="nav-link" th:href="@{/}">Начало</a></li>
@@ -57,35 +51,30 @@
         </div>
     </div>
 </nav>
-
-
 <header class="hero hero--gradient">
     <div class="container hero-intro">
         <h2 class="fw-bold"><span class="highlight">Запитване за транспорт</span></h2>
     </div>
 </header>
-
 <section class="section">
     <div class="container">
         <p class="fs-6">Попълни необходимата информация и изпрати запитване до надеждна логистична компания.</p>
         <!-- Форма за запитване -->
-        <form th:action="@{/contact}" method="post" th:object="${contactForm}" class="row g-3 form-shell needs-validation hover-glow" novalidate>
-
+        <form class="row g-3 form-shell needs-validation hover-glow" method="post" novalidate="" th:action="@{/contact}"
+              th:object="${contactForm}">
             <div class="col-md-6">
-                <label for="name" class="form-label"><span class="highlight">Имена</span></label>
-                <input type="text" name="name" class="form-control" id="name" required>
+                <label class="form-label" for="name"><span class="highlight">Имена</span></label>
+                <input class="form-control" id="name" name="name" required="" type="text"/>
                 <div class="invalid-feedback">Въведи имена.</div>
             </div>
-
             <div class="col-md-6">
-                <label for="email" class="form-label"><span class="highlight">Email</span></label>
-                <input type="email" name="email" class="form-control" id="email" required>
+                <label class="form-label" for="email"><span class="highlight">Email</span></label>
+                <input class="form-control" id="email" name="email" required="" type="email"/>
                 <div class="invalid-feedback">Въведи валиден email.</div>
             </div>
-
             <div class="col-md-6">
-                <label for="originPort" class="form-label"><span class="highlight">От пристанище</span></label>
-                <select th:field="*{originPort}" class="form-select" id="originPort" required>
+                <label class="form-label" for="originPort"><span class="highlight">От пристанище</span></label>
+                <select class="form-select" id="originPort" required="" th:field="*{originPort}">
                     <option value="">Избери товарно пристанище</option>
                     <option value="NEW YORK">New York</option>
                     <option value="SAVANNAH">Savannah</option>
@@ -97,20 +86,18 @@
                 </select>
                 <div class="invalid-feedback">Избери товарно пристанище.</div>
             </div>
-
             <div class="col-md-6">
-                <label for="destinationPort" class="form-label"><span class="highlight">До пристанище</span></label>
-                <select th:field="*{destinationPort}" class="form-select" id="destinationPort" required>
+                <label class="form-label" for="destinationPort"><span class="highlight">До пристанище</span></label>
+                <select class="form-select" id="destinationPort" required="" th:field="*{destinationPort}">
                     <option value="">Избери разтоварно пристанище</option>
                     <option value="VARNA">Varna</option>
                     <option value="ROTTERDAM">Rotterdam</option>
                 </select>
                 <div class="invalid-feedback">Избери разтоварно пристанище.</div>
             </div>
-
             <div class="col-md-6">
-                <label for="vehicleType" class="form-label"><span class="highlight">Вид МПС</span></label>
-                <select th:field="*{vehicleType}" class="form-select" id="vehicleType" required>
+                <label class="form-label" for="vehicleType"><span class="highlight">Вид МПС</span></label>
+                <select class="form-select" id="vehicleType" required="" th:field="*{vehicleType}">
                     <option value="">Избери вид МПС.</option>
                     <option value="CAR">CAR</option>
                     <option value="SUV">SUV</option>
@@ -118,86 +105,69 @@
                     <option value="PICKUP">PICKUP</option>
                     <option value="Motorcycle">Motorcycle</option>
                 </select>
-                <div class="invalid-feedback">Избери вид  МПС.</div>
+                <div class="invalid-feedback">Избери вид МПС.</div>
             </div>
-
             <div class="col-md-3 d-flex align-items-center">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" th:field="*{hybrid}" id="hybrid">
+                    <input class="form-check-input" id="hybrid" th:field="*{hybrid}" type="checkbox"/>
                     <label class="form-check-label" for="hybrid">⚡ Хибрид</label>
                 </div>
             </div>
             <div class="col-md-3 d-flex align-items-center">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" th:field="*{electric}" id="electric">
+                    <input class="form-check-input" id="electric" th:field="*{electric}" type="checkbox"/>
                     <label class="form-check-label" for="electric">🔋 Електрически</label>
                 </div>
             </div>
-
             <div class="col-12">
-                <label for="vehicleDetails" class="form-label">
+                <label class="form-label" for="vehicleDetails">
                     <span class="highlight">Година, марка и модел</span>
                 </label>
-
-                <textarea id="vehicleDetails"
-                          class="form-control"
-                          th:field="*{vehicleDetails}"
-                          rows="3"
-                          minlength="10"
-                          maxlength="50"
-                          required
-                          placeholder="Пример: 2017 Honda CR-V"></textarea>
-
+                <textarea class="form-control" id="vehicleDetails" maxlength="50" minlength="10"
+                          placeholder="Пример: 2017 Honda CR-V" required="" rows="3"
+                          th:field="*{vehicleDetails}"></textarea>
                 <!-- клиентска валидация -->
                 <div class="invalid-feedback">Въведи поне 10 символа (година, марка и модел).</div>
-
                 <!-- показване на съобщение от сървърна валидация (Thymeleaf) -->
-                <div class="text-warning mt-1" th:if="${#fields.hasErrors('vehicleDetails')}"
-                     th:errors="*{vehicleDetails}">Невалидно поле.</div>
+                <div class="text-warning mt-1" th:errors="*{vehicleDetails}"
+                     th:if="${#fields.hasErrors('vehicleDetails')}">Невалидно поле.
+                </div>
             </div>
-
             <!-- Honeypot за ботове -->
-            <input type="text" name="website" style="display:none" autocomplete="off">
+            <input autocomplete="off" name="website" style="display:none" type="text"/>
             <div class="col-12 text-center mt-3">
-                <button type="submit" class="btn">Изпрати</button>
+                <button class="btn" type="submit">Изпрати</button>
             </div>
         </form>
-
         <!-- Съобщение за успех -->
-        <div id="successMessage" th:if="${success}" class="alert alert-success text-center mt-4">
+        <div class="alert alert-success text-center mt-4" id="successMessage" th:if="${success}">
             <span th:text="${success}">Вашето запитване е изпратено успешно.</span>
         </div>
-
     </div>
 </section>
-
 <footer class="site-footer">
     <div class="container py-4 text-center">
         <div class="d-flex justify-content-center gap-3 mb-3">
-
-            <a href="https://www.instagram.com/bojidar.aladjov/" target="_blank" class="btn-social instagram">
+            <a class="btn-social instagram" href="https://www.instagram.com/bojidar.aladjov/" target="_blank">
                 <i class="bi bi-instagram"></i>
             </a>
-            <a href="https://www.facebook.com/bozidar.aladzov" target="_blank" class="btn-social facebook">
+            <a class="btn-social facebook" href="https://www.facebook.com/bozidar.aladzov" target="_blank">
                 <i class="bi bi-facebook"></i>
             </a>
-            <a href="https://www.linkedin.com/in/bozhidar-aladzhov-90003b186/" target="_blank" class="btn-social linkedin">
+            <a class="btn-social linkedin" href="https://www.linkedin.com/in/bozhidar-aladzhov-90003b186/"
+               target="_blank">
                 <i class="bi bi-linkedin"></i>
             </a>
-            <a href="https://discord.gg/bwGDdFZddx" target="_blank" class="btn-social discord">
+            <a class="btn-social discord" href="https://discord.gg/bwGDdFZddx" target="_blank">
                 <i class="bi bi-discord"></i>
             </a>
-            <a href="mailto:easyimport.bg@gmail.com" class="btn-social mail">
+            <a class="btn-social mail" href="mailto:easyimport.bg@gmail.com">
                 <i class="bi bi-envelope-fill"></i>
             </a>
-
         </div>
         <small class="text-muted-ux">© 2025 Bozhidar Aladzhov – Всички права запазени.</small>
     </div>
 </footer>
-
-
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
 <script>
@@ -280,7 +250,6 @@
       document.querySelectorAll('.table').forEach(tb => tb.classList.add('reveal-rows'));
     });
 </script>
-
 <script>
     document.addEventListener('DOMContentLoaded', function () {
       const successBox = document.getElementById('successMessage');
@@ -293,6 +262,5 @@
       }
     });
 </script>
-
 </body>
 </html>

@@ -1,18 +1,18 @@
 <!DOCTYPE html>
+
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
     <title>Цени</title>
-    <link rel="icon" type="image/png" href="/images/favicon-site.png">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/css/site.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.bootstrap5.min.css">
-
+    <link href="/images/favicon-site.png" rel="icon" type="image/png"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&amp;display=swap" rel="stylesheet"/>
+    <link href="/css/site.css" rel="stylesheet"/>
+    <link href="/css/prices.css" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.bootstrap5.min.css" rel="stylesheet"/>
 </head>
-
 <script>
     document.addEventListener('DOMContentLoaded', function () {
       document.querySelectorAll('.table tbody').forEach(function (tbody) {
@@ -41,22 +41,17 @@
       });
     });
 </script>
-
-
-<body>
-
+<body class="page-prices">
 <nav class="navbar navbar-expand-lg">
     <div class="container">
         <a class="navbar-brand" th:href="@{/}">
             <div class="navbar-logo-wrapper">
-                <img src="/images/Logo Bozhidar Aladzhov.svg" alt="Лого" class="navbar-logo">
+                <img alt="Лого" class="navbar-logo" src="/images/Logo Bozhidar Aladzhov.svg"/>
             </div>
         </a>
-
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <button class="navbar-toggler" data-bs-target="#navbarNav" data-bs-toggle="collapse" type="button">
             <span class="navbar-toggler-icon"></span>
         </button>
-
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item"><a class="nav-link" th:href="@{/}">Начало</a></li>
@@ -69,55 +64,43 @@
         </div>
     </div>
 </nav>
-
-
 <header class="hero hero--gradient">
     <div class="container hero-intro">
         <h2 class="fw-bold"><span class="highlight">Колко струва?</span></h2>
-<!--        <p class="fs-6 text-center">Проследи актуалните цени за морски транспорт.</p>-->
+        <!--        <p class="fs-6 text-center">Проследи актуалните цени за морски транспорт.</p>-->
     </div>
 </header>
-
 <section class="section">
-
-
     <div class="container">
         <!-- Филтри -->
-
         <p class="fs-6">Избери товарно и разтоварно пристанище, за да видиш актуалните тарифи по дестинации.</p>
-
-        <form class="row g-3 mb-4 form-shell hover-glow" th:action="@{/prices#results}" method="get">
-            <input type="hidden" name="applied" value="1"/>
+        <form class="row g-3 mb-4 form-shell hover-glow" method="get" th:action="@{/prices#results}">
+            <input name="applied" type="hidden" value="1"/>
             <div class="col-md-4">
-                <label for="originPort" class="form-label"><span class="highlight">Товарно пристанище</span></label>
-                <select id="originPort" name="originPort" class="form-select">
+                <label class="form-label" for="originPort"><span class="highlight">Товарно пристанище</span></label>
+                <select class="form-select" id="originPort" name="originPort">
                     <option value="">Избери</option>
-                    <option th:each="port : ${originPortList}"
-                            th:value="${port}"
-                            th:text="${port}"
-                            th:selected="${port == selectedOriginPort}"></option>
+                    <option th:each="port : ${originPortList}" th:selected="${port == selectedOriginPort}"
+                            th:text="${port}" th:value="${port}"></option>
                 </select>
             </div>
-
             <div class="col-md-4">
-                <label for="portFilter" class="form-label"><span class="highlight">Разтоварно пристанище</span></label>
-                <select id="portFilter" name="port" class="form-select">
+                <label class="form-label" for="portFilter"><span class="highlight">Разтоварно пристанище</span></label>
+                <select class="form-select" id="portFilter" name="port">
                     <option value="">Избери</option>
-                    <option value="Varna" th:selected="${selectedPort == 'Varna'}">Varna</option>
-                    <option value="Rotterdam" th:selected="${selectedPort == 'Rotterdam'}">Rotterdam</option>
+                    <option th:selected="${selectedPort == 'Varna'}" value="Varna">Varna</option>
+                    <option th:selected="${selectedPort == 'Rotterdam'}" value="Rotterdam">Rotterdam</option>
                 </select>
             </div>
-
             <div class="col-md-2 d-flex align-items-end">
-                <button type="submit" class="btn w-100">Приложи</button>
+                <button class="btn w-100" type="submit">Приложи</button>
             </div>
             <div class="col-md-2 d-flex align-items-end">
-                <a th:href="@{/prices}" class="btn btn-outline w-100">Изчисти</a>
+                <a class="btn btn-outline w-100" th:href="@{/prices}">Изчисти</a>
             </div>
         </form>
-
         <!-- Резултати -->
-        <div id="results" class="row" th:if="${param.applied != null}">
+        <div class="row" id="results" th:if="${param.applied != null}">
             <!-- До Варна -->
             <div class="col-md-6 mb-4">
                 <div class="card h-100">
@@ -141,7 +124,7 @@
                                     <td th:text="${#numbers.formatDecimal(price.price, 2, 2)}">0.00</td>
                                 </tr>
                                 <tr th:if="${#lists.isEmpty(pricesToVarna)}">
-                                    <td colspan="3" class="text-muted">Няма данни за показване.</td>
+                                    <td class="text-muted" colspan="3">Няма данни за показване.</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -149,7 +132,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- До Ротердам -->
             <div class="col-md-6 mb-4">
                 <div class="card h-100">
@@ -173,7 +155,7 @@
                                     <td th:text="${#numbers.formatDecimal(price.price, 2, 2)}">0.00</td>
                                 </tr>
                                 <tr th:if="${#lists.isEmpty(pricesToRotterdam)}">
-                                    <td colspan="3" class="text-muted">Няма данни за показване.</td>
+                                    <td class="text-muted" colspan="3">Няма данни за показване.</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -181,38 +163,32 @@
                     </div>
                 </div>
             </div>
-
         </div><!-- /row -->
     </div>
 </section>
-
-
 <footer class="site-footer">
     <div class="container py-4 text-center">
         <div class="d-flex justify-content-center gap-3 mb-3">
-
-            <a href="https://www.instagram.com/bojidar.aladjov/" target="_blank" class="btn-social instagram">
+            <a class="btn-social instagram" href="https://www.instagram.com/bojidar.aladjov/" target="_blank">
                 <i class="bi bi-instagram"></i>
             </a>
-            <a href="https://www.facebook.com/bozidar.aladzov" target="_blank" class="btn-social facebook">
+            <a class="btn-social facebook" href="https://www.facebook.com/bozidar.aladzov" target="_blank">
                 <i class="bi bi-facebook"></i>
             </a>
-            <a href="https://www.linkedin.com/in/bozhidar-aladzhov-90003b186/" target="_blank" class="btn-social linkedin">
+            <a class="btn-social linkedin" href="https://www.linkedin.com/in/bozhidar-aladzhov-90003b186/"
+               target="_blank">
                 <i class="bi bi-linkedin"></i>
             </a>
-            <a href="https://discord.gg/bwGDdFZddx" target="_blank" class="btn-social discord">
+            <a class="btn-social discord" href="https://discord.gg/bwGDdFZddx" target="_blank">
                 <i class="bi bi-discord"></i>
             </a>
-            <a href="mailto:easyimport.bg@gmail.com" class="btn-social mail">
+            <a class="btn-social mail" href="mailto:easyimport.bg@gmail.com">
                 <i class="bi bi-envelope-fill"></i>
             </a>
-
         </div>
         <small class="text-muted-ux">© 2025 Bozhidar Aladzhov – Всички права запазени.</small>
     </div>
 </footer>
-
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
 <script>
@@ -285,7 +261,5 @@
       document.querySelectorAll('.table').forEach(tb => tb.classList.add('reveal-rows'));
     });
 </script>
-
-
 </body>
 </html>
