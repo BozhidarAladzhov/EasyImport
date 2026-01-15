@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="/css/site.css">
   <link rel="stylesheet" href="/css/index.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <link rel="preload" as="image" href="/images/upscalemedia-transformed.webp" fetchpriority="high">
 
 
 </head>
@@ -124,7 +125,7 @@
 
           <!-- Контактна форма -->
           <div class="col-12 col-md-6 col-lg-3">
-            <a class="card h-100 tool-card hover glow" th:href="@{/contact}">
+            <a class="card h-100 tool-card hover-glow" th:href="@{/contact}">
               <div class="card-body">
                 <div class="mb-3 fs-1"><i class="bi bi-envelope-paper-fill"></i></div>
                 <h5 class="fw-bold"><span class="highlight">Контактна форма</span></h5>
@@ -234,45 +235,6 @@
     document.querySelectorAll('.table').forEach(tb => tb.classList.add('reveal-rows'));
   });
 </script>
-
-
-<script>
-      // Bootstrap validation
-    const forms = document.querySelectorAll('.needs-validation');
-    Array.prototype.slice.call(forms).forEach(function (form) {
-      form.addEventListener('submit', function (event) {
-        if (!form.checkValidity()) { event.preventDefault(); event.stopPropagation(); }
-        form.classList.add('was-validated');
-      }, false);
-    });
-  });
-</script>
-
-<script>
-  (() => {
-    const card = document.querySelector('.concept-card');
-    if(!card) return;
-
-    const onMove = (e) => {
-      const r = card.getBoundingClientRect();
-      const x = (e.clientX - (r.left + r.width/2)) / r.width;
-      const y = (e.clientY - (r.top + r.height/2)) / r.height;
-
-      const rotY = Math.max(-10, Math.min(10, x * 14));
-      const rotX = Math.max(-10, Math.min(10, -y * 14));
-
-      card.style.transform = `perspective(900px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-6px)`;
-    };
-
-    const reset = () => { card.style.transform = ''; };
-
-    card.addEventListener('mousemove', onMove);
-    card.addEventListener('mouseleave', reset);
-  })();
-</script>
-
-
-
 
 </body>
 </html>

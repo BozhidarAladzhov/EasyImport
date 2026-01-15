@@ -246,87 +246,8 @@ footer.site-footer{ border-top:1px solid var(--border); background:linear-gradie
   font-weight:700;
   color:#e5e9ef;
 }
-/* === Process steps — readability upgrade === */
-.process-steps .row{
-  display:grid;                      /* изключваме flex реда на Bootstrap */
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1.25rem;                      /* равномерен отстъп между картите */
-}
 
-.process-steps .card{
-  padding: 1.4rem 1.2rem;            /* по-голям padding за „въздух“ */
-  border-radius: 20px;
-  text-align: center;
-}
-
-.process-steps .card .fs-1{          /* иконата горе */
-  line-height: 1; margin-bottom: .6rem;
-}
-.process-steps .card .fs-1 i{
-  font-size: 2.2rem;                 /* еднакъв, малко по-едър размер */
-  opacity: .9;
-}
-
-/* Заглавие на стъпката: по-компактно, но стабилно при пренасяне */
-.process-steps h5{
-  font-weight: 800;
-  font-size: 1.1rem;
-  line-height: 1.25;
-  margin-bottom: .35rem;
-  text-wrap: balance;                /* по-умно пренасяне на редове */
-  hyphens: auto;                     /* разрешаваме сричк. при bg език */
-}
-
-/* === Process steps — FIX (v2) === */
-.process-steps .row{
-  display: flex !important;     /* връщаме flex вместо grid */
-  flex-wrap: wrap;
-  gap: 1.25rem;
-}
-
-/* всяка „колона карта“ да е еластична, но не по-тясна от 260px */
-.process-steps .row > [class*="col-"]{
-  flex: 1 1 clamp(260px, 32%, 340px);
-  width: auto !important;
-  max-width: none !important;   /* игнорира col-lg-2/col-md-4 процентите */
-}
-
-/* самите карти — по-щедър padding и стабилна типография */
-.process-steps .card{
-  padding: 1.4rem 1.2rem;
-  border-radius: 20px;
-  text-align: center;
-  min-height: 200px;
-}
-
-.process-steps .card .fs-1{ line-height:1; margin-bottom:.6rem }
-.process-steps .card .fs-1 i{ font-size: 2.1rem; opacity:.9 }
-
-.process-steps h5{
-  font-weight: 800;
-  font-size: 1.1rem;
-  line-height: 1.28;
-  margin-bottom: .35rem;
-  white-space: normal;          /* гарантира хоризонтално четене */
-  word-break: normal;
-  overflow-wrap: anywhere;
-  text-wrap: balance;
-}
-
-.process-steps .card p{
-  color: var(--muted);
-  line-height: 1.55;
-  font-size: .98rem;
-  margin: 0;
-}
-
-/* На много широки екрани картите да не стават прекалено широки */
-@media (min-width: 1440px){
-  .process-steps .row > [class*="col-"]{
-    flex-basis: clamp(260px, 24%, 360px);
-  }
-}
-
+/* Стил на заглавията по елементите - Highlight */
 .highlight {
   font-weight: 900;
   background: linear-gradient(90deg, var(--primary), #ffd166);
@@ -337,22 +258,7 @@ footer.site-footer{ border-top:1px solid var(--border); background:linear-gradie
 }
 
 
-/* === Social buttons in footer === */
-.btn-social {
-  width: 44px; height: 44px;
-  display: flex; align-items: center; justify-content: center;
-  border-radius: 50%;
-  background: linear-gradient(90deg, var(--primary), #ff9f3a);
-  color: #101418;
-  font-size: 1.25rem;
-  box-shadow: 0 6px 14px rgba(0,0,0,.4);
-  transition: transform .2s ease, box-shadow .2s ease;
-}
-.btn-social:hover {
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 10px 20px rgba(0,0,0,.55);
-  color: #101418;
-}
+
 
 /* === Social buttons colored by platform === */
 .btn-social {
