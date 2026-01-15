@@ -74,7 +74,7 @@
             <div class="col-md-6">
                 <label for="originPort" class="form-label"><span class="highlight">Товарно пристанище</span></label>
                 <select id="originPort" th:field="*{originPort}" class="form-select" required>
-                    <option value="">Избери...</option>
+                    <option value="">Избери товарно пристанище</option>
                     <option value="New York">New York</option>
                     <option value="Savannah">Savannah</option>
                     <option value="Miami">Miami</option>
@@ -83,30 +83,30 @@
                     <option value="Los Angeles">Los Angeles</option>
                     <option value="San Francisco">San Francisco</option>
                 </select>
-                <div class="invalid-feedback">Моля, изберете начално пристанище.</div>
+                <div class="invalid-feedback">Избери товарно пристанище.</div>
             </div>
 
             <div class="col-md-6">
                 <label for="destinationPort" class="form-label"><span class="highlight">Разтоварно пристанище</span></label>
                 <select id="destinationPort" th:field="*{destinationPort}" class="form-select" required>
-                    <option value="">Избери...</option>
+                    <option value="">Избери разтоварно пристанище</option>
                     <option value="Rotterdam">Rotterdam</option>
                     <option value="Varna">Varna</option>
                 </select>
-                <div class="invalid-feedback">Моля, изберете дестинация.</div>
+                <div class="invalid-feedback">Избери разтоварно пристанище.</div>
             </div>
 
             <div class="col-md-6">
-                <label for="vehicleType" class="form-label"><span class="highlight">Тип на автомобила</span></label>
+                <label for="vehicleType" class="form-label"><span class="highlight">Вид МПС</span></label>
                 <select id="vehicleType" th:field="*{vehicleType}" class="form-select" required>
-                    <option value="">Избери...</option>
+                    <option value="">Избери вид МПС</option>
                     <option value="CAR">CAR</option>
                     <option value="SUV">SUV</option>
                     <option value="Large SUV">Large SUV</option>
                     <option value="PICKUP">PICKUP</option>
                     <option value="Motorcycle">Motorcycle</option>
                 </select>
-                <div class="invalid-feedback">Моля, изберете тип на автомобила.</div>
+                <div class="invalid-feedback">Избери тип МПС.</div>
             </div>
 
             <div class="col-md-3 d-flex align-items-center">
@@ -124,8 +124,14 @@
 
             <div class="col-md-6">
                 <label for="price" class="form-label"><span class="highlight">Цена на автомобила (USD)</span></label>
-                <input type="number" id="price" th:field="*{price}" class="form-control" placeholder="Въведете числова стойност" required>
-                <div class="invalid-feedback">Моля, въведете цена.</div>
+                <input type="number"
+                       id="price"
+                       th:field="*{price}"
+                       class="form-control"
+                       placeholder="Въведи числова стойност над 0."
+                       min = "1"
+                       required>
+                <div class="invalid-feedback">Моля, въведи цена.</div>
             </div>
 
             <div class="col-12 text-center mt-2">

@@ -86,7 +86,7 @@
             <div class="col-md-6">
                 <label for="originPort" class="form-label"><span class="highlight">От пристанище</span></label>
                 <select th:field="*{originPort}" class="form-select" id="originPort" required>
-                    <option value="">Избери товарно пристанище.</option>
+                    <option value="">Избери товарно пристанище</option>
                     <option value="NEW YORK">New York</option>
                     <option value="SAVANNAH">Savannah</option>
                     <option value="MIAMI">Miami</option>
@@ -101,24 +101,24 @@
             <div class="col-md-6">
                 <label for="destinationPort" class="form-label"><span class="highlight">До пристанище</span></label>
                 <select th:field="*{destinationPort}" class="form-select" id="destinationPort" required>
-                    <option value="">Избери дестинация.</option>
+                    <option value="">Избери разтоварно пристанище</option>
                     <option value="VARNA">Varna</option>
                     <option value="ROTTERDAM">Rotterdam</option>
                 </select>
-                <div class="invalid-feedback">Избери дестинация.</div>
+                <div class="invalid-feedback">Избери разтоварно пристанище.</div>
             </div>
 
             <div class="col-md-6">
-                <label for="vehicleType" class="form-label"><span class="highlight">Тип автомобил</span></label>
+                <label for="vehicleType" class="form-label"><span class="highlight">Вид МПС</span></label>
                 <select th:field="*{vehicleType}" class="form-select" id="vehicleType" required>
-                    <option value="">Избери тип автомобил.</option>
+                    <option value="">Избери вид МПС.</option>
                     <option value="CAR">CAR</option>
                     <option value="SUV">SUV</option>
                     <option value="Large SUV">Large SUV</option>
                     <option value="PICKUP">PICKUP</option>
                     <option value="Motorcycle">Motorcycle</option>
                 </select>
-                <div class="invalid-feedback">Избери тип автомобил.</div>
+                <div class="invalid-feedback">Избери вид  МПС.</div>
             </div>
 
             <div class="col-md-3 d-flex align-items-center">
