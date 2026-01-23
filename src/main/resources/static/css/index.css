@@ -106,9 +106,14 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: url("/images/upscalemedia-transformed.webp") center 45% / cover no-repeat;
+  background-image: url("/images/Transperant-home.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
   z-index: 0;
+  pointer-events: none;
 }
+
 
 
 
@@ -135,20 +140,7 @@
   /* панел вдясно */
 }
 
-/* glass панел за текста */
-.hero--timeline .hero-timeline__panel {
-  width: min(720px, 100%);
-  padding: clamp(16px, 2.4vw, 26px);
-  border-radius: 18px;
 
-  background: rgba(0, 0, 0, 0.34);
-  border: 1px solid rgba(255, 255, 255, 0.10);
-  backdrop-filter: blur(10px);
-
-  box-shadow:
-    0 18px 60px rgba(0, 0, 0, 0.55),
-    inset 0 0 0 1px rgba(255, 138, 34, 0.10);
-}
 
 /* малко по-четим текст */
 .hero--timeline .hero-timeline__panel p {
@@ -187,19 +179,7 @@
 .hero--timeline-text .hero-timeline__panel {
   max-width: 860px;
   margin: 0 auto;
-  padding: clamp(22px, 2.8vw, 32px);
-
-  background: rgba(18, 18, 18, 0.55);
-  /* по-плътна основа */
-  backdrop-filter: blur(14px) saturate(1.2);
-  -webkit-backdrop-filter: blur(14px) saturate(1.2);
-
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-
-  box-shadow:
-    0 24px 70px rgba(0, 0, 0, 0.65),
-    inset 0 0 0 1px rgba(255, 138, 34, 0.10);
+ 
 }
 
 

@@ -111,11 +111,7 @@ a {
   color: var(--text) !important;
 }
 
-.navbar-brand img {
-  height: 28px;
-  width: auto;
-  margin-right: .5rem
-}
+
 
 .navbar .navbar-toggler {
   border: 1px solid var(--border);
@@ -640,12 +636,7 @@ footer.site-footer {
   /* по желание: center; може и flex-start */
 }
 
-.navbar-brand img {
-  height: 40px;
-  /* нагласи височината */
-  width: auto;
-  display: block;
-}
+
 
 .hero-logo {
   max-width: 220px;
@@ -708,19 +699,6 @@ footer.site-footer {
   }
 }
 
-.navbar-logo {
-  height: 40px;
-  width: 40px;
-  /* квадрат за да стане кръг */
-  border-radius: 50%;
-  /* прави го кръгло */
-  object-fit: cover;
-  /* подрязва правилно */
-  border: 3px solid var(--primary);
-  /* постоянна оранжева рамка */
-  filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.35));
-  transition: transform .3s ease;
-}
 
 .navbar-logo:hover {
   transform: scale(1.08) rotate(6deg);
@@ -1381,26 +1359,15 @@ footer.site-footer {
 /* === Navbar logo (SVG) — rectangle, smaller, subtle zoom on hover === */
 .navbar .navbar-brand .navbar-logo {
   height: 21px;
-  /* ↓ по-малко от 40px */
   width: auto;
-  /* без насилена ширина */
-  border: 0;
-  /* без оранжева рамка */
-  border-radius: 0px;
-  /* правоъгълник (можеш и 0) */
   display: inline-block;
   object-fit: contain;
-  filter: none;
-  box-shadow: none;
   transition: transform .18s ease, box-shadow .18s ease;
 }
 
-/* zoom напред, без завъртане */
 .navbar .navbar-brand .navbar-logo:hover {
   transform: scale(1.08);
-  /* лек zoom */
   box-shadow: 0 6px 18px rgba(0, 0, 0, .35);
-  /* деликатна сянка за „изпъкване“ */
 }
 
 /* === HERO photo: Rounded rectangle + white border + soft lift on hover === */
@@ -1586,3 +1553,4 @@ footer.site-footer {
   transform: scale(1.06);
   filter: drop-shadow(0 0 10px rgba(255, 138, 34, .35));
 }
+
