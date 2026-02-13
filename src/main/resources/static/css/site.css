@@ -365,6 +365,19 @@ a {
   color: var(--text) !important
 }
 
+/* Make selected values and placeholder readable in Tom Select */
+.ts-control .item,
+.ts-control .input,
+.ts-control input::placeholder,
+.ts-control .placeholder {
+  color: var(--text) !important;
+  opacity: 1 !important;
+}
+
+.ts-control .placeholder {
+  color: #8fa0b3 !important;
+}
+
 .ts-dropdown {
   background: var(--surface-2) !important;
   box-shadow: var(--shadow);
