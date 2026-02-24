@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>Admin - Vehicles</title>
+    <link href="/images/favicon-site.png" rel="icon" type="image/png"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&amp;display=swap" rel="stylesheet"/>
+    <link href="/css/site.css" rel="stylesheet"/>
+</head>
+<body>
+<section class="section">
+    <div class="container">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h2 class="fw-bold"><span class="highlight">Vehicles</span></h2>
+            <a class="btn" th:href="@{/admin/vehicles/new}">Add Vehicle</a>
+        </div>
+
+        <div class="alert alert-success" th:if="${success}" th:text="${success}"></div>
+        <div class="alert alert-danger" th:if="${error}" th:text="${error}"></div>
+
+        <div class="card mb-4">
+            <div class="card-body">
+                <form class="row g-3 align-items-end" method="get" th:action="@{/admin/vehicles}">
+                    <div class="col-md-5">
+                        <label class="form-label">Search (Vehicle, VIN, Container, POL, POD)</label>
+                        <input class="form-control" name="q" placeholder="Search..." th:value="${q}"/>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Status</label>
+                        <select class="form-select" name="status">
+                            <option value="">All</option>
+                            <option th:each="statusOpt : ${statusOptions}" th:value="${statusOpt}"
+                                    th:selected="${statusOpt == status}" th:text="${statusOpt.label}"></option>
+                        </select>
+                    </div>
+                    <div class="col-md-3 d-flex gap-2">
+                        <button class="btn w-100" type="submit">Filter</button>
+                        <a class="btn btn-outline w-100" th:href="@{/admin/vehicles}">Reset</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead>
+                    <tr>
+                        <th>Vehicle</th>
+                        <th>Client</th>
+                        <th>VIN</th>
+                        <th>Status</th>
+                        <th>ETA</th>
+                        <th>Public Link</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="vehicle : ${vehicles}">
+                        <td th:text="${vehicle.vehicleName}">Vehicle</td>
+                        <td th:text="${vehicle.clientName != null && !vehicle.clientName.isBlank() ? vehicle.clientName : '-'}">Client</td>
+                        <td th:text="${vehicle.vin}">VIN</td>
+                        <td th:text="${vehicle.status.label}">Status</td>
+                        <td th:text="${vehicle.eta}">ETA</td>
+                        <td>
+                            <div th:if="${vehicle.publicToken}">
+                                <div>
+                                    <a class="link" th:href="@{/v/{token}(token=${vehicle.publicToken})}" target="_blank">
+                                        Open
+                                    </a>
+                                </div>
+                                <small class="text-muted-ux" th:text="'Expires: ' + ${#temporals.format(vehicle.publicTokenExpiresAt, 'yyyy-MM-dd')}"></small>
+                            </div>
+                            <span th:if="${vehicle.publicToken == null}" class="text-muted-ux">No link</span>
+                        </td>
+                        <td>
+                            <a class="btn btn-outline btn-sm" th:href="@{/admin/vehicles/{id}/edit(id=${vehicle.id})}">Edit</a>
+                            <a class="btn btn-outline btn-sm" th:href="@{/admin/vehicles/{id}/photos(id=${vehicle.id})}">Photos</a>
+                            <a class="btn btn-outline btn-sm" th:href="@{/admin/vehicles/{id}/docs(id=${vehicle.id})}">Files</a>
+                        </td>
+                    </tr>
+                    <tr th:if="${#lists.isEmpty(vehicles)}">
+                        <td colspan="7" class="text-muted-ux text-center">No vehicles yet.</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>Admin - Vehicle</title>
+    <link href="/images/favicon-site.png" rel="icon" type="image/png"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&amp;display=swap" rel="stylesheet"/>
+    <link href="/css/site.css" rel="stylesheet"/>
+</head>
+<body>
+<section class="section">
+    <div class="container">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h2 class="fw-bold"><span class="highlight" th:text="${vehicle != null} ? 'Edit Vehicle' : 'New Vehicle'">Vehicle</span></h2>
+            <a class="btn btn-outline" th:href="@{/admin/vehicles}">Back</a>
+        </div>
+
+        <div class="alert alert-success" th:if="${success}" th:text="${success}"></div>
+        <div class="alert alert-danger" th:if="${error}" th:text="${error}"></div>
+
+        <div class="card mb-4" th:if="${vehicle != null}">
+            <div class="card-body">
+                <h5 class="card-title">Public Link</h5>
+                <div class="d-flex align-items-center gap-3 flex-wrap">
+                    <div th:if="${vehicle.publicToken}">
+                        <a class="link" th:href="@{/v/{token}(token=${vehicle.publicToken})}" target="_blank">
+                            Open Public Page
+                        </a>
+                        <div class="text-muted-ux" th:text="'Expires: ' + ${#temporals.format(vehicle.publicTokenExpiresAt, 'yyyy-MM-dd')}"></div>
+                    </div>
+                    <form th:action="@{/admin/vehicles/{id}/regenerate-link(id=${vehicle.id})}" method="post">
+                        <button class="btn btn-outline btn-sm" type="submit">Regenerate Link</button>
+                    </form>
+                    <a class="btn btn-outline btn-sm" th:href="@{/admin/vehicles/{id}/photos(id=${vehicle.id})}">Photos</a>
+                    <a class="btn btn-outline btn-sm" th:href="@{/admin/vehicles/{id}/docs(id=${vehicle.id})}">Files</a>
+                </div>
+            </div>
+        </div>
+
+        <form class="form-shell" th:action="${vehicle != null} ? @{/admin/vehicles/{id}(id=${vehicle.id})} : @{/admin/vehicles}"
+              method="post" enctype="multipart/form-data" th:object="${vehicleForm}">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label class="form-label">Vehicle</label>
+                    <input class="form-control" th:field="*{vehicleName}" placeholder="Vehicle name"/>
+                    <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('vehicleName')}" th:errors="*{vehicleName}"></div>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Client</label>
+                    <input class="form-control" th:field="*{clientName}" placeholder="Client name"/>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Client email</label>
+                    <input class="form-control" th:field="*{clientEmail}" placeholder="client@email.com"/>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">VIN</label>
+                    <input class="form-control" th:field="*{vin}" placeholder="VIN"/>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Container</label>
+                    <input class="form-control" th:field="*{containerNumber}" placeholder="Container"/>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Tracking link</label>
+                    <input class="form-control" th:field="*{trackingUrl}" placeholder="https://..."/>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">POL</label>
+                    <input class="form-control" th:field="*{pol}" placeholder="POL"/>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">POD</label>
+                    <input class="form-control" th:field="*{pod}" placeholder="POD"/>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">ETA</label>
+                    <input class="form-control" type="date" th:field="*{eta}"/>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Keys count</label>
+                    <input class="form-control" type="number" min="0" th:field="*{keysCount}" placeholder="0"/>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Customs cleared</label>
+                    <select class="form-select" th:field="*{customsCleared}">
+                        <option th:value="true">Yes</option>
+                        <option th:value="false">No</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Paid</label>
+                    <select class="form-select" th:field="*{paid}">
+                        <option th:value="true">Yes</option>
+                        <option th:value="false">No</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Status</label>
+                    <select class="form-select" th:field="*{status}">
+                        <option th:each="status : ${statusOptions}" th:value="${status}" th:text="${status.label}"></option>
+                    </select>
+                    <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('status')}" th:errors="*{status}"></div>
+                </div>
+                <div class="col-12">
+                    <label class="form-label">Status note (optional)</label>
+                    <textarea class="form-control" rows="3" th:field="*{statusNote}" placeholder="Add a short update for the client"></textarea>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Title available</label>
+                    <select class="form-select" th:field="*{titleAvailable}">
+                        <option th:value="true">Yes</option>
+                        <option th:value="false">No</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Title scan (optional)</label>
+                    <input class="form-control" type="file" name="titleScan"/>
+                </div>
+            </div>
+
+            <div class="mt-4 d-flex gap-2">
+                <button class="btn" type="submit">Save</button>
+            </div>
+        </form>
+
+        <div class="card mt-4" th:if="${vehicle != null and vehicle.titleScanPath != null}">
+            <div class="card-body">
+                <h5 class="card-title">Current title scan</h5>
+                <div class="d-flex align-items-center gap-3">
+                    <a class="link" th:href="@{/admin/files/title/{id}(id=${vehicle.id})}" target="_blank"
+                       th:text="${vehicle.titleScanOriginalName}">Download</a>
+                    <form th:action="@{/admin/vehicles/{id}/title/remove(id=${vehicle.id})}" method="post">
+                        <button class="btn btn-outline btn-sm" type="submit">Remove</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mt-4" th:if="${vehicle != null}">
+            <div class="card-body">
+                <h5 class="card-title">Status history</h5>
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle">
+                        <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Status</th>
+                            <th>Note</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="update : ${statusUpdates}">
+                            <td th:text="${#temporals.format(update.createdAt, 'yyyy-MM-dd HH:mm')}">Date</td>
+                            <td th:text="${update.status.label}">Status</td>
+                            <td th:text="${update.note}">Note</td>
+                        </tr>
+                        <tr th:if="${#lists.isEmpty(statusUpdates)}">
+                            <td colspan="3" class="text-muted-ux text-center">No history yet.</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <form th:if="${vehicle != null}" class="mt-3" th:action="@{/admin/vehicles/{id}/delete(id=${vehicle.id})}" method="post">
+            <button class="btn btn-outline" type="submit">Delete</button>
+        </form>
+    </div>
+</section>
+</body>
+</html>
