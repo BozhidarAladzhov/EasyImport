@@ -1,1 +1,79 @@
-﻿<!DOCTYPE html> <html xmlns:th="http://www.thymeleaf.org"> <head>     <meta charset="utf-8"/>     <meta content="width=device-width, initial-scale=1" name="viewport"/>     <title>Admin - Vehicle Documents</title>     <link href="/images/favicon-site.png" rel="icon" type="image/png"/>     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&amp;display=swap" rel="stylesheet"/>     <link href="/css/site.css" rel="stylesheet"/> </head> <body> <section class="section">     <div class="container">         <div class="d-flex align-items-center justify-content-between mb-4">             <h2 class="fw-bold"><span class="highlight">Files</span></h2>             <div class="d-flex gap-2">                 <a class="btn btn-outline" th:href="@{/admin/vehicles/{id}/edit(id=${vehicle.id})}">Back</a>             </div>         </div>          <div class="alert alert-success" th:if="${success}" th:text="${success}"></div>         <div class="alert alert-danger" th:if="${error}" th:text="${error}"></div>          <div class="card mb-4">             <div class="card-body">                 <h5 class="card-title" th:text="${vehicle.vehicleName}">Vehicle</h5>                 <form th:action="@{/admin/vehicles/{id}/docs(id=${vehicle.id})}" method="post" enctype="multipart/form-data">                     <div class="row g-3 align-items-end">                         <div class="col-md-3">                             <label class="form-label">Kind</label>                             <select class="form-select" name="kind">                                 <option th:each="kind : ${docKinds}" th:value="${kind}" th:text="${kind.label}"></option>                             </select>                         </div>                         <div class="col-md-5">                             <label class="form-label">Title (optional)</label>                             <input class="form-control" type="text" name="title" placeholder="Short description"/>                         </div>                         <div class="col-md-3">                             <label class="form-label">File</label>                             <input class="form-control" type="file" name="file"/>                         </div>                         <div class="col-md-1">                             <button class="btn w-100" type="submit">Upload</button>                         </div>                     </div>                 </form>             </div>         </div>          <div class="card">             <div class="table-responsive">                 <table class="table table-hover align-middle">                     <thead>                     <tr>                         <th>Kind</th>                         <th>Title</th>                         <th>Filename</th>                         <th>Uploaded</th>                         <th>Actions</th>                     </tr>                     </thead>                     <tbody>                     <tr th:each="doc : ${documents}">                         <td th:text="${doc.kind.label}">Kind</td>                         <td th:text="${doc.title}">Title</td>                         <td>                             <a class="link" th:href="@{/admin/files/doc/{id}(id=${doc.id})}" target="_blank"                                th:text="${doc.originalName}">Download</a>                         </td>                         <td th:text="${#temporals.format(doc.uploadedAt, 'yyyy-MM-dd HH:mm')}">Date</td>                         <td>                             <form th:action="@{/admin/vehicles/{vehicleId}/docs/{docId}/delete(vehicleId=${vehicle.id}, docId=${doc.id})}" method="post">                                 <button class="btn btn-outline btn-sm" type="submit">Delete</button>                             </form>                         </td>                     </tr>                     <tr th:if="${#lists.isEmpty(documents)}">                         <td colspan="5" class="text-muted-ux text-center">No documents yet.</td>                     </tr>                     </tbody>                 </table>             </div>         </div>     </div> </section> </body> </html>
+﻿﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>Admin - Vehicle Documents</title>
+    <link href="/images/favicon-site.png" rel="icon" type="image/png"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&amp;display=swap" rel="stylesheet"/>
+    <link href="/css/site.css" rel="stylesheet"/>
+</head>
+<body>
+<section class="section">
+    <div class="container">
+        <div class="d-flex align-items-center justify-content-between mb-4"><h2 class="fw-bold"><span class="highlight">Files</span>
+        </h2>
+            <div class="d-flex gap-2"><a class="btn btn-outline"
+                                         th:href="@{/admin/vehicles/{id}/edit(id=${vehicle.id})}">Back</a></div>
+        </div>
+        <div class="alert alert-success" th:if="${success}" th:text="${success}"></div>
+        <div class="alert alert-danger" th:if="${error}" th:text="${error}"></div>
+        <div class="card mb-4">
+            <div class="card-body"><h5 class="card-title" th:text="${vehicle.vehicleName}">Vehicle</h5>
+                <form th:action="@{/admin/vehicles/{id}/docs(id=${vehicle.id})}" method="post"
+                      enctype="multipart/form-data">
+                    <div class="row g-3 align-items-end">
+                        <div class="col-md-3"><label class="form-label">Kind</label> <select class="form-select"
+                                                                                             name="kind">
+                            <option th:each="kind : ${docKinds}" th:value="${kind}" th:text="${kind.label}"></option>
+                        </select></div>
+                        <div class="col-md-5"><label class="form-label">Title (optional)</label> <input
+                                class="form-control" type="text" name="title" placeholder="Short description"/></div>
+                        <div class="col-md-3"><label class="form-label">File</label> <input class="form-control"
+                                                                                            type="file" name="file"/>
+                        </div>
+                        <div class="col-md-1">
+                            <button class="btn w-100" type="submit">Upload</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="card">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead>
+                    <tr>
+                        <th>Kind</th>
+                        <th>Title</th>
+                        <th>Filename</th>
+                        <th>Uploaded</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="doc : ${documents}">
+                        <td th:text="${doc.kind.label}">Kind</td>
+                        <td th:text="${doc.title}">Title</td>
+                        <td><a class="link" th:href="@{/admin/files/doc/{id}(id=${doc.id})}" target="_blank"
+                               th:text="${doc.originalName}">Download</a></td>
+                        <td th:text="${#temporals.format(doc.uploadedAt, 'dd-MM-yyyy')}">Date</td>
+                        <td>
+                            <form th:action="@{/admin/vehicles/{vehicleId}/docs/{docId}/delete(vehicleId=${vehicle.id}, docId=${doc.id})}"
+                                  method="post">
+                                <button class="btn btn-outline btn-sm" type="submit">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr th:if="${#lists.isEmpty(documents)}">
+                        <td colspan="5" class="text-muted-ux text-center">No documents yet.</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

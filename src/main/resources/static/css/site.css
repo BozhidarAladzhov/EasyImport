@@ -505,8 +505,8 @@ a {
   font-size: 1.15rem
 }
 
-/* ---------- Alerts */
-(tinted for dark) ---------- */ .alert {
+/* ---------- Alerts (tinted for dark) ---------- */
+.alert {
   border-radius: 12px;
   border: 1px solid var(--border);
   color: #0b0f13
@@ -1361,8 +1361,168 @@ footer.site-footer {
   }
 
   .table thead th:nth-child(3),
-  .table tbody td:nth-child(3) {
-    width: 26%;
+.table tbody td:nth-child(3) {
+  width: 26%;
+}
+}
+
+/* ---------- Admin Form Table ---------- */
+.form-table th {
+  width: 240px;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  font-size: .78rem;
+  vertical-align: middle;
+}
+
+.form-table td {
+  vertical-align: middle;
+}
+
+/* ---------- Admin Form Layout ---------- */
+.admin-form__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.admin-form__section .card-title {
+  margin-bottom: .75rem;
+}
+
+@media (max-width: 992px) {
+  .admin-form__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- Vehicle Status (public) ---------- */
+.page-vehicle-status .status-hero {
+  display: block;
+}
+
+.page-vehicle-status .status-header {
+  display: grid;
+  gap: .35rem;
+  text-align: center;
+}
+
+.page-vehicle-status .status-title {
+  font-weight: 800;
+  letter-spacing: .2px;
+  font-size: clamp(1.4rem, 2.6vw, 2.2rem);
+  margin: 0;
+}
+
+.page-vehicle-status .status-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: .5rem .9rem;
+  border-radius: 999px;
+  font-weight: 800;
+  color: #101418;
+  background: linear-gradient(90deg, var(--primary), #ffd166);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, .35);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  font-size: .78rem;
+  width: fit-content;
+  margin: .35rem auto 0;
+}
+
+.page-vehicle-status .status-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.page-vehicle-status .status-panel {
+  padding: 1.2rem;
+}
+
+.page-vehicle-status .info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.page-vehicle-status .info-grid--single {
+  grid-template-columns: 1fr;
+}
+
+.page-vehicle-status .info-pill {
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, .10);
+  background: linear-gradient(180deg, rgba(255, 255, 255, .05), rgba(255, 255, 255, .02));
+  box-shadow: 0 8px 20px rgba(0, 0, 0, .28);
+}
+
+.page-vehicle-status .info-pill .label {
+  color: #ffd166;
+  font-weight: 700;
+  letter-spacing: .04em;
+  font-size: .75rem;
+}
+
+.page-vehicle-status .info-pill .value {
+  color: #f2f5f7;
+  font-weight: 700;
+}
+
+.page-vehicle-status .timeline-list {
+  display: grid;
+  gap: 10px;
+}
+
+.page-vehicle-status .timeline-item {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 12px;
+  padding: .8rem .9rem;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(15, 18, 22, .5);
+}
+
+.page-vehicle-status .timeline-date {
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+  font-size: .85rem;
+}
+
+.page-vehicle-status .timeline-status {
+  font-weight: 700;
+}
+
+.page-vehicle-status .timeline-note {
+  color: var(--muted);
+  margin-top: .1rem;
+  font-size: .92rem;
+}
+
+.photo-grid--preview .photo-tile img {
+  height: 140px;
+}
+
+@media (max-width: 992px) {
+  .page-vehicle-status .status-grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .page-vehicle-status .info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .page-vehicle-status .timeline-item {
+    grid-template-columns: 1fr;
+  }
+
+  .photo-grid--preview {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -1592,6 +1752,11 @@ footer.site-footer {
   gap: 10px;
 }
 
+.photo-grid--preview {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
 .photo-tile {
   border: 0;
   padding: 0;
@@ -1613,6 +1778,10 @@ footer.site-footer {
 
 .photo-grid--compact .photo-tile img {
   height: 120px;
+}
+
+.photo-grid--preview .photo-tile img {
+  height: 140px;
 }
 
 .photo-more {

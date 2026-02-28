@@ -1,1 +1,80 @@
-﻿<!DOCTYPE html> <html xmlns:th="http://www.thymeleaf.org"> <head>     <meta charset="utf-8"/>     <meta content="width=device-width, initial-scale=1" name="viewport"/>     <title>Admin - Vehicle Photos</title>     <link href="/images/favicon-site.png" rel="icon" type="image/png"/>     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&amp;display=swap" rel="stylesheet"/>     <link href="/css/site.css" rel="stylesheet"/> </head> <body> <section class="section">     <div class="container">         <div class="d-flex align-items-center justify-content-between mb-4">             <h2 class="fw-bold"><span class="highlight">Photos</span></h2>             <div class="d-flex gap-2">                 <a class="btn btn-outline" th:href="@{/admin/vehicles/{id}/edit(id=${vehicle.id})}">Back</a>             </div>         </div>          <div class="alert alert-success" th:if="${success}" th:text="${success}"></div>         <div class="alert alert-danger" th:if="${error}" th:text="${error}"></div>          <div class="card mb-4">             <div class="card-body">                 <h5 class="card-title" th:text="${vehicle.vehicleName}">Vehicle</h5>                 <div class="mb-3">                     <a class="btn btn-outline btn-sm" th:href="@{/admin/vehicles/{id}/photos.zip(id=${vehicle.id})}">                         Download all photos                     </a>                 </div>                 <form th:action="@{/admin/vehicles/{id}/photos(id=${vehicle.id})}" method="post" enctype="multipart/form-data">                     <div class="row g-3 align-items-end">                         <div class="col-md-4">                             <label class="form-label">Photo kind</label>                             <select class="form-select" name="kind">                                 <option th:each="kind : ${photoKinds}" th:value="${kind}" th:text="${kind.label}"></option>                             </select>                         </div>                         <div class="col-md-6">                             <label class="form-label">Files</label>                             <input class="form-control" type="file" name="files" multiple/>                         </div>                         <div class="col-md-2">                             <button class="btn w-100" type="submit">Upload</button>                         </div>                     </div>                 </form>             </div>         </div>          <div class="card">             <div class="table-responsive">                 <table class="table table-hover align-middle">                     <thead>                     <tr>                         <th>Preview</th>                         <th>Kind</th>                         <th>Filename</th>                         <th>Uploaded</th>                         <th>Actions</th>                     </tr>                     </thead>                     <tbody>                     <tr th:each="photo : ${photos}">                         <td>                             <img th:src="@{/admin/files/photo/{id}(id=${photo.id})}" alt="photo" style="max-height:80px; border-radius:8px;"/>                         </td>                         <td th:text="${photo.kind.label}">Kind</td>                         <td th:text="${photo.originalName}">Name</td>                         <td th:text="${#temporals.format(photo.uploadedAt, 'yyyy-MM-dd HH:mm')}">Date</td>                         <td>                             <form th:action="@{/admin/vehicles/{vehicleId}/photos/{photoId}/delete(vehicleId=${vehicle.id}, photoId=${photo.id})}" method="post">                                 <button class="btn btn-outline btn-sm" type="submit">Delete</button>                             </form>                         </td>                     </tr>                     <tr th:if="${#lists.isEmpty(photos)}">                         <td colspan="5" class="text-muted-ux text-center">No photos yet.</td>                     </tr>                     </tbody>                 </table>             </div>         </div>     </div> </section> </body> </html>
+﻿﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>Admin - Vehicle Photos</title>
+    <link href="/images/favicon-site.png" rel="icon" type="image/png"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&amp;display=swap" rel="stylesheet"/>
+    <link href="/css/site.css" rel="stylesheet"/>
+</head>
+<body>
+<section class="section">
+    <div class="container">
+        <div class="d-flex align-items-center justify-content-between mb-4"><h2 class="fw-bold"><span class="highlight">Photos</span>
+        </h2>
+            <div class="d-flex gap-2"><a class="btn btn-outline"
+                                         th:href="@{/admin/vehicles/{id}/edit(id=${vehicle.id})}">Back</a></div>
+        </div>
+        <div class="alert alert-success" th:if="${success}" th:text="${success}"></div>
+        <div class="alert alert-danger" th:if="${error}" th:text="${error}"></div>
+        <div class="card mb-4">
+            <div class="card-body"><h5 class="card-title" th:text="${vehicle.vehicleName}">Vehicle</h5>
+                <div class="mb-3"><a class="btn btn-outline btn-sm"
+                                     th:href="@{/admin/vehicles/{id}/photos.zip(id=${vehicle.id})}"> Download all
+                    photos </a></div>
+                <form th:action="@{/admin/vehicles/{id}/photos(id=${vehicle.id})}" method="post"
+                      enctype="multipart/form-data">
+                    <div class="row g-3 align-items-end">
+                        <div class="col-md-4"><label class="form-label">Photo kind</label> <select class="form-select"
+                                                                                                   name="kind">
+                            <option th:each="kind : ${photoKinds}" th:value="${kind}" th:text="${kind.label}"></option>
+                        </select></div>
+                        <div class="col-md-6"><label class="form-label">Files</label> <input class="form-control"
+                                                                                             type="file" name="files"
+                                                                                             multiple/></div>
+                        <div class="col-md-2">
+                            <button class="btn w-100" type="submit">Upload</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="card">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead>
+                    <tr>
+                        <th>Preview</th>
+                        <th>Kind</th>
+                        <th>Filename</th>
+                        <th>Uploaded</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="photo : ${photos}">
+                        <td><img th:src="@{/admin/files/photo/{id}(id=${photo.id})}" alt="photo"
+                                 style="max-height:80px; border-radius:8px;"/></td>
+                        <td th:text="${photo.kind.label}">Kind</td>
+                        <td th:text="${photo.originalName}">Name</td>
+                        <td th:text="${#temporals.format(photo.uploadedAt, 'dd-MM-yyyy')}">Date</td>
+                        <td>
+                            <form th:action="@{/admin/vehicles/{vehicleId}/photos/{photoId}/delete(vehicleId=${vehicle.id}, photoId=${photo.id})}"
+                                  method="post">
+                                <button class="btn btn-outline btn-sm" type="submit">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr th:if="${#lists.isEmpty(photos)}">
+                        <td colspan="5" class="text-muted-ux text-center">No photos yet.</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

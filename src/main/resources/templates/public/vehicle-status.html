@@ -1,1 +1,220 @@
-﻿<!DOCTYPE html> <html xmlns:th="http://www.thymeleaf.org"> <head>     <meta charset="utf-8"/>     <meta content="width=device-width, initial-scale=1" name="viewport"/>     <title>Vehicle Status</title>     <link href="/images/favicon-site.png" rel="icon" type="image/png"/>     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&amp;display=swap" rel="stylesheet"/>     <link href="/css/site.css" rel="stylesheet"/> </head> <body> <section class="section">     <div class="container">         <div class="card mb-4">             <div class="card-body">                 <h2 class="card-title mb-3"                     th:text="${vehicle.vehicleName + (vehicle.vin != null && !vehicle.vin.isBlank() ? ' VIN: ' + vehicle.vin : '')}">                     Vehicle - VIN                 </h2>                  <div class="row g-3">                     <div class="col-lg-4 info-col">                         <div class="info-pill">                             <span class="label">CONTAINER</span>                             <span class="value" th:if="${vehicle.trackingUrl != null && !vehicle.trackingUrl.isBlank()}">                                 <a class="link" th:href="${vehicle.trackingUrl}" target="_blank" rel="noopener"                                    th:text="${vehicle.containerNumber}">-</a>                             </span>                             <span class="value" th:if="${vehicle.trackingUrl == null || vehicle.trackingUrl.isBlank()}" th:text="${vehicle.containerNumber}">-</span>                         </div>                         <div class="info-pill"><span class="label">POL</span><span class="value" th:text="${vehicle.pol}">-</span></div>                         <div class="info-pill">                             <span class="label">TITLE</span>                             <span class="value" th:if="${vehicle.titleAvailable and vehicle.titleScanPath != null}">                                 <a class="link" th:href="@{/v/{token}/title(token=${vehicle.publicToken})}" target="_blank">Open scan</a>                             </span>                             <span class="value" th:if="${vehicle.titleAvailable and vehicle.titleScanPath == null}">Available</span>                             <span class="value" th:if="${vehicle.titleAvailable == false}">Not available</span>                         </div>                         <div class="info-pill"><span class="label">STATUS</span><span class="value" th:text="${vehicle.status.label}">-</span></div>                         <div class="info-pill"><span class="label">PAID</span><span class="value" th:text="${vehicle.paid == true ? 'Yes' : 'No'}">-</span></div>                     </div>                     <div class="col-lg-4 info-col">                         <div class="info-pill">                             <span class="label">ETA</span>                             <span class="value" th:if="${vehicle.trackingUrl != null && !vehicle.trackingUrl.isBlank()}">                                 <a class="link" th:href="${vehicle.trackingUrl}" target="_blank" rel="noopener"                                    th:text="${vehicle.eta}">-</a>                             </span>                             <span class="value" th:if="${vehicle.trackingUrl == null || vehicle.trackingUrl.isBlank()}" th:text="${vehicle.eta}">-</span>                         </div>                         <div class="info-pill"><span class="label">POD</span><span class="value" th:text="${vehicle.pod}">-</span></div>                         <div class="info-pill"><span class="label">KEYS</span><span class="value" th:text="${vehicle.keysCount}">-</span></div>                         <div class="info-pill"><span class="label">CUSTOMS CLEARED</span><span class="value" th:text="${vehicle.customsCleared == true ? 'Yes' : 'No'}">-</span></div>                     </div>                     <div class="col-lg-4 info-col">                         <h5 class="card-title">Status history</h5>                         <div class="table-responsive">                             <table class="table table-hover align-middle">                                 <thead>                                 <tr>                                     <th>Date</th>                                     <th>Status</th>                                     <th>Note</th>                                 </tr>                                 </thead>                                 <tbody>                                 <tr th:each="update : ${statusUpdates}">                                     <td th:text="${#temporals.format(update.createdAt, 'yyyy-MM-dd HH:mm')}">Date</td>                                     <td th:text="${update.status.label}">Status</td>                                     <td th:text="${update.note}">Note</td>                                 </tr>                                 <tr th:if="${#lists.isEmpty(statusUpdates)}">                                     <td colspan="3" class="text-muted-ux text-center">No history yet.</td>                                 </tr>                                 </tbody>                             </table>                         </div>                     </div>                 </div>             </div>         </div>          <div class="card mb-4" th:with="polPhotos=${photos.?[kind.name() == 'POL_WAREHOUSE']}">             <div class="card-body">                 <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">                     <h5 class="card-title mb-0">POL Warehouse Photos</h5>                     <a class="btn btn-outline btn-sm" th:href="@{/v/{token}/photos.zip(token=${vehicle.publicToken})}">                         Download all photos                     </a>                 </div>                 <div class="photo-grid" th:if="${!#lists.isEmpty(polPhotos)}">                     <button class="photo-tile" type="button" th:each="photo : ${polPhotos}"                             th:attr="data-full=@{/v/{token}/photo/{id}(token=${vehicle.publicToken}, id=${photo.id})}">                         <img th:src="@{/v/{token}/photo/{id}(token=${vehicle.publicToken}, id=${photo.id})}"                              alt="POL photo"/>                     </button>                 </div>                 <div class="text-muted-ux" th:if="${#lists.isEmpty(polPhotos)}">No POL photos yet.</div>             </div>         </div>          <div class="card" th:with="podPhotos=${photos.?[kind.name() == 'POD_WAREHOUSE']}">             <div class="card-body">                 <h5 class="card-title">POD Warehouse Photos</h5>                 <div class="photo-grid" th:if="${!#lists.isEmpty(podPhotos)}">                     <button class="photo-tile" type="button" th:each="photo : ${podPhotos}"                             th:attr="data-full=@{/v/{token}/photo/{id}(token=${vehicle.publicToken}, id=${photo.id})}">                         <img th:src="@{/v/{token}/photo/{id}(token=${vehicle.publicToken}, id=${photo.id})}"                              alt="POD photo"/>                     </button>                 </div>                 <div class="text-muted-ux" th:if="${#lists.isEmpty(podPhotos)}">No POD photos yet.</div>             </div>         </div>           <div class="card mt-4">             <div class="card-body">                 <h5 class="card-title">Documents</h5>                 <div class="table-responsive">                     <table class="table table-hover align-middle">                         <thead>                         <tr>                             <th>Kind</th>                             <th>Title</th>                             <th>File</th>                             <th>Date</th>                         </tr>                         </thead>                         <tbody>                         <tr th:each="doc : ${documents}">                             <td th:text="${doc.kind.label}">Kind</td>                             <td th:text="${doc.title}">Title</td>                             <td>                                 <a class="link" th:href="@{/v/{token}/doc/{id}(token=${vehicle.publicToken}, id=${doc.id})}" target="_blank"                                    th:text="${doc.originalName}">Download</a>                             </td>                             <td th:text="${#temporals.format(doc.uploadedAt, 'yyyy-MM-dd HH:mm')}">Date</td>                         </tr>                         <tr th:if="${#lists.isEmpty(documents)}">                             <td colspan="4" class="text-muted-ux text-center">No documents yet.</td>                         </tr>                         </tbody>                     </table>                 </div>             </div>         </div>          <!-- status history moved to top card -->     </div> </section>  <div class="lightbox" id="lightbox" aria-hidden="true">     <button class="lightbox-close" type="button" aria-label="Close">&times;</button>     <img alt="Preview" class="lightbox-image"/> </div>  <script>     document.addEventListener('DOMContentLoaded', function () {         const lightbox = document.getElementById('lightbox');         const lightboxImage = lightbox.querySelector('.lightbox-image');         const closeBtn = lightbox.querySelector('.lightbox-close');         const tiles = Array.from(document.querySelectorAll('.photo-tile'));         const sources = tiles.map(btn => btn.getAttribute('data-full'));         let currentIndex = -1;          function openAt(index) {             if (index < 0 || index >= sources.length) return;             currentIndex = index;             lightboxImage.setAttribute('src', sources[index]);             lightbox.classList.add('is-open');             lightbox.setAttribute('aria-hidden', 'false');         }          function move(delta) {             if (currentIndex === -1) return;             let next = currentIndex + delta;             if (next < 0) next = sources.length - 1;             if (next >= sources.length) next = 0;             openAt(next);         }          tiles.forEach((btn, index) => {             btn.addEventListener('click', () => {                 openAt(index);             });         });          function close() {             lightbox.classList.remove('is-open');             lightbox.setAttribute('aria-hidden', 'true');             lightboxImage.removeAttribute('src');             currentIndex = -1;         }          closeBtn.addEventListener('click', close);         lightbox.addEventListener('click', (e) => {             if (e.target === lightbox) close();         });         document.addEventListener('keydown', (e) => {             if (e.key === 'Escape') close();             if (lightbox.classList.contains('is-open')) {                 if (e.key === 'ArrowRight') move(1);                 if (e.key === 'ArrowLeft') move(-1);             }         });     }); </script> </body> </html>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>Vehicle Status</title>
+    <link href="/images/favicon-site.png" rel="icon" type="image/png"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&amp;family=Sora:wght@400;600;700&amp;display=swap"
+          rel="stylesheet"/>
+    <link href="/css/site.css" rel="stylesheet"/>
+</head>
+<body class="page-vehicle-status theme-neoglass">
+<section class="section">
+    <div class="container">
+        <div class="status-hero card mb-4">
+            <div class="card-body">
+                <div class="status-header">
+                    <div class="status-title text-center" th:text="${vehicle.vehicleName}">Vehicle</div>
+                    <div class="status-title text-center" th:text="${vehicle.vin != null && !vehicle.vin.isBlank() ? 'VIN: ' + vehicle.vin : 'VIN: -'}">VIN</div>
+                    <div class="status-status text-center" th:text="${vehicle.status.label}">Status</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="status-grid-2 mb-4">
+            <div class="card status-panel">
+                <h5 class="card-title mb-3 text-center">Shipping information</h5>
+                <div class="info-grid">
+                    <div class="info-pill">
+                        <span class="label">Container</span>
+                        <span class="value"
+                              th:if="${vehicle.trackingUrl != null && !vehicle.trackingUrl.isBlank()}">
+                            <a class="link" th:href="${vehicle.trackingUrl}" target="_blank" rel="noopener"
+                               th:text="${vehicle.containerNumber}">-</a>
+                        </span>
+                        <span class="value"
+                              th:if="${vehicle.trackingUrl == null || vehicle.trackingUrl.isBlank()}"
+                              th:text="${vehicle.containerNumber}">-</span>
+                    </div>
+                    <div class="info-pill">
+                        <span class="label">ETA</span>
+                        <span class="value"
+                              th:if="${vehicle.trackingUrl != null && !vehicle.trackingUrl.isBlank()}">
+                            <a class="link" th:href="${vehicle.trackingUrl}" target="_blank" rel="noopener"
+                               th:text="${vehicle.eta != null ? #temporals.format(vehicle.eta, 'dd-MM-yyyy') : '-'}">-</a>
+                        </span>
+                        <span class="value"
+                              th:if="${vehicle.trackingUrl == null || vehicle.trackingUrl.isBlank()}"
+                              th:text="${vehicle.eta != null ? #temporals.format(vehicle.eta, 'dd-MM-yyyy') : '-'}">-</span>
+                    </div>
+                    <div class="info-pill">
+                        <span class="label">POL</span>
+                        <span class="value" th:text="${vehicle.pol}">-</span>
+                    </div>
+                    <div class="info-pill">
+                        <span class="label">POD</span>
+                        <span class="value" th:text="${vehicle.pod}">-</span>
+                    </div>
+                    <div class="info-pill">
+                        <span class="label">Customs cleared</span>
+                        <span class="value" th:text="${vehicle.customsCleared == true ? 'Yes' : 'No'}">-</span>
+                    </div>
+                    <div class="info-pill">
+                        <span class="label">Paid</span>
+                        <span class="value" th:text="${vehicle.paid == true ? 'Yes' : 'No'}">-</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card status-panel">
+                <h5 class="card-title mb-3 text-center">Vehicle information</h5>
+                <div class="info-grid info-grid--single">
+                    <div class="info-pill">
+                        <span class="label">Title</span>
+                        <span class="value"
+                              th:if="${vehicle.titleAvailable and vehicle.titleScanPath != null}">
+                            <a class="link" th:href="@{/v/{token}/title(token=${vehicle.publicToken})}"
+                               target="_blank">Open scan</a>
+                        </span>
+                        <span class="value" th:if="${vehicle.titleAvailable and vehicle.titleScanPath == null}">Available</span>
+                        <span class="value" th:if="${vehicle.titleAvailable == false}">Not available</span>
+                    </div>
+                    <div class="info-pill">
+                        <span class="label">Keys</span>
+                        <span class="value" th:text="${vehicle.keysCount}">-</span>
+                    </div>
+                    <div class="info-pill">
+                        <span class="label">Customs declaration</span>
+                        <span class="value">Not available yet</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title mb-3">Status history</h5>
+                <div class="timeline-list" th:if="${!#lists.isEmpty(statusUpdates)}">
+                    <div class="timeline-item" th:each="update : ${statusUpdates}">
+                        <div class="timeline-date"
+                             th:text="${#temporals.format(update.createdAt, 'dd-MM-yyyy')}">Date</div>
+                        <div>
+                            <div class="timeline-status" th:text="${update.status.label}">Status</div>
+                            <div class="timeline-note" th:text="${update.note}">Note</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-muted-ux" th:if="${#lists.isEmpty(statusUpdates)}">No history yet.</div>
+            </div>
+        </div>
+
+        <div class="status-grid-2" th:with="polPhotos=${photos.?[kind.name() == 'POL_WAREHOUSE']}, podPhotos=${photos.?[kind.name() == 'POD_WAREHOUSE']}">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+                        <h5 class="card-title mb-0">POL Warehouse Photos</h5>
+                        <a class="btn btn-outline btn-sm" th:href="@{/v/{token}/photos.zip(token=${vehicle.publicToken})}">
+                            Download all photos
+                        </a>
+                    </div>
+                    <div class="photo-grid photo-grid--preview" th:if="${!#lists.isEmpty(polPhotos)}">
+                        <button class="photo-tile photo-preview" type="button" th:each="photo, iter : ${polPhotos}"
+                                th:if="${iter.index < 4}"
+                                th:attr="data-full=@{/v/{token}/photo/{id}(token=${vehicle.publicToken}, id=${photo.id})}">
+                            <img th:src="@{/v/{token}/photo/{id}(token=${vehicle.publicToken}, id=${photo.id})}"
+                                 alt="POL photo"/>
+                            <span class="photo-more"
+                                  th:if="${iter.index == 3 and #lists.size(polPhotos) > 4}"
+                                  th:text="${'+' + (#lists.size(polPhotos) - 4)}">+0</span>
+                        </button>
+                    </div>
+                    <div class="text-muted-ux" th:if="${#lists.isEmpty(polPhotos)}">No POL photos yet.</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">POD Warehouse Photos</h5>
+                    <div class="photo-grid photo-grid--preview" th:if="${!#lists.isEmpty(podPhotos)}">
+                        <button class="photo-tile photo-preview" type="button" th:each="photo, iter : ${podPhotos}"
+                                th:if="${iter.index < 4}"
+                                th:attr="data-full=@{/v/{token}/photo/{id}(token=${vehicle.publicToken}, id=${photo.id})}">
+                            <img th:src="@{/v/{token}/photo/{id}(token=${vehicle.publicToken}, id=${photo.id})}"
+                                 alt="POD photo"/>
+                            <span class="photo-more"
+                                  th:if="${iter.index == 3 and #lists.size(podPhotos) > 4}"
+                                  th:text="${'+' + (#lists.size(podPhotos) - 4)}">+0</span>
+                        </button>
+                    </div>
+                    <div class="text-muted-ux" th:if="${#lists.isEmpty(podPhotos)}">No POD photos yet.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="photo-sources" hidden>
+            <button class="photo-source" type="button" th:each="photo : ${photos}"
+                    th:attr="data-full=@{/v/{token}/photo/{id}(token=${vehicle.publicToken}, id=${photo.id})}"></button>
+        </div>
+    </div>
+</section>
+<div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox-close" type="button" aria-label="Close">&times;</button>
+    <img alt="Preview" class="lightbox-image"/>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = lightbox.querySelector('.lightbox-image');
+        const closeBtn = lightbox.querySelector('.lightbox-close');
+        const previews = Array.from(document.querySelectorAll('.photo-preview'));
+        const sources = Array.from(document.querySelectorAll('.photo-source'))
+            .map(btn => btn.getAttribute('data-full'))
+            .filter(Boolean);
+        let currentIndex = -1;
+
+        function openAt(index) {
+            if (index < 0 || index >= sources.length) return;
+            currentIndex = index;
+            lightboxImage.setAttribute('src', sources[index]);
+            lightbox.classList.add('is-open');
+            lightbox.setAttribute('aria-hidden', 'false');
+        }
+
+        function move(delta) {
+            if (currentIndex === -1) return;
+            let next = currentIndex + delta;
+            if (next < 0) next = sources.length - 1;
+            if (next >= sources.length) next = 0;
+            openAt(next);
+        }
+
+        previews.forEach((btn) => {
+            btn.addEventListener('click', () => {
+                const target = btn.getAttribute('data-full');
+                const index = sources.indexOf(target);
+                if (index !== -1) openAt(index);
+            });
+        });
+
+        function close() {
+            lightbox.classList.remove('is-open');
+            lightbox.setAttribute('aria-hidden', 'true');
+            lightboxImage.removeAttribute('src');
+            currentIndex = -1;
+        }
+
+        closeBtn.addEventListener('click', close);
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) close();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') close();
+            if (lightbox.classList.contains('is-open')) {
+                if (e.key === 'ArrowRight') move(1);
+                if (e.key === 'ArrowLeft') move(-1);
+            }
+        });
+    });
+</script>
+</body>
+</html>

@@ -73,7 +73,7 @@
 }
 
 .index-tools .tool-card::after {
-  content: "a??????";
+  content: "Виж";
   position: absolute;
   top: 12px;
   right: 14px;

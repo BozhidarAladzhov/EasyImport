@@ -1,1 +1,105 @@
-﻿<!DOCTYPE html>  <html lang="bg" xmlns:th="http://www.thymeleaf.org"> <head>     <meta charset="utf-8"/>     <meta content="width=device-width, initial-scale=1" name="viewport"/>     <title>Процеси</title>     <link href="/images/favicon-site.png" rel="icon" type="image/png"/>     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&amp;display=swap" rel="stylesheet"/>     <link href="/css/site.css" rel="stylesheet"/>     <link href="/css/process.css" rel="stylesheet"/>     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet"/> </head> <body class="page-process"> <nav class="navbar navbar-expand-lg">     <div class="container-fluid px-4">         <a class="navbar-brand" th:href="@{/}">             <div class="navbar-logo-wrapper">                 <img alt="Лого" class="navbar-logo" src="/images/Logo Bozhidar Aladzhov.svg"/>             </div>         </a>         <button class="navbar-toggler" data-bs-target="#navbarNav" data-bs-toggle="collapse" type="button">             <span class="navbar-toggler-icon"></span>         </button>         <div class="collapse navbar-collapse" id="navbarNav">             <ul class="navbar-nav ms-auto">                 <li class="nav-item"><a class="nav-link" th:href="@{/}">Начало</a></li>                 <li class="nav-item"><a class="nav-link" th:href="@{/about}">За мен</a></li>                 <li class="nav-item"><a class="nav-link" th:href="@{/prices}">Цени</a></li>                 <li class="nav-item"><a class="nav-link" th:href="@{/calculator}">Калкулатор</a></li>                 <li class="nav-item"><a class="nav-link active" th:href="@{/process}">Процеси</a></li>                 <li class="nav-item"><a class="nav-link" th:href="@{/contact}">Контакти</a></li>             </ul>         </div>     </div> </nav> <header class="hero hero--gradient">     <div class="container hero-intro">         <h2 class="fw-bold"><span class="highlight">Как протичат процесите?</span></h2>     </div> </header> <section class="section process-steps">     <div class="container">         <div class="row g-4 text-center">             <div class="col-md-4 col-lg-4">                 <div class="card h-100 hover-glow">                     <div class="mb-3 fs-1"><i class="bi bi-search"></i></div>                     <h5 class="fw-bold"><span class="highlight">1. Проучване</span></h5>                     <p class="small">Избор на подходящия автомобил за твоите нужди и бюджет.</p>                 </div>             </div>             <div class="col-md-4 col-lg-4">                 <div class="card h-100 hover-glow">                     <div class="mb-3 fs-1"><i class="bi bi-cart-check"></i></div>                     <h5 class="fw-bold"><span class="highlight">2. Закупуване</span></h5>                     <p class="small">Търг или директна покупка (Copart, IAAI).</p>                 </div>             </div>             <div class="col-md-4 col-lg-4">                 <div class="card h-100 hover-glow">                     <div class="mb-3 fs-1"><i class="bi bi-truck"></i></div>                     <h5 class="fw-bold"><span class="highlight">3. Транспорт</span></h5>                     <p class="small">Морски и сухоземен транспорт до България.</p>                 </div>             </div>             <div class="col-md-4 col-lg-4">                 <div class="card h-100 hover-glow">                     <div class="mb-3 fs-1"><i class="bi bi-shield-lock"></i></div>                     <h5 class="fw-bold"><span class="highlight">4. Митница</span></h5>                     <p class="small">Документи и преминаване през митнически контрол.</p>                 </div>             </div>             <div class="col-md-4 col-lg-4">                 <div class="card h-100 hover-glow">                     <div class="mb-3 fs-1"><i class="bi bi-box-arrow-in-down"></i></div>                     <h5 class="fw-bold"><span class="highlight">5. Получаване</span></h5>                     <p class="small">Предаване на автомобила или транспорт до адрес.</p>                 </div>             </div>             <div class="col-md-4 col-lg-4">                 <div class="card h-100 hover-glow">                     <div class="mb-3 fs-1"><i class="bi bi-card-checklist"></i></div>                     <h5 class="fw-bold"><span class="highlight">6. Регистрация</span></h5>                     <p class="small">Технически преглед и регистрация за движение.</p>                 </div>             </div> <!--            <div class="container">--> <!--                <div class="card hover-glow">--> <!--                    <h2 class="text-center"> Детайлно обяснение на всяка стъпка</h2>--> <!--                    <div class="actions d-flex justify-content-center">--> <!--                        <a class="btn btn-small" href="https://discord.gg/bwGDdFZddx">EasyImport</a>--> <!--                    </div>--> <!--                </div>--> <!--            </div>-->         </div>          <div class="process-details">             <div class="card hover-glow">                 <h2 class="text-center">Детайлно обяснение на всяка стъпка</h2>                  <div class="actions">                     <a class="btn btn-small" href="https://discord.gg/bwGDdFZddx">EasyImport</a>                 </div>             </div>         </div>     </div> </section> <footer class="site-footer">     <div class="container py-4 text-center">         <div class="d-flex justify-content-center gap-3 mb-3">             <a class="btn-social instagram" href="https://www.instagram.com/easyimport.ba/" target="_blank">                 <i class="bi bi-instagram"></i>             </a>             <a class="btn-social facebook" href="https://www.facebook.com/easyimportba" target="_blank">                 <i class="bi bi-facebook"></i>             </a>             <a class="btn-social linkedin" href="https://www.linkedin.com/in/bozhidar-aladzhov-90003b186/"                target="_blank">                 <i class="bi bi-linkedin"></i>             </a>             <a class="btn-social discord" href="https://discord.gg/bwGDdFZddx" target="_blank">                 <i class="bi bi-discord"></i>             </a>             <a class="btn-social mail" href="mailto:easyimport.bg@gmail.com">                 <i class="bi bi-envelope-fill"></i>             </a>         </div>         <small class="text-muted-ux">© 2026 Bozhidar Aladzhov – Всички права запазени.</small>     </div> </footer> <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> <script>     document.addEventListener('DOMContentLoaded', function () {       // 1) Автоматично маркиране на елементи за анимация       const autoSelectors = [         '.section',                          // самите секции         '.section .card',         '.section .content p',         '.section h2, .section h3, .section h4',         '.form-shell',         '.table',                            // добави и .reveal-rows в HTML ако искаш stagger по редове         '.stats .stat',         '.about__highlights li'       ];        // Маркираме секциите, за да могат вътрешните им елементи да се разбуждат       document.querySelectorAll('.section').forEach(sec => sec.classList.add('reveal'));        // Маркираме елементите по горните селектори       autoSelectors.forEach(sel => {         document.querySelectorAll(sel).forEach(el => {           el.classList.add('reveal');         });       });        // 2) Stagger групи – прилагаме върху редици/гридове       const staggerGroups = [         '.cards-equal .row, .cards-equal',         '.process-steps .row',         '.about__highlights',         '.table.reveal-rows tbody'       ];       staggerGroups.forEach(groupSel => {         document.querySelectorAll(groupSel).forEach(group => {           group.classList.add('reveal-stagger');           [...group.children].forEach((child, i) => {             child.style.setProperty('--i', i);           });         });       });        // 3) IntersectionObserver       const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;       if (prefersReduced) {         // Без анимации – просто показваме всичко         document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => el.classList.add('is-visible'));         return;       }        const io = new IntersectionObserver((entries) => {         entries.forEach(entry => {           if (entry.isIntersecting) {             entry.target.classList.add('is-visible');             // по избор: спираме да наблюдаваме, за да не се „ресетва“             io.unobserve(entry.target);           }         });       }, { rootMargin: '0px 0px -10% 0px', threshold: 0.15 });        document.querySelectorAll('.reveal, .reveal-stagger, .section').forEach(el => io.observe(el));        // 4) Лек косметичен бонус: таблиците да stagger-ват редовете       document.querySelectorAll('.table').forEach(tb => tb.classList.add('reveal-rows'));     }); </script> </body> </html>
+﻿﻿<!DOCTYPE html>
+<html lang="bg" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>Процеси</title>
+    <link href="/images/favicon-site.png" rel="icon" type="image/png"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&amp;display=swap" rel="stylesheet"/>
+    <link href="/css/site.css" rel="stylesheet"/>
+    <link href="/css/process.css" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet"/>
+</head>
+<body class="page-process">
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid px-4"><a class="navbar-brand" th:href="@{/}">
+        <div class="navbar-logo-wrapper"><img alt="Лого" class="navbar-logo" src="/images/Logo Bozhidar Aladzhov.svg"/>
+        </div>
+    </a>
+        <button class="navbar-toggler" data-bs-target="#navbarNav" data-bs-toggle="collapse" type="button"><span
+                class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" th:href="@{/}">Начало</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/about}">За мен</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/prices}">Цени</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/calculator}">Калкулатор</a></li>
+                <li class="nav-item"><a class="nav-link active" th:href="@{/process}">Процеси</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/contact}">Контакти</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<header class="hero hero--gradient">
+    <div class="container hero-intro"><h2 class="fw-bold"><span class="highlight">Как протичат процесите?</span></h2>
+    </div>
+</header>
+<section class="section process-steps">
+    <div class="container">
+        <div class="row g-4 text-center">
+            <div class="col-md-4 col-lg-4">
+                <div class="card h-100 hover-glow">
+                    <div class="mb-3 fs-1"><i class="bi bi-search"></i></div>
+                    <h5 class="fw-bold"><span class="highlight">1. Проучване</span></h5>
+                    <p class="small">Избор на подходящия автомобил за твоите нужди и бюджет.</p></div>
+            </div>
+            <div class="col-md-4 col-lg-4">
+                <div class="card h-100 hover-glow">
+                    <div class="mb-3 fs-1"><i class="bi bi-cart-check"></i></div>
+                    <h5 class="fw-bold"><span class="highlight">2. Закупуване</span></h5>
+                    <p class="small">Търг или директна покупка (Copart, IAAI).</p></div>
+            </div>
+            <div class="col-md-4 col-lg-4">
+                <div class="card h-100 hover-glow">
+                    <div class="mb-3 fs-1"><i class="bi bi-truck"></i></div>
+                    <h5 class="fw-bold"><span class="highlight">3. Транспорт</span></h5>
+                    <p class="small">Морски и сухоземен транспорт до България.</p></div>
+            </div>
+            <div class="col-md-4 col-lg-4">
+                <div class="card h-100 hover-glow">
+                    <div class="mb-3 fs-1"><i class="bi bi-shield-lock"></i></div>
+                    <h5 class="fw-bold"><span class="highlight">4. Митница</span></h5>
+                    <p class="small">Документи и преминаване през митнически контрол.</p></div>
+            </div>
+            <div class="col-md-4 col-lg-4">
+                <div class="card h-100 hover-glow">
+                    <div class="mb-3 fs-1"><i class="bi bi-box-arrow-in-down"></i></div>
+                    <h5 class="fw-bold"><span class="highlight">5. Получаване</span></h5>
+                    <p class="small">Предаване на автомобила или транспорт до адрес.</p></div>
+            </div>
+            <div class="col-md-4 col-lg-4">
+                <div class="card h-100 hover-glow">
+                    <div class="mb-3 fs-1"><i class="bi bi-card-checklist"></i></div>
+                    <h5 class="fw-bold"><span class="highlight">6. Регистрация</span></h5>
+                    <p class="small">Технически преглед и регистрация за движение.</p></div>
+            </div> <!--            <div class="container">--> <!--                <div class="card hover-glow">-->
+            <!--                    <h2 class="text-center"> Детайлно обяснение на всяка стъпка</h2>-->
+            <!--                    <div class="actions d-flex justify-content-center">-->
+            <!--                        <a class="btn btn-small" href="https://discord.gg/bwGDdFZddx">EasyImport</a>-->
+            <!--                    </div>--> <!--                </div>--> <!--            </div>-->         </div>
+        <div class="process-details">
+            <div class="card hover-glow"><h2 class="text-center">Детайлно обяснение на всяка стъпка</h2>
+                <div class="actions"><a class="btn btn-small" href="https://discord.gg/bwGDdFZddx">EasyImport</a></div>
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="site-footer">
+    <div class="container py-4 text-center">
+        <div class="d-flex justify-content-center gap-3 mb-3"><a class="btn-social instagram"
+                                                                 href="https://www.instagram.com/easyimport.ba/"
+                                                                 target="_blank"> <i class="bi bi-instagram"></i> </a>
+            <a class="btn-social facebook" href="https://www.facebook.com/easyimportba" target="_blank"> <i
+                    class="bi bi-facebook"></i> </a> <a class="btn-social linkedin"
+                                                        href="https://www.linkedin.com/in/bozhidar-aladzhov-90003b186/"
+                                                        target="_blank"> <i class="bi bi-linkedin"></i> </a> <a
+                    class="btn-social discord" href="https://discord.gg/bwGDdFZddx" target="_blank"> <i
+                    class="bi bi-discord"></i> </a> <a class="btn-social mail" href="mailto:easyimport.bg@gmail.com"> <i
+                    class="bi bi-envelope-fill"></i> </a></div>
+        <small class="text-muted-ux">© 2026 Bozhidar Aladzhov – Всички права запазени.</small></div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/js/reveal.js"></script>
+</body>
+</html>
