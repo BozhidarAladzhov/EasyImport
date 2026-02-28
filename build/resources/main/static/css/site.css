@@ -62,8 +62,18 @@ body {
   margin: 0 auto
 }
 
+.container--wide {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
 .section {
   padding: clamp(2.2rem, 6vw, 5rem) 1rem
+}
+
+.section--wide {
+  padding-left: clamp(1rem, 2.5vw, 2.5rem);
+  padding-right: clamp(1rem, 2.5vw, 2.5rem);
 }
 
 a {
@@ -1573,6 +1583,15 @@ footer.site-footer {
   gap: 14px;
 }
 
+.photo-card .card-body {
+  padding: 1.1rem;
+}
+
+.photo-grid--compact {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
 .photo-tile {
   border: 0;
   padding: 0;
@@ -1582,13 +1601,32 @@ footer.site-footer {
   cursor: pointer;
   box-shadow: 0 10px 26px rgba(0, 0, 0, .35);
   transition: transform .2s ease, box-shadow .2s ease;
+  position: relative;
 }
 
 .photo-tile img {
   width: 100%;
-  height: 180px;
+  height: 140px;
   object-fit: cover;
   display: block;
+}
+
+.photo-grid--compact .photo-tile img {
+  height: 120px;
+}
+
+.photo-more {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 12, 16, 0.68);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1.2rem;
+  color: #fff;
+  letter-spacing: 0.04em;
+  text-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
 }
 
 .photo-tile:hover {
@@ -1635,6 +1673,163 @@ footer.site-footer {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
+}
+
+/* === Public status page layout === */
+.public-status .public-header {
+  border-radius: 22px;
+}
+
+.public-title {
+  font-weight: 900;
+  letter-spacing: 0.2px;
+  font-size: clamp(1.6rem, 3vw, 2.6rem);
+  margin: 0 0 0.35rem 0;
+}
+
+.public-sub {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.public-header-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.public-title-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.3rem;
+}
+
+.public-title {
+  margin: 0;
+}
+
+.public-title--line {
+  font-weight: 800;
+  font-size: clamp(1.4rem, 2.6vw, 2.2rem);
+  letter-spacing: 0.2px;
+}
+
+.status-chip {
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  font-weight: 800;
+  color: #101418;
+  background: linear-gradient(90deg, var(--primary), #ffd166);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.78rem;
+}
+
+.status-chip--center {
+  align-self: center;
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+  margin-top: 1.25rem;
+}
+
+.stat-card {
+  padding: 0.9rem 0.95rem;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.28);
+}
+
+.stat-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.35rem;
+}
+
+.stat-value {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  word-break: break-word;
+}
+
+.section-title {
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  margin: 0 0 0.8rem 0;
+  color: var(--text);
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.detail-item {
+  padding: 0.85rem 0.9rem;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(15, 18, 22, 0.55);
+}
+
+.detail-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.35rem;
+}
+
+.detail-value {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--text);
+  word-break: break-word;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.summary-item {
+  padding: 0.85rem 0.9rem;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(15, 18, 22, 0.55);
+}
+
+.summary-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.35rem;
+}
+
+.summary-value {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--text);
+  word-break: break-word;
+}
+
+@media (max-width: 992px) {
+  .detail-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 992px) {
