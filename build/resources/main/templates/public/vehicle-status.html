@@ -47,7 +47,7 @@
                               th:text="${vehicle.containerNumber}">-</span>
                     </div>
                     <div class="info-pill">
-                        <span class="label" th:text="${lang == 'bg' ? 'Очаквано пристигане' : 'ETA'}">ETA</span>
+                        <span class="label" th:text="${lang == 'bg' ? 'Очаквана дата на пристигане' : 'Estimate time of arrival'}">ETA</span>
                         <span class="value"
                               th:if="${vehicle.trackingUrl != null && !vehicle.trackingUrl.isBlank()}">
                             <a class="link" th:href="${vehicle.trackingUrl}" target="_blank" rel="noopener"
@@ -58,15 +58,15 @@
                               th:text="${vehicle.eta != null ? #temporals.format(vehicle.eta, 'dd-MM-yyyy') : '-'}">-</span>
                     </div>
                     <div class="info-pill">
-                        <span class="label" th:text="${lang == 'bg' ? 'Товарно пристанище' : 'POL'}">POL</span>
+                        <span class="label" th:text="${lang == 'bg' ? 'Товарно пристанище' : 'Port of loading'}">Port of loading</span>
                         <span class="value" th:text="${vehicle.pol}">-</span>
                     </div>
                     <div class="info-pill">
-                        <span class="label" th:text="${lang == 'bg' ? 'Разтоварно пристанище' : 'POD'}">POD</span>
+                        <span class="label" th:text="${lang == 'bg' ? 'Разтоварно пристанище' : 'Port of delivery'}">Port of delivery</span>
                         <span class="value" th:text="${vehicle.pod}">-</span>
                     </div>
                     <div class="info-pill">
-                        <span class="label" th:text="${lang == 'bg' ? 'Митница приключена' : 'Customs cleared'}">Customs cleared</span>
+                        <span class="label" th:text="${lang == 'bg' ? 'Митнически обработена' : 'Customs cleared'}">Customs cleared</span>
                         <span class="value" th:text="${vehicle.customsCleared == true ? (lang == 'bg' ? 'Да' : 'Yes') : (lang == 'bg' ? 'Не' : 'No')}">-</span>
                     </div>
                     <div class="info-pill">
@@ -79,7 +79,7 @@
                 <h5 class="card-title mb-3 text-center" th:text="${lang == 'bg' ? 'Информация за автомобила' : 'Vehicle information'}">Vehicle information</h5>
                 <div class="info-grid info-grid--single">
                     <div class="info-pill">
-                        <span class="label" th:text="${lang == 'bg' ? 'Тайтъл' : 'Title'}">Title</span>
+                        <span class="label" th:text="${lang == 'bg' ? 'Талон' : 'Title'}">Title</span>
                         <span class="value"
                               th:if="${vehicle.titleAvailable and vehicle.titleScanPath != null}">
                             <a class="link" th:href="@{/v/{token}/title(token=${vehicle.publicToken})}"
@@ -124,7 +124,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
-                        <h5 class="card-title mb-0" th:text="${lang == 'bg' ? 'Снимки (POL склад)' : 'POL Warehouse Photos'}">POL Warehouse Photos</h5>
+                        <h5 class="card-title mb-0" th:text="${lang == 'bg' ? 'Снимки (товарен склад)' : 'Photos (loading warehouse)'}">Photos (loading warehouse)</h5>
                         <a class="btn btn-outline btn-sm" th:href="@{/v/{token}/photos.zip(token=${vehicle.publicToken})}">
                             <span th:text="${lang == 'bg' ? 'Изтегли всички' : 'Download all photos'}">Download all photos</span>
                         </a>
@@ -141,12 +141,12 @@
                         </button>
                     </div>
                     <div class="text-muted-ux" th:if="${#lists.isEmpty(polPhotos)}"
-                         th:text="${lang == 'bg' ? 'Няма снимки от POL.' : 'No POL photos yet.'}">No POL photos yet.</div>
+                         th:text="${lang == 'bg' ? 'Няма снимки.' : 'No photos yet.'}">No photos yet.</div>
                 </div>
             </div>
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title" th:text="${lang == 'bg' ? 'Снимки (POD склад)' : 'POD Warehouse Photos'}">POD Warehouse Photos</h5>
+                    <h5 class="card-title" th:text="${lang == 'bg' ? 'Снимки (разтоварен склад)' : 'Photos (unloading warehouse)'}">Photos (unloading warehouse)</h5>
                     <div class="photo-grid photo-grid--preview" th:if="${!#lists.isEmpty(podPhotos)}">
                         <button class="photo-tile photo-preview" type="button" th:each="photo, iter : ${podPhotos}"
                                 th:if="${iter.index < 4}"
@@ -159,7 +159,7 @@
                         </button>
                     </div>
                     <div class="text-muted-ux" th:if="${#lists.isEmpty(podPhotos)}"
-                         th:text="${lang == 'bg' ? 'Няма снимки от POD.' : 'No POD photos yet.'}">No POD photos yet.</div>
+                         th:text="${lang == 'bg' ? 'Няма снимки.' : 'No photos yet.'}">No photos yet.</div>
                 </div>
             </div>
         </div>
@@ -174,16 +174,35 @@
     <button class="lightbox-close" type="button" aria-label="Close">&times;</button>
     <img alt="Preview" class="lightbox-image"/>
 </div>
+<div class="gallery" id="gallery" aria-hidden="true">
+    <div class="gallery-panel">
+        <div class="gallery-header">
+            <div class="gallery-title" th:text="${lang == 'bg' ? 'Ð’ÑÐ¸Ñ‡ÐºÐ¸ ÑÐ½Ð¸Ð¼ÐºÐ¸' : 'All photos'}">All photos</div>
+            <button class="gallery-close" type="button" aria-label="Close">&times;</button>
+        </div>
+        <div class="gallery-grid">
+            <button class="gallery-tile" type="button" th:each="photo : ${photos}"
+                    th:attr="data-full=@{/v/{token}/photo/{id}(token=${vehicle.publicToken}, id=${photo.id})}">
+                <img th:src="@{/v/{token}/photo/{id}(token=${vehicle.publicToken}, id=${photo.id})}" alt="Gallery photo"/>
+            </button>
+        </div>
+    </div>
+</div>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const lightbox = document.getElementById('lightbox');
         const lightboxImage = lightbox.querySelector('.lightbox-image');
         const closeBtn = lightbox.querySelector('.lightbox-close');
+        const gallery = document.getElementById('gallery');
+        const galleryClose = gallery.querySelector('.gallery-close');
+        const galleryTiles = Array.from(gallery.querySelectorAll('.gallery-tile'));
         const previews = Array.from(document.querySelectorAll('.photo-preview'));
         const sources = Array.from(document.querySelectorAll('.photo-source'))
             .map(btn => btn.getAttribute('data-full'))
             .filter(Boolean);
         let currentIndex = -1;
+        let touchStartX = null;
+        let touchStartY = null;
 
         function openAt(index) {
             if (index < 0 || index >= sources.length) return;
@@ -202,7 +221,11 @@
         }
 
         previews.forEach((btn) => {
-            btn.addEventListener('click', () => {
+            btn.addEventListener('click', (event) => {
+                if (event.target && event.target.classList.contains('photo-more')) {
+                    openGallery();
+                    return;
+                }
                 const target = btn.getAttribute('data-full');
                 const index = sources.indexOf(target);
                 if (index !== -1) openAt(index);
@@ -216,12 +239,52 @@
             currentIndex = -1;
         }
 
+        function openGallery() {
+            gallery.classList.add('is-open');
+            gallery.setAttribute('aria-hidden', 'false');
+        }
+
+        function closeGallery() {
+            gallery.classList.remove('is-open');
+            gallery.setAttribute('aria-hidden', 'true');
+        }
+
         closeBtn.addEventListener('click', close);
         lightbox.addEventListener('click', (e) => {
             if (e.target === lightbox) close();
         });
+        lightbox.addEventListener('touchstart', (e) => {
+            if (!lightbox.classList.contains('is-open')) return;
+            const touch = e.touches[0];
+            touchStartX = touch.clientX;
+            touchStartY = touch.clientY;
+        }, {passive: true});
+        lightbox.addEventListener('touchend', (e) => {
+            if (!lightbox.classList.contains('is-open') || touchStartX === null) return;
+            const touch = e.changedTouches[0];
+            const dx = touch.clientX - touchStartX;
+            const dy = touch.clientY - touchStartY;
+            touchStartX = null;
+            touchStartY = null;
+            if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+                move(dx < 0 ? 1 : -1);
+            }
+        });
+        galleryClose.addEventListener('click', closeGallery);
+        gallery.addEventListener('click', (e) => {
+            if (e.target === gallery) closeGallery();
+        });
+        galleryTiles.forEach((tile) => {
+            tile.addEventListener('click', () => {
+                const target = tile.getAttribute('data-full');
+                const index = sources.indexOf(target);
+                closeGallery();
+                if (index !== -1) openAt(index);
+            });
+        });
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') close();
+            if (e.key === 'Escape') closeGallery();
             if (lightbox.classList.contains('is-open')) {
                 if (e.key === 'ArrowRight') move(1);
                 if (e.key === 'ArrowLeft') move(-1);

@@ -9,9 +9,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&amp;display=swap" rel="stylesheet"/>
     <link href="/css/site.css" rel="stylesheet"/>
 </head>
-<body>
+<body class="admin-page admin-vehicles">
 <section class="section">
-    <div class="container-fluid px-4">
+    <div class="container-xxl px-4">
         <div class="d-flex align-items-center justify-content-between mb-4"><h2 class="fw-bold"><span class="highlight">Vehicles</span>
         </h2>             <a class="btn" th:href="@{/admin/vehicles/new}">Add Vehicle</a></div>
         <div class="alert alert-success" th:if="${success}" th:text="${success}"></div>
