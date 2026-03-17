@@ -1,25 +1,30 @@
 /* Prices page specific styles */
+.page-prices .table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
 .page-prices .table .port-group td {
-  background: rgba(255, 138, 34, .02);
+  background: rgba(255, 138, 34, .06);
   padding: 1rem 1.2rem;
+  box-shadow: none;
   /* по-голям padding */
 }
 
 .page-prices .table .port-group-start td {
-  border-top: 2px solid #ffd166;
+  border-top: 2px solid #ffb347;
   /* по-светъл оранжев */
 }
 
 .page-prices .table .port-group-end td {
-  border-bottom: 2px solid #ffd166;
+  border-bottom: 2px solid #ffb347;
 }
 
 .page-prices .table .port-group td:first-child {
-  border-left: 2px solid #ffd166;
+  border-left: 2px solid #ffb347;
 }
 
 .page-prices .table .port-group td:last-child {
-  border-right: 2px solid #ffd166;
+  border-right: 2px solid #ffb347;
 }
 
 .page-prices .table .port-group-start td:first-child {

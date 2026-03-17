@@ -21,6 +21,11 @@ public class HomeController {
         return "process";
     }
 
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
+
 
 
 }

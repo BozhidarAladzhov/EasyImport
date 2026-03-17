@@ -1,4 +1,4 @@
-﻿﻿<!DOCTYPE html>
+﻿﻿﻿<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8"/>
@@ -12,9 +12,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet"/>
     <link href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.bootstrap5.min.css" rel="stylesheet"/>
 </head>
-<script>
-         document.addEventListener('DOMContentLoaded', function () {       document.querySelectorAll('.table tbody').forEach(function (tbody) {         const rows = Array.from(tbody.querySelectorAll('tr'))           .filter(r => r.querySelectorAll('td').length);          let prevPort = null, currentGroup = [];          function closeGroup() {           if (!currentGroup.length) return;           currentGroup.forEach(r => r.classList.add('port-group'));           currentGroup[0].classList.add('port-group-start');           currentGroup[currentGroup.length - 1].classList.add('port-group-end');           currentGroup = [];         }          rows.forEach(function (row, i) {           const portCell = row.cells[0];           const port = (portCell?.textContent || '').trim();           if (port !== prevPort) closeGroup();           currentGroup.push(row);           prevPort = port;         });          closeGroup(); // затваряме последната група       });     });
-</script>
 <body class="page-prices">
 <nav class="navbar navbar-expand-lg">
     <div class="container-fluid px-4"><a class="navbar-brand" th:href="@{/}">
@@ -79,11 +76,14 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each="price : ${pricesToVarna}">
-                                    <td th:text="${price.originPort}">-</td>
-                                    <td th:text="${price.vehicleType}">-</td>
-                                    <td th:text="${#numbers.formatDecimal(price.price, 2, 2)}">0.00</td>
-                                </tr>
+                                <th:block th:each="entry : ${pricesToVarnaGrouped}">
+                                    <tr th:each="price, iterStat : ${entry.value}"
+                                        th:class="${'port-group' + (iterStat.index == 0 ? ' port-group-start' : '') + (iterStat.last ? ' port-group-end' : '')}">
+                                        <td th:text="${price.originPort}">-</td>
+                                        <td th:text="${price.vehicleType}">-</td>
+                                        <td th:text="${#numbers.formatDecimal(price.price, 2, 2)}">0.00</td>
+                                    </tr>
+                                </th:block>
                                 <tr th:if="${#lists.isEmpty(pricesToVarna)}">
                                     <td class="text-muted" colspan="3">Няма данни за показване.</td>
                                 </tr>
@@ -108,11 +108,14 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each="price : ${pricesToRotterdam}">
-                                    <td th:text="${price.originPort}">-</td>
-                                    <td th:text="${price.vehicleType}">-</td>
-                                    <td th:text="${#numbers.formatDecimal(price.price, 2, 2)}">0.00</td>
-                                </tr>
+                                <th:block th:each="entry : ${pricesToRotterdamGrouped}">
+                                    <tr th:each="price, iterStat : ${entry.value}"
+                                        th:class="${'port-group' + (iterStat.index == 0 ? ' port-group-start' : '') + (iterStat.last ? ' port-group-end' : '')}">
+                                        <td th:text="${price.originPort}">-</td>
+                                        <td th:text="${price.vehicleType}">-</td>
+                                        <td th:text="${#numbers.formatDecimal(price.price, 2, 2)}">0.00</td>
+                                    </tr>
+                                </th:block>
                                 <tr th:if="${#lists.isEmpty(pricesToRotterdam)}">
                                     <td class="text-muted" colspan="3">Няма данни за показване.</td>
                                 </tr>

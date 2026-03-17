@@ -55,13 +55,13 @@
                         </td>
                         <td th:text="${vehicle.vin}">VIN</td>
                         <td th:text="${vehicle.status.label}">Status</td>
-                        <td th:text="${vehicle.eta != null ? #temporals.format(vehicle.eta, 'dd-MM-yyyy') : '-'}">ETA</td>
+                        <td th:text="${vehicle.eta != null ? #temporals.format(vehicle.eta, 'dd/MM/yyyy') : '-'}">ETA</td>
                         <td>
                             <div th:if="${vehicle.publicToken}">
                                 <div><a class="link" th:href="@{/v/{token}(token=${vehicle.publicToken})}"
                                         target="_blank"> Open </a></div>
                                 <small class="text-muted-ux"
-                                       th:text="'Expires: ' + ${#temporals.format(vehicle.publicTokenExpiresAt, 'dd-MM-yyyy')}"></small>
+                                       th:text="'Expires: ' + ${#temporals.format(vehicle.publicTokenExpiresAt, 'dd/MM/yyyy')}"></small>
                             </div>
                             <span th:if="${vehicle.publicToken == null}" class="text-muted-ux">No link</span></td>
                         <td><a class="btn btn-outline btn-sm" th:href="@{/admin/vehicles/{id}/edit(id=${vehicle.id})}">Edit</a>

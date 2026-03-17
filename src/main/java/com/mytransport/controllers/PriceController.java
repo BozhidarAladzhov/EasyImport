@@ -8,7 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Controller
@@ -56,8 +58,16 @@ public class PriceController {
                 .filter(p -> "Rotterdam".equalsIgnoreCase(p.getDestinationPort()))
                 .collect(Collectors.toList());
 
+        Map<String, List<OceanFreightEntity>> pricesToVarnaGrouped = pricesToVarna.stream()
+                .collect(Collectors.groupingBy(OceanFreightEntity::getOriginPort, LinkedHashMap::new, Collectors.toList()));
+
+        Map<String, List<OceanFreightEntity>> pricesToRotterdamGrouped = pricesToRotterdam.stream()
+                .collect(Collectors.groupingBy(OceanFreightEntity::getOriginPort, LinkedHashMap::new, Collectors.toList()));
+
         model.addAttribute("pricesToVarna", pricesToVarna);
         model.addAttribute("pricesToRotterdam", pricesToRotterdam);
+        model.addAttribute("pricesToVarnaGrouped", pricesToVarnaGrouped);
+        model.addAttribute("pricesToRotterdamGrouped", pricesToRotterdamGrouped);
         model.addAttribute("selectedPort", port);
         model.addAttribute("selectedOriginPort", originPort);
         model.addAttribute("originPortList", originPortList);

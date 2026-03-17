@@ -59,7 +59,7 @@
                                  style="max-height:80px; border-radius:8px;"/></td>
                         <td th:text="${photo.kind.label}">Kind</td>
                         <td th:text="${photo.originalName}">Name</td>
-                        <td th:text="${#temporals.format(photo.uploadedAt, 'dd-MM-yyyy')}">Date</td>
+                        <td th:text="${#temporals.format(photo.uploadedAt, 'dd/MM/yyyy')}">Date</td>
                         <td>
                             <form th:action="@{/admin/vehicles/{vehicleId}/photos/{photoId}/delete(vehicleId=${vehicle.id}, photoId=${photo.id})}"
                                   method="post">

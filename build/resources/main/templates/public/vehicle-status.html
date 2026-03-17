@@ -51,11 +51,11 @@
                         <span class="value"
                               th:if="${vehicle.trackingUrl != null && !vehicle.trackingUrl.isBlank()}">
                             <a class="link" th:href="${vehicle.trackingUrl}" target="_blank" rel="noopener"
-                               th:text="${vehicle.eta != null ? #temporals.format(vehicle.eta, 'dd-MM-yyyy') : '-'}">-</a>
+                               th:text="${vehicle.eta != null ? #temporals.format(vehicle.eta, 'dd/MM/yyyy') : '-'}">-</a>
                         </span>
                         <span class="value"
                               th:if="${vehicle.trackingUrl == null || vehicle.trackingUrl.isBlank()}"
-                              th:text="${vehicle.eta != null ? #temporals.format(vehicle.eta, 'dd-MM-yyyy') : '-'}">-</span>
+                              th:text="${vehicle.eta != null ? #temporals.format(vehicle.eta, 'dd/MM/yyyy') : '-'}">-</span>
                     </div>
                     <div class="info-pill">
                         <span class="label" th:text="${lang == 'bg' ? 'Товарно пристанище' : 'Port of loading'}">Port of loading</span>
@@ -108,7 +108,7 @@
                 <div class="timeline-list" th:if="${!#lists.isEmpty(statusUpdates)}">
                     <div class="timeline-item" th:each="update : ${statusUpdates}">
                         <div class="timeline-date"
-                             th:text="${#temporals.format(update.createdAt, 'dd-MM-yyyy')}">Date</div>
+                             th:text="${#temporals.format(update.createdAt, 'dd/MM/yyyy')}">Date</div>
                         <div>
                             <div class="timeline-status" th:text="${update.status.label}">Status</div>
                             <div class="timeline-note" th:text="${update.note}">Note</div>

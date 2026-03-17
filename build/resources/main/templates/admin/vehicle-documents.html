@@ -58,7 +58,7 @@
                         <td th:text="${doc.title}">Title</td>
                         <td><a class="link" th:href="@{/admin/files/doc/{id}(id=${doc.id})}" target="_blank"
                                th:text="${doc.originalName}">Download</a></td>
-                        <td th:text="${#temporals.format(doc.uploadedAt, 'dd-MM-yyyy')}">Date</td>
+                        <td th:text="${#temporals.format(doc.uploadedAt, 'dd/MM/yyyy')}">Date</td>
                         <td>
                             <form th:action="@{/admin/vehicles/{vehicleId}/docs/{docId}/delete(vehicleId=${vehicle.id}, docId=${doc.id})}"
                                   method="post">

@@ -25,7 +25,7 @@
                                                            th:href="@{/v/{token}(token=${vehicle.publicToken})}"
                                                            target="_blank"> Open Public Page </a>
                         <div class="text-muted-ux"
-                             th:text="'Expires: ' + ${#temporals.format(vehicle.publicTokenExpiresAt, 'dd-MM-yyyy')}"></div>
+                             th:text="'Expires: ' + ${#temporals.format(vehicle.publicTokenExpiresAt, 'dd/MM/yyyy')}"></div>
                     </div>
                     <form th:action="@{/admin/vehicles/{id}/regenerate-link(id=${vehicle.id})}" method="post">
                         <button class="btn btn-outline btn-sm" type="submit">Regenerate Link</button>
@@ -184,7 +184,7 @@
                         </thead>
                         <tbody>
                         <tr th:each="update : ${statusUpdates}">
-                            <td th:text="${#temporals.format(update.createdAt, 'dd-MM-yyyy')}">Date</td>
+                            <td th:text="${#temporals.format(update.createdAt, 'dd/MM/yyyy')}">Date</td>
                             <td th:text="${update.status.label}">Status</td>
                             <td th:text="${update.note}">Note</td>
                         </tr>
