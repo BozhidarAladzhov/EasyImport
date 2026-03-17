@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="bg" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title th:text="${car.displayName} + ' | CarLog'">CarLog</title>
+    <link href="/images/favicon-site.png" rel="icon" type="image/png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link href="/css/site.css" rel="stylesheet">
+    <link href="/css/carlog.css" rel="stylesheet">
+</head>
+<body class="carlog-page">
+<main class="carlog-shell carlog-shell--detail">
+    <section class="carlog-hero carlog-hero--compact">
+        <div>
+            <a class="back-link" href="/carlog">← Назад</a>
+            <div class="carlog-kicker" th:text="${car.registrationNumber}">CB0000AB</div>
+            <h1 th:text="${car.displayName}">2020 BMW X5</h1>
+            <p th:text="${car.owner != null ? 'Профил: ' + car.owner.fullName : 'Автомобилът още няма закачен профил.'}"></p>
+        </div>
+        <div class="carlog-hero-actions">
+            <a class="btn btn-outline" th:if="${isAdmin}" th:href="@{/carlog/admin/cars/{id}/edit(id=${car.id})}">Редакция</a>
+        </div>
+    </section>
+
+    <div class="alert alert-success" th:if="${success}" th:text="${success}"></div>
+
+    <section class="detail-summary">
+        <div class="summary-box"><span>Гориво</span><strong th:text="${car.fuelType.label}">Дизел</strong></div>
+        <div class="summary-box"><span>Пробег</span><strong th:text="${#numbers.formatInteger(car.mileage, 0, 'WHITESPACE')} + ' км'">0</strong></div>
+        <div class="summary-box"><span>Данък</span><strong th:text="${car.annualTaxPaid ? 'Платен' : 'Неплатен'}">Платен</strong></div>
+        <div class="summary-box"><span>Бележки</span><strong th:text="${#lists.size(car.notes)}">0</strong></div>
+    </section>
+
+    <section class="detail-grid">
+        <article class="detail-panel">
+            <h3>Проследяване</h3>
+            <div class="detail-list">
+                <div><span>ГО</span><strong th:text="${car.liabilityInsurance.insurer != null ? car.liabilityInsurance.insurer : '-'}"></strong></div>
+                <div><span>ГО валидност</span><strong th:text="${car.liabilityInsurance.endDate != null ? #temporals.format(car.liabilityInsurance.endDate, 'dd.MM.yyyy') : '-'}"></strong></div>
+                <div><span>Каско</span><strong th:text="${car.cascoInsurance.insurer != null ? car.cascoInsurance.insurer : '-'}"></strong></div>
+                <div><span>Каско валидност</span><strong th:text="${car.cascoInsurance.endDate != null ? #temporals.format(car.cascoInsurance.endDate, 'dd.MM.yyyy') : '-'}"></strong></div>
+                <div><span>ГТП</span><strong th:text="${car.technicalInspection.validUntil != null ? #temporals.format(car.technicalInspection.validUntil, 'dd.MM.yyyy') : '-'}"></strong></div>
+                <div><span>Винетка</span><strong th:text="${car.vignette.validUntil != null ? #temporals.format(car.vignette.validUntil, 'dd.MM.yyyy') : '-'}"></strong></div>
+            </div>
+            <div class="mini-note" th:if="${car.notesSummary != null && !car.notesSummary.isBlank()}" th:text="${car.notesSummary}"></div>
+        </article>
+
+        <article class="detail-panel">
+            <h3>Гориво</h3>
+            <div class="table-responsive">
+                <table class="table table-sm carlog-table">
+                    <thead><tr><th>Дата</th><th>Литри</th><th>Сума</th><th>лв/л</th></tr></thead>
+                    <tbody>
+                    <tr th:each="entry : ${car.fuelEntries}">
+                        <td th:text="${#temporals.format(entry.entryDate, 'dd.MM.yyyy')}"></td>
+                        <td th:text="${entry.liters}"></td>
+                        <td th:text="${entry.totalCost}"></td>
+                        <td th:text="${entry.pricePerLiter != null ? entry.pricePerLiter : '-'}"></td>
+                    </tr>
+                    <tr th:if="${#lists.isEmpty(car.fuelEntries)}"><td class="text-center text-muted-ux" colspan="4">Няма зареждания</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <form class="stack-form" th:if="${isAdmin}" th:action="@{/carlog/cars/{id}/fuel(id=${car.id})}" method="post">
+                <input class="form-control" name="entryDate" required type="date">
+                <input class="form-control" min="0" name="liters" placeholder="Литри" required step="0.01" type="number">
+                <input class="form-control" min="0" name="totalCost" placeholder="Обща сума" required step="0.01" type="number">
+                <input class="form-control" min="0" name="mileage" placeholder="Пробег" type="number">
+                <input class="form-control" name="station" placeholder="Бензиностанция" type="text">
+                <textarea class="form-control textarea" name="notes" placeholder="Бележка"></textarea>
+                <button class="btn" type="submit">Добави зареждане</button>
+            </form>
+        </article>
+
+        <article class="detail-panel">
+            <h3>Разходи</h3>
+            <div class="timeline-list">
+                <div class="timeline-item" th:each="expense : ${car.expenses}">
+                    <div class="timeline-item__head">
+                        <strong th:text="${expense.category}">Разход</strong>
+                        <span th:text="${expense.amount} + ' лв'">0 лв</span>
+                    </div>
+                    <div class="timeline-meta" th:text="${#temporals.format(expense.expenseDate, 'dd.MM.yyyy') + ' • ' + expense.createdBy}"></div>
+                    <p th:if="${expense.description != null && !expense.description.isBlank()}" th:text="${expense.description}"></p>
+                </div>
+                <div class="text-muted-ux" th:if="${#lists.isEmpty(car.expenses)}">Няма разходи.</div>
+            </div>
+            <form class="stack-form" th:if="${isAdmin}" th:action="@{/carlog/cars/{id}/expenses(id=${car.id})}" method="post">
+                <input class="form-control" name="category" placeholder="Категория" required type="text">
+                <input class="form-control" min="0" name="amount" placeholder="Сума" required step="0.01" type="number">
+                <input class="form-control" name="expenseDate" required type="date">
+                <textarea class="form-control textarea" name="description" placeholder="Описание"></textarea>
+                <button class="btn" type="submit">Добави разход</button>
+            </form>
+        </article>
+
+        <article class="detail-panel">
+            <h3>Обслужване</h3>
+            <div class="timeline-list">
+                <div class="timeline-item" th:each="record : ${car.serviceRecords}">
+                    <div class="timeline-item__head">
+                        <strong th:text="${record.title}">Масло</strong>
+                        <span th:text="${record.cost != null ? record.cost + ' лв' : '-'}">-</span>
+                    </div>
+                    <div class="timeline-meta" th:text="${#temporals.format(record.serviceDate, 'dd.MM.yyyy') + ' • ' + record.createdBy}"></div>
+                    <p th:if="${record.details != null && !record.details.isBlank()}" th:text="${record.details}"></p>
+                </div>
+                <div class="text-muted-ux" th:if="${#lists.isEmpty(car.serviceRecords)}">Няма обслужвания.</div>
+            </div>
+            <form class="stack-form" th:if="${isAdmin}" th:action="@{/carlog/cars/{id}/service-records(id=${car.id})}" method="post">
+                <input class="form-control" name="serviceDate" required type="date">
+                <input class="form-control" name="title" placeholder="Какво е направено" required type="text">
+                <input class="form-control" min="0" name="cost" placeholder="Цена" step="0.01" type="number">
+                <input class="form-control" min="0" name="mileage" placeholder="Пробег" type="number">
+                <textarea class="form-control textarea" name="details" placeholder="Детайли"></textarea>
+                <button class="btn" type="submit">Добави обслужване</button>
+            </form>
+        </article>
+
+        <article class="detail-panel">
+            <h3>Бележки</h3>
+            <div class="timeline-list">
+                <div class="timeline-item" th:each="note : ${car.notes}">
+                    <div class="timeline-meta" th:text="${note.createdBy + ' • ' + #temporals.format(note.createdAt, 'dd.MM.yyyy HH:mm')}"></div>
+                    <p th:text="${note.content}"></p>
+                </div>
+                <div class="text-muted-ux" th:if="${#lists.isEmpty(car.notes)}">Няма бележки.</div>
+            </div>
+            <form class="stack-form" th:action="@{/carlog/cars/{id}/notes(id=${car.id})}" method="post">
+                <textarea class="form-control textarea" name="content" placeholder="Добави бележка" required></textarea>
+                <button class="btn" type="submit">Запази бележка</button>
+            </form>
+        </article>
+
+        <article class="detail-panel">
+            <h3>Напомняния</h3>
+            <div class="timeline-list">
+                <div class="timeline-item" th:each="reminder : ${car.reminders}">
+                    <div class="timeline-item__head">
+                        <strong th:text="${reminder.title}">Винетка</strong>
+                        <span th:text="${reminder.completed ? 'Готово' : 'Активно'}">Активно</span>
+                    </div>
+                    <div class="timeline-meta" th:text="${#temporals.format(reminder.dueDate, 'dd.MM.yyyy')}"></div>
+                    <p th:if="${reminder.details != null && !reminder.details.isBlank()}" th:text="${reminder.details}"></p>
+                    <form th:if="${isAdmin}" th:action="@{/carlog/cars/{carId}/reminders/{reminderId}/toggle(carId=${car.id},reminderId=${reminder.id})}" method="post">
+                        <button class="btn btn-outline btn-sm" type="submit" th:text="${reminder.completed ? 'Маркирай активен' : 'Маркирай готов'}">Маркирай</button>
+                    </form>
+                </div>
+                <div class="text-muted-ux" th:if="${#lists.isEmpty(car.reminders)}">Няма напомняния.</div>
+            </div>
+            <form class="stack-form" th:if="${isAdmin}" th:action="@{/carlog/cars/{id}/reminders(id=${car.id})}" method="post">
+                <input class="form-control" name="title" placeholder="Заглавие" required type="text">
+                <input class="form-control" name="dueDate" required type="date">
+                <textarea class="form-control textarea" name="details" placeholder="Детайли"></textarea>
+                <button class="btn" type="submit">Добави напомняне</button>
+            </form>
+        </article>
+    </section>
+</main>
+</body>
+</html>

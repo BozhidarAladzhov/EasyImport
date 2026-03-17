@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.506s</div>
+<div class="counter">0.003s</div>
 <p>duration</p>
 </div>
 </td>
@@ -79,7 +79,7 @@
 </thead>
 <tr>
 <td class="success">contextLoads()</td>
-<td class="success">0.506s</td>
+<td class="success">0.003s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -87,8 +87,8 @@
 <div class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>10:05:50.693 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.mytransport.EasyImportApplicationTests]: EasyImportApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-10:05:50.852 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.mytransport.EasyImportApplication for test class com.mytransport.EasyImportApplicationTests
+<pre>2026-03-17T16:17:50.017+02:00  INFO 1092 --- [EasyImport] [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.mytransport.EasyImportApplicationTests]: EasyImportApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-03-17T16:17:50.018+02:00  INFO 1092 --- [EasyImport] [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.mytransport.EasyImportApplication for test class com.mytransport.EasyImportApplicationTests
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -99,33 +99,31 @@
 
  :: Spring Boot ::                (v3.4.4)
 
-2026-03-04T10:05:51.447+02:00  INFO 73160 --- [EasyImport] [    Test worker] c.m.EasyImportApplicationTests           : Starting EasyImportApplicationTests using Java 17.0.11 with PID 73160 (started by bojidar in F:\EasyImport)
-2026-03-04T10:05:51.450+02:00  INFO 73160 --- [EasyImport] [    Test worker] c.m.EasyImportApplicationTests           : The following 1 profile is active: &quot;test&quot;
-2026-03-04T10:05:52.439+02:00  INFO 73160 --- [EasyImport] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-03-04T10:05:52.543+02:00  INFO 73160 --- [EasyImport] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 87 ms. Found 7 JPA repository interfaces.
-2026-03-04T10:05:53.177+02:00  INFO 73160 --- [EasyImport] [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2026-03-04T10:05:53.248+02:00  INFO 73160 --- [EasyImport] [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.11.Final
-2026-03-04T10:05:53.288+02:00  INFO 73160 --- [EasyImport] [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2026-03-04T10:05:53.673+02:00  INFO 73160 --- [EasyImport] [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-03-04T10:05:53.709+02:00  INFO 73160 --- [EasyImport] [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2026-03-04T10:05:53.915+02:00  INFO 73160 --- [EasyImport] [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
-2026-03-04T10:05:53.917+02:00  INFO 73160 --- [EasyImport] [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2026-03-04T10:05:53.938+02:00  WARN 73160 --- [EasyImport] [    Test worker] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2026-03-04T10:05:53.962+02:00  INFO 73160 --- [EasyImport] [    Test worker] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
-	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+2026-03-17T16:17:50.045+02:00  INFO 1092 --- [EasyImport] [    Test worker] c.m.EasyImportApplicationTests           : Starting EasyImportApplicationTests using Java 17.0.11 with PID 1092 (started by frlsf115 in C:\EasyImport)
+2026-03-17T16:17:50.045+02:00  INFO 1092 --- [EasyImport] [    Test worker] c.m.EasyImportApplicationTests           : The following 1 profile is active: &quot;test&quot;
+2026-03-17T16:17:50.193+02:00  INFO 1092 --- [EasyImport] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-17T16:17:50.219+02:00  INFO 1092 --- [EasyImport] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 25 ms. Found 10 JPA repository interfaces.
+2026-03-17T16:17:50.300+02:00  INFO 1092 --- [EasyImport] [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-03-17T16:17:50.300+02:00  INFO 1092 --- [EasyImport] [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-03-17T16:17:50.316+02:00  INFO 1092 --- [EasyImport] [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-17T16:17:50.322+02:00  INFO 1092 --- [EasyImport] [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2026-03-17T16:17:50.322+02:00  INFO 1092 --- [EasyImport] [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection conn10: url=jdbc:h2:mem:testdb user=SA
+2026-03-17T16:17:50.322+02:00  INFO 1092 --- [EasyImport] [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2026-03-17T16:17:50.322+02:00  WARN 1092 --- [EasyImport] [    Test worker] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-03-17T16:17:50.322+02:00  INFO 1092 --- [EasyImport] [    Test worker] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-2)']
 	Database driver: undefined/unknown
 	Database version: 2.3.232
 	Autocommit mode: undefined/unknown
 	Isolation level: undefined/unknown
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-2026-03-04T10:05:54.972+02:00  INFO 73160 --- [EasyImport] [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-03-04T10:05:55.032+02:00  INFO 73160 --- [EasyImport] [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-03-04T10:05:55.334+02:00  INFO 73160 --- [EasyImport] [    Test worker] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2026-03-04T10:05:56.783+02:00  WARN 73160 --- [EasyImport] [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-03-04T10:05:56.924+02:00  INFO 73160 --- [EasyImport] [    Test worker] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsService
-2026-03-04T10:05:57.016+02:00  INFO 73160 --- [EasyImport] [    Test worker] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
-2026-03-04T10:05:57.760+02:00  INFO 73160 --- [EasyImport] [    Test worker] c.m.EasyImportApplicationTests           : Started EasyImportApplicationTests in 6.721 seconds (process running for 8.156)
+2026-03-17T16:17:50.536+02:00  INFO 1092 --- [EasyImport] [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-17T16:17:50.567+02:00  INFO 1092 --- [EasyImport] [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-17T16:17:50.677+02:00  WARN 1092 --- [EasyImport] [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-03-17T16:17:50.677+02:00  INFO 1092 --- [EasyImport] [    Test worker] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsService
+2026-03-17T16:17:50.677+02:00  INFO 1092 --- [EasyImport] [    Test worker] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2026-03-17T16:17:50.837+02:00  INFO 1092 --- [EasyImport] [    Test worker] c.m.EasyImportApplicationTests           : Started EasyImportApplicationTests in 0.815 seconds (process running for 12.456)
 </pre>
 </span>
 </div>
@@ -137,7 +135,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="https://www.gradle.org">Gradle 8.13</a> at Mar 4, 2026, 10:05:59 AM</p>
+<a href="https://www.gradle.org">Gradle 8.13</a> at Mar 17, 2026, 4:17:51 PM</p>
 </div>
 </div>
 </body>
