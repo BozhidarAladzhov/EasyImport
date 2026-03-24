@@ -38,8 +38,9 @@
 
 html,
 body {
-  margin: 0;
-  padding: 0
+  margin: 0 !important;
+  padding: 0 !important;
+  background: var(--bg);
 }
 
 html {
@@ -54,6 +55,14 @@ body {
     radial-gradient(1100px 520px at 90% -10%, rgba(255, 209, 102, .10), transparent 60%),
     linear-gradient(180deg, var(--bg), var(--bg-2));
   color: var(--text);
+  line-height: 0;
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+  border: 0 !important;
+  position: relative;
+}
+
+body > * {
   line-height: 1.7;
 }
 
@@ -111,7 +120,21 @@ a {
   background: linear-gradient(180deg, rgba(12, 16, 20, .65), rgba(12, 16, 20, .45)) !important;
   backdrop-filter: saturate(1.2) blur(14px);
   border-bottom: 1px solid var(--border);
-  padding: .75rem 1rem;
+  padding: 0 1rem;
+  margin-top: 0 !important;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  border-top: 0;
+}
+
+body > .navbar {
+  margin-top: 0 !important;
+}
+
+.navbar > .container-fluid {
+  padding-top: .6rem;
+  padding-bottom: .6rem;
 }
 
 .navbar-brand {
@@ -285,6 +308,16 @@ a {
 
 .card .card-title {
   color: var(--text)
+}
+
+/* Admin + Public card style (wall-card look) */
+.admin-page .card,
+.public-page .card,
+.page-vehicle-status .card {
+  background: linear-gradient(180deg, rgba(15, 18, 22, 0.75), rgba(15, 18, 22, 0.5));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px) saturate(1.1);
 }
 
 /* ---------- Forms ---------- */

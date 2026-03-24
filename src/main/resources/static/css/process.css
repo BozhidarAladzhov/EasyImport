@@ -7,10 +7,14 @@
 }
 
 /* Карти – еднаква височина и центриране */
-.page-process .process-steps .card {
+.page-process .process-steps .row > [class*="col-"] .card {
   height: 100%;
   padding: 1.6rem 1.4rem;
   text-align: center;
+  background: linear-gradient(180deg, rgba(15, 18, 22, 0.75), rgba(15, 18, 22, 0.5));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px) saturate(1.1);
 }
 
 /* Икони */
@@ -31,6 +35,11 @@
   max-width: 720px;
   margin: 0 auto;
   text-align: center;
+  height: auto;
+  background: linear-gradient(180deg, rgba(15, 18, 22, 0.75), rgba(15, 18, 22, 0.5));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px) saturate(1.1);
 }
 
 /* ==============================
