@@ -110,10 +110,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  background-image: image-set(
-    url("/images/mpbanner.jpg") 1x,
-    url("/images/mpbanner@2x.jpg") 2x
-  );
+  background-image: url("/images/mpbanner.jpg");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
